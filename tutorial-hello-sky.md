@@ -1,14 +1,14 @@
-# First App Tutorial (Hello Sky)
+# 开发第一个App：Hello Sky
 
-This tutorial explains in detail how to create a new onboard application and how to run it.
+这个教程演示了如何编写并运行一个PX4系统应用程序。
 
-## Prerequisites
+## 前提条件
 
-  * Pixhawk or Snapdragon compatible autopilot
-  * PX4 Toolchain [installed](starting-installing.md)
-  * Github Account ([sign up for free](https://github.com/signup/free))
+  * 同Pixhawk或者Snapdragon兼容的自动驾驶仪
+  * [安装了PX4工具链](starting-installing.md)
+  * Github账户（[免费注册](https://github.com/signup/free)）
 
-## Step 1: File Setup
+## 第1步：准备文件
 
 To conveniently manage your custom code and pull in updates from the main repository, it is recommended to fork the Firmware repository with the GIT version control system:
 
@@ -16,7 +16,7 @@ To conveniently manage your custom code and pull in updates from the main reposi
   - Go to the [Firmware repository website](https://github.com/px4/Firmware/) and click **FORK** on the upper right part.
   - If you are not already there, open the website of your fork and copy the private repository URL in the center.
   - Clone the repository to your hard drive, e.g. on the command line via `git clone https://github.com/<youraccountname>/Firmware.git`. Windows users please [refer to the Github help](https://help.github.com/articles/set-up-git#platform-windows) and e.g. fork / clone with their Github for Windows app.
-  - Update the git submodules: Run in your shell (on Windows in the PX4 console). 
+  - Update the git submodules: Run in your shell (on Windows in the PX4 console).
 
 <div class="host-code"></div>
 
@@ -25,8 +25,8 @@ cd Firmware
 git submodule init
 git submodule update --recursive
 ```
-  
-Enter the `Firmware/src/examples/` directory on your local hard drive and look at the files in the directory.
+
+你可以进入`Firmware/src/examples/`目录看看这些示例的样子。
 
 ## Step 2: Minimal Application
 
@@ -100,9 +100,9 @@ int px4_simple_app_main(int argc, char *argv[])
 }
 ```
 
-## Step 3: Register the Application in NuttShell and build it
+## 第3步：在NuttShell中注册应用程序并构建
 
-The application is now complete and could be run, but it is not registered as NuttShell command yet. To enable the compilation of the application into the firmware, add it to the list of modules to build, which is here: 
+现在这个同应用程序已经完成并且可以运行，但是我们还没有将它注册为一个NuttShell命令。To enable the compilation of the application into the firmware, add it to the list of modules to build, which is here:
 
   * Pixhawk v1/2: [Firmware/cmake/configs/nuttx_px4fmu-v2_default.cmake](https://github.com/PX4/Firmware/blob/master/cmake/configs/nuttx_px4fmu-v2_default.cmake)
   * Pixracer: [Firmware/cmake/configs/nuttx_px4fmu-v4_default.cmake](https://github.com/PX4/Firmware/blob/master/cmake/configs/nuttx_px4fmu-v4_default.cmake)
@@ -154,14 +154,14 @@ Type ''help'' and hit ENTER
 ```sh
   nsh> help
     help usage:  help [-v] [<cmd>]
-  
-    [           df          kill        mkfifo      ps          sleep       
-    ?           echo        losetup     mkrd        pwd         test        
-    cat         exec        ls          mh          rm          umount      
-    cd          exit        mb          mount       rmdir       unset       
-    cp          free        mkdir       mv          set         usleep      
-    dd          help        mkfatfs     mw          sh          xd          
-  
+
+    [           df          kill        mkfifo      ps          sleep
+    ?           echo        losetup     mkrd        pwd         test
+    cat         exec        ls          mh          rm          umount
+    cd          exit        mb          mount       rmdir       unset
+    cp          free        mkdir       mv          set         usleep
+    dd          help        mkfatfs     mw          sh          xd
+
   Builtin Apps:
     reboot
     perf

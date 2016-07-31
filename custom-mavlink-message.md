@@ -1,4 +1,5 @@
-# Create Custom MAVLink Messages
+# 创建自定义MAVLink消息
+
 This tutorial assumes you have a [custom uORB](advanced-uorb.md) `ca_trajectory`
 message in `msg/ca_trajectory.msg` and a custom mavlink
 `ca_trajectory` message in
@@ -6,7 +7,8 @@ message in `msg/ca_trajectory.msg` and a custom mavlink
 [here](http://qgroundcontrol.org/mavlink/create_new_mavlink_message) how to
 create a custom mavlink message and header).
 
-# Sending Custom MAVLink Messages
+# 如何发送MAVLink消息
+
 This section explains how to use a custom uORB message and send it as a mavlink
 message.
 
@@ -44,7 +46,7 @@ public:
 	{
 		return MAVLINK_MSG_ID_CA_TRAJECTORY_LEN + MAVLINK_NUM_NON_PAYLOAD_BYTES;
 	}
-	
+
 private:
 	MavlinkOrbSubscription *_sub;
 	uint64_t _ca_traj_time;
@@ -64,14 +66,14 @@ protected:
 		struct ca_traj_struct_s _ca_trajectory;    //make sure ca_traj_struct_s is the definition of your uorb topic
 
 		if (_sub->update(&_ca_traj_time, &_ca_trajectory)) {
-			mavlink_ca_trajectory_t _msg_ca_trajectory;  //make sure mavlink_ca_trajectory_t is the definition of your custom mavlink message 
-			
+			mavlink_ca_trajectory_t _msg_ca_trajectory;  //make sure mavlink_ca_trajectory_t is the definition of your custom mavlink message
+
 			_msg_ca_trajectory.timestamp = _ca_trajectory.timestamp;
 			_msg_ca_trajectory.time_start_usec = _ca_trajectory.time_start_usec;
 			_msg_ca_trajectory.time_stop_usec  = _ca_trajectory.time_stop_usec;
 			_msg_ca_trajectory.coefficients =_ca_trajectory.coefficients;
 			_msg_ca_trajectory.seq_id = _ca_trajectory.seq_id;
-		
+
 			_mavlink->send_message(MAVLINK_MSG_ID_CA_TRAJECTORY, &_msg_ca_trajectory);
 		}
 	}
@@ -90,7 +92,8 @@ nullptr
 ```
 
 
-# Receiving Custom MAVLink Messages
+# 如何接收自定义的MAVLink消息
+
 This section explains how to receive a message over mavlink and publish it to
 uORB.
 
@@ -116,7 +119,7 @@ Add an uORB publisher in the `MavlinkReceiver` class in
 orb_advert_t _ca_traj_msg_pub;
 ```
 
-Implement the `handle_message_ca_trajectory_msg` function in [mavlink_receiver.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.cpp) 
+Implement the `handle_message_ca_trajectory_msg` function in [mavlink_receiver.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.cpp)
 
 ```C
 void
@@ -157,4 +160,3 @@ MavlinkReceiver::handle_message(mavlink_message_t *msg)
 		...
  	}
 ```
-

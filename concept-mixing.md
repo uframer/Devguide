@@ -1,12 +1,12 @@
-# Mixing and Actuators
+# 混控和执行机构
 
-The PX4 architecture ensures that the airframe layout does not require special case handling in the core controllers.
+PX4的架构确保我们不需要为了每种忒别的机架布局而修改核心控制器。
 
-Mixing means to take force commands (e.g. `turn right`) and translate them to actuator commands which control motors or servos. For a plane with one servo per aileron this means to command one of them high and the other low. The same applies for multicopters: Pitching forward requires changing the speed of all motors.
+混控的含义是将作用力指令（例如“向右转”）翻译为具体控制电机或者伺服器的执行机构执行。对于一架每个副翼都有一个伺服器的固定翼飞行器来说，这意味着将一个副翼转动到高位，将另一个副翼转动到低位。对于多轴飞行器来说，这个含义也是类似的：Pitching forward requires changing the speed of all motors.
 
 Separating the mixer logic from the actual attitude controller greatly improves reusability.
 
-## Control Pipeline
+## 控制流水线
 
 A particular controller sends a particular normalized force or torque demand (scaled from -1..+1) to the mixer, which then sets individual actuators accordingly. The output driver (e.g. UART, UAVCAN or PWM) then scales it to the actuators native units, e.g. a PWM value of 1300.
 
@@ -19,13 +19,13 @@ graph LR;
   act_group2[Actuator Control Group 2] --> output_group0[Actuator 5]
 {% endmermaid %}
 
-## Control Groups
+## 控制群组
 
 PX4 uses control groups (inputs) and output groups. Conceptionally they are very simple: A control group is e.g. `attitude`, for the core flight controls, or `gimbal` for payload. An output group is one physical bus, e.g. the first 8 PWM outputs for servos. Each of these groups has 8 normalized (-1..+1) command ports, which can be mapped and scaled through the mixer. A mixer defines how each of these 8 signals of the controls are connected to the 8 outputs.
 
 For a simple plane control 0 (roll) is connected straight to output 0 (elevator). For a multicopter things are a bit different: control 0 (roll) is connected to all four motors and combined with throttle.
 
-#### Control Group #0 (Flight Control)
+#### 控制群组 #0 (Flight Control)
 
  * 0: roll (-1..1)
  * 1: pitch (-1..1)
@@ -36,7 +36,7 @@ For a simple plane control 0 (roll) is connected straight to output 0 (elevator)
  * 6: airbrakes (-1..1)
  * 7: landing gear (-1..1)
 
-#### Control Group #1 (Flight Control VTOL/Alternate)
+#### 控制群组 #1 (Flight Control VTOL/Alternate)
 
  * 0: roll ALT (-1..1)
  * 1: pitch ALT (-1..1)
@@ -47,7 +47,7 @@ For a simple plane control 0 (roll) is connected straight to output 0 (elevator)
  * 6: reserved / aux2
  * 7: reserved / aux3
 
-#### Control Group #2 (Gimbal)
+#### 控制群组 #2 (Gimbal)
 
  * 0: gimbal roll
  * 1: gimbal pitch
@@ -58,7 +58,7 @@ For a simple plane control 0 (roll) is connected straight to output 0 (elevator)
  * 6: reserved
  * 7: reserved (parachute, -1..1)
 
-#### Control Group #3 (Manual Passthrough)
+#### 控制群组 #3 (Manual Passthrough)
 
  * 0: RC roll
  * 1: RC pitch
@@ -69,7 +69,7 @@ For a simple plane control 0 (roll) is connected straight to output 0 (elevator)
  * 6: RC aux2
  * 7: RC aux3
 
-#### Control Group #6 (First Payload)
+#### 控制群组 #6 (First Payload)
 
  * 0: function 0 (default: parachute)
  * 1: function 1
@@ -80,11 +80,11 @@ For a simple plane control 0 (roll) is connected straight to output 0 (elevator)
  * 6: function 6
  * 7: function 7
 
-### Virtual Control Groups
+### 虚拟控制群组
 
 These groups are NOT mixer inputs, but serve as meta-channels to feed fixed wing and multicopter controller outputs into the VTOL governor module.
 
-#### Control Group #4 (Flight Control MC VIRTUAL)
+#### 控制群组 #4 (Flight Control MC VIRTUAL)
 
  * 0: roll ALT (-1..1)
  * 1: pitch ALT (-1..1)
@@ -95,7 +95,7 @@ These groups are NOT mixer inputs, but serve as meta-channels to feed fixed wing
  * 6: reserved / aux2
  * 7: reserved / aux3
 
-#### Control Group #5 (Flight Control FW VIRTUAL)
+#### 控制群组 #5 (Flight Control FW VIRTUAL)
 
  * 0: roll ALT (-1..1)
  * 1: pitch ALT (-1..1)
@@ -106,7 +106,7 @@ These groups are NOT mixer inputs, but serve as meta-channels to feed fixed wing
  * 6: reserved / aux2
  * 7: reserved / aux3
 
-## Mapping
+## 映射
 
 Since there are multiple control groups (like flight controls, payload, etc.) and multiple output groups (first 8 PWM outpus, UAVCAN, etc.), one control group can send command to multiple output groups.
 
@@ -117,12 +117,12 @@ graph TD;
   actuator_group_1-->output_group_0
 {% endmermaid %}
 
-## PX4 mixer definitions
+## PX4混控器定义
 
 Files in ROMFS/px4fmu_common/mixers implement mixers are used for predefined airframes. They can be used as a basis
 for customisation, or for general testing purposes.
 
-### Syntax
+### 语法
 
 Mixer definitions are text files; lines beginning with a single capital letter
 followed by a colon are significant. All other lines are ignored, meaning that
@@ -139,10 +139,10 @@ A mixer begins with a line of the form
 
 	<tag>: <mixer arguments>
 
-The tag selects the mixer type; 'M' for a simple summing mixer, 'R' for a 
+The tag selects the mixer type; 'M' for a simple summing mixer, 'R' for a
 multirotor mixer, etc.
 
-#### Null Mixer ####
+#### Null混控器 ####
 
 A null mixer consumes no controls and generates a single actuator output whose
 value is always zero.  Typically a null mixer is used as a placeholder in a
@@ -152,7 +152,7 @@ The null mixer definition has the form:
 
 	Z:
 
-#### Simple Mixer ####
+#### 简单混控器 ####
 
 A simple mixer combines zero or more control inputs into a single actuator
 output.  Inputs are scaled, and the mixing function sums the result before
@@ -190,7 +190,7 @@ discussed above. Whilst the calculations are performed as floating-point
 operations, the values stored in the definition file are scaled by a factor of
 10000; i.e. an offset of -0.5 is encoded as -5000.
 
-#### Multirotor Mixer ####
+#### 多轴混控器 ####
 
 The multirotor mixer combines four control inputs (roll, pitch, yaw, thrust)
 into a set of actuator outputs intended to drive motor speed controllers.
@@ -207,15 +207,15 @@ The supported geometries include:
  * 6+ - hexcopter in + configuration
  * 8x - octocopter in X configuration
  * 8+ - octocopter in + configuration
-  
+
 Each of the roll, pitch and yaw scale values determine scaling of the roll,
 pitch and yaw controls relative to the thrust control.  Whilst the calculations
 are performed as floating-point operations, the values stored in the definition
 file are scaled by a factor of 10000; i.e. an factor of 0.5 is encoded as 5000.
 
 Roll, pitch and yaw inputs are expected to range from -1.0 to 1.0, whilst the
-thrust input ranges from 0.0 to 1.0.  Output for each actuator is in the 
+thrust input ranges from 0.0 to 1.0.  Output for each actuator is in the
 range -1.0 to 1.0.
 
-In the case where an actuator saturates, all actuator values are rescaled so that 
+In the case where an actuator saturates, all actuator values are rescaled so that
 the saturating actuator is limited to 1.0.
