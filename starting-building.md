@@ -1,4 +1,4 @@
-# Building PX4 Software
+# 构建PX4软件
 
 PX4 can be built on the console or in a graphical development environment / IDE.
 

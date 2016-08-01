@@ -1,4 +1,4 @@
-# Linux Installation Instructions for Arch and CentOS
+# Arch及CentOS发行版指南
 
 ## USB Device Configuration
 

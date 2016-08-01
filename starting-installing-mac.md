@@ -1,4 +1,4 @@
-# Installing Files and Code
+# Mac开发环境
 
 The first step is to install Xcode from the Mac app store. Once its installed, open a new terminal and install the command line tools:
 

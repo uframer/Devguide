@@ -6,7 +6,7 @@
     * [安装工具链](starting-installing.md)
         * [Mac OS](starting-installing-mac.md)
         * [Linux](starting-installing-linux.md)
-            * [Linux高级设置](starting-installing-linux-boutique.md)
+            * [Arch及CentOS发行版指南](starting-installing-linux-boutique.md)
         * [Windows](starting-installing-windows.md)
     * [构建代码](starting-building.md)
     * [贡献&征集开发者](starting-contributing.md)
