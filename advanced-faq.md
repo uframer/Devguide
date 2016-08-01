@@ -1,15 +1,15 @@
-# Frequently Asked Questions
+# FAQ
 
+## 构建错误
 
-## Build Errors
-
-### Flash Overflow
+### 闪存溢出
 
 <aside class="tip">
-Use the FMUv4 architecture to obtain double the flash. The first available board from this generation is the [Pixracer](http://dev.px4.io/hardware-pixracer.html).
+FMUv4架构的自动驾驶仪具有两倍大的闪存。第一款可用的FMUv4设备是[Pixracer](http://dev.px4.io/hardware-pixracer.html)。
 </aside>
+<p/>
 
-The amount of code that can be loaded onto a board is limited by the amount of flash memory it has. When adding additional modules or code its possible that the addition exceeds the flash memory. This will result in a "flash overflow". The upstream version will always build, but depending on what a developer adds it might overflow locally.
+能够加载到板载存储器中的代码的大小受限于设备闪存的大小。当添加额外的模块或者代码时，总的代码大小可能就会超过闪存大小。这会在构建时造成“闪存溢出”错误。上游的代码会保证可以通过构建通过，但是开发者自己添加的内容可能就会造成溢出。
 
 <div class="host-code"></div>
 
@@ -17,7 +17,7 @@ The amount of code that can be loaded onto a board is limited by the amount of f
 region `flash' overflowed by 12456 bytes
 ```
 
-To remedy it, either use more recent hardware or remove modules from the build which are not essential to your use case. The configurations are stored [here](https://github.com/PX4/Firmware/tree/master/cmake/configs). To remove a module, just comment it out:
+如果要解决这个问题，要么使用新的具有更大闪存的硬件，要么删除不必要的组件。配置文件保存在[这里](https://github.com/PX4/Firmware/tree/master/cmake/configs)。如果要移除一个模块，只需要将它注释掉：
 
 <div class="host-code"></div>
 
@@ -25,11 +25,11 @@ To remedy it, either use more recent hardware or remove modules from the build w
 #drivers/trone
 ```
 
-## USB Errors
+## USB错误
 
-### The upload never succeeds
+### 无法上传固件
 
-On Ubuntu, deinstall the modem manager:
+在Ubuntu上，卸载modem manager：
 
 ```sh
 sudo apt-get remove modemmanager
