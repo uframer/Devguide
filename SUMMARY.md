@@ -15,7 +15,7 @@
     * [架构概览](concept-architecture.md)
     * [飞行软件栈](concept-flight-stack.md)
     * [中间件](concept-middleware.md)
-    * [混控和执行机构 and Actuators](concept-mixing.md)
+    * [混控和执行机构](concept-mixing.md)
     * [PWM limit状态机](concept-pwm_limit.md)
 * [教程](tutorials.md)
     * [地面站](qgroundcontrol-intro.md)
@@ -56,7 +56,7 @@
         * [TBS Caipiroshka](airframes-vtol-caipiroshka.md)
     * [船、潜艇、飞艇、小车](airframes-experimental.md)
 * 伙伴计算机
-    * [Pixhawk兼容计算机](pixhawk-companion-computer.md)
+    * [Pixhawk伙伴计算机](pixhawk-companion-computer.md)
 * [DroneKit机器人](robotics-using-dronekit.md)
     * [DroneKit用法](dronekit-example.md)
 * [ROS机器人](robotics-using-ros.md)
