@@ -1,6 +1,6 @@
-# Airframe Overview
+# 机架概览
 
-The PX4 system is architected in a modular fashion allowing it to use a single codebase for all robot types.
+PX4系统架构采用模块化的设计，可以用一份代码支持多种不同类型的机器人。
 
 {% mermaid %}
 graph LR;
@@ -10,19 +10,19 @@ graph LR;
   Mixer-->Actuator
 {% endmermaid %}
 
-## Basic Equipment
+## 基本设备
 
-All hardware configurations in the airframe section assume a basic set of equipment:
+我们假设所有的机架都包括一组基本的硬件配置：
 
-  * A Taranis Plus remote control for the safety pilot (or equivalent with PPM / S.BUS out)
-  * A ground control station
-    * Samsung Note 4 or equivalent / more recent Android tablet
-    * iPad (requires Wifi telemetry adapter)
-    * Any MacBook or Ubuntu Linux laptop
-  * An in-field computer (for software developers)
-    * MacBook Pro or Air with OS X 10.10 or newer
-    * Modern laptop with Ubuntu Linux (14.04 or newer)
-  * Safety glasses
-  * For multicopters: A tether for more risky tests
+  * 一个Taranis Plus遥控器（或者类似的支持PPM/S.BUS输出的额遥控器）
+  * 一个地面站
+    * Samsung Note 4或者类似的Android平板
+    * iPad（需要Wifi数传适配器）
+    * MacBook或者Ubuntu Linux笔记本
+  * 一个计算机（用于软件开发）
+    * MacBook Pro或者Air，系统版本为OS X 10.10或者更新
+    * 安装了Ubuntu Linux（14.04或者更新）的现代笔记本
+  * 护目镜
+  * 对于多轴飞行器：某些高风险的测试需要系留器材
 
-PX4 can be used with a much wider range of equipment, but new developers will benefit from going with one of the standard setups, and a Taranis RC plus a Note 4 tablet make up for a very inexpensive field kit.
+PX4可以用于各种各样的设备，但是新晋开发者最好使用一种标准配置，Taranis RC plus加一个Note 4平板是不错的平价选择。
