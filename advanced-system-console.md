@@ -1,19 +1,15 @@
-# PX4 System Console
+# PX4系统控制台
 
-The system console allows low-level access to the system, debug output and analysis of the system boot process. The most convenient way to connect it is by using a [Dronecode probe](http://nicadrone.com/index.php?id_product=65&controller=product), but a plain FTDI cable can be used as well.
+可以使用系统控制台访问系统的底层接口、调试输出或者分析系统的引导过程。连接系统控制台的最简单方法是使用[Dronecode probe](http://nicadrone.com/index.php?id_product=65&controller=product)，不过普通的FTDI线也能用。
 
-## System Console vs. Shell
+## 系统控制台 vs. Shell
 
-There are multiple shells, but only one console: The system console is the location where all boot output (and applications auto-started on boot) is printed.
+PX4有多个shell，但是只有一个控制台：系统控制台是所有引导信息（包括在引导时自动启动的应用程序的信息）输出的地方。
 
-  * System console (first shell): Hardware serial port
-  * Additional shells: Pixhawk on USB (e.g. lists as /dev/tty.usbmodem1 on Mac OS)
+  * 系统控制台（第一个shell）：硬件串口
+  * 其他的shell：Pixhawk on USB（也就是Mac系统里的`/dev/tty.usbmodem1`设备）
 
-> **Info** 
-> USB shell: To just run a few quick commands or test an application connecting to the USB
-> shell is sufficient. **To use it, boot the system without the microSD card inserted.** 
-> The hardware serial console is only needed for boot debugging or when USB should be used
-> for MAVLink to connect a [GCS](qgroundcontrol-intro.md).
+> **信息** USB shell：如果只需要运行几个命令，或者测试一个应用程序，那么连接到USB shell是很方便的。**只要你不插microSD开启动系统，就额可以启用USB shell。** 只有在调试启动阶段或者USB需要用作其他用途时（例如连接[地面站](qgroundcontrol-intro.md)），才必须要使用硬件串口控制台。
 
 ## Snapdragon Flight: Wiring the Console
 

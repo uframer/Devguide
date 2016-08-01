@@ -1,4 +1,5 @@
-# Camera Trigger
+# 摄像头触发器
+
 The camera trigger driver allows the use of the AUX ports to send out pulses in
 order to trigger a camera. This can be used for multiple applications including
 timestamping photos for aerial surveying and reconstruction, synchronizing a

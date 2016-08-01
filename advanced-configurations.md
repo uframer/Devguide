@@ -1,22 +1,22 @@
-# Parameters & Configurations
+# 参数和配置
 
-The PX4 platform uses the param subsystem (a flat table of float and int32_t values) and text files (for mixers and startup scripts) to store its configuration.
+PX4平台使用参数子系统（一张支持float和int32_t值的表）和文本文件（用于混控器和启动脚本）来保存它的配置信息。
 
-The [system startup](advanced-system-startup.md) and how [airframe configurations](airframes-adding-a-new-frame.md) work are detailed on other pages. This section discusses the param subsystem in detail
+[系统启动过程](advanced-system-startup.md)和[如何添加一个新的机架](airframes-adding-a-new-frame.md)会详细介绍这两个主题的配置过程。本节会详细讨论参数子系统本身。
 
-## Commandline usage
+## 命令行用法
 
-The PX4 [system console](advanced-system-console.md) offers the ```param``` tool, which allows to set parameters, read their value, save them and export and restore to and from files.
+PX4的[系统控制台](advanced-system-console.md)提供了```param```工具，通过它你可以设置、读取、保存、导出到文件、从文件恢复参数。
 
-### Getting and Setting Parameters
+### 读取/设置参数
 
-The param show command lists all system parameters:
+`param show`命令会列出所有的系统参数：
 
 ```sh
 param show
 ```
 
-To be more selective a partial parameter name with wildcard can be used:
+也可以指定想要操作的参数，而且支持通配符：
 
 ```sh
 nsh> param show RC_MAP_A*
@@ -29,15 +29,15 @@ x   RC_MAP_ACRO_SW [375,514] : 0
  723 parameters total, 532 used.
 ```
 
-### Exporting and Loading Parameters
+### 导出/恢复参数
 
-The standard save command will store the parameters in the current default file:
+`save`命令会将所有参数导出到当前的默认文件：
 
 ```sh
 param save
 ```
 
-If provided with an argument, it will store the parameters instead to this new location:
+也可以通过参数指定文件名：
 
 ```sh
 param save /fs/microsd/vtol_param_backup
@@ -113,4 +113,3 @@ Where each line has this use:
  */
 PARAM_DEFINE_FLOAT(MC_PITCH_P, 6.5f);
 ```
-

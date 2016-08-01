@@ -1,10 +1,10 @@
-# Adding a new Airframe Configuration
+# 如何添加一个新的机架
 
 PX4 uses canned configurations as starting point for airframes. Adding a configuration is straightforward: Create a new file which is prepended with a free autostart ID in the [init.d folder](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) and [build and upload](starting-building.md) the software.
 
 Developers not wanting to create their own configuration can instead  customize existing configurations using textfiles on the microSD card, as detailed on the [custom system startup](advanced-system-startup.md) page.
 
-## Airframe configurations
+## 机架配置
 
 An airframe configuration consists of three main blocks:
 
@@ -16,7 +16,7 @@ These three aspects are mostly independent, which means that many configurations
 
 All configurations are stored in the [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) folder. All mixers are stored in the [ROMFS/px4fmu_common/mixers](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/mixers) folder.
 
-### Config file
+### 配置文件
 
 A typical configuration file is below.
 
@@ -71,9 +71,9 @@ set PWM_OUT 4
 set PWM_DISARMED 1000
 ```
 
-### Mixer file
+### 混控文件
 
-A typical configuration file is below. 
+A typical configuration file is below.
 
 <aside class="note">
 The plugs of the servos / motors go in the order of the mixers in this file.

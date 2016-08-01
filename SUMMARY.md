@@ -77,7 +77,7 @@
 * 调试和高级主题
     * [FAQ](advanced-faq.md)
     * [系统控制台](advanced-system-console.md)
-    * [系统引导过程](advanced-system-startup.md)
+    * [系统启动过程](advanced-system-startup.md)
     * [参数和配置](advanced-configurations.md)
     * [自动驾驶仪调试](advanced-gdb-debugging.md)
     * [模拟调试](simulation-debugging.md)
