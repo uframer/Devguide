@@ -1,3 +1,3 @@
-# Wifi Telemetry
+# Wifi数传
 
-PX4 supports telemetry via UDP and Wifi. It broadcasts a heartbeat to port 14550 on 255.255.255.255 until it receives the first heartbeat from a ground control station, at which point it will only send data to this ground control station.
+PX4支持通过Wifi+UDP协议传输数传数据。它会向255.255.255.255:14550广播一个心跳包，直到它接收到从地面站发来的心跳包，之后，它就只会向这个地面站发送数据。
