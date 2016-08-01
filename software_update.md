@@ -1,11 +1,11 @@
-# Software Update
+# 软件更新
 
-The method to update the PX4 software on the drone depends on the hardware platform. For microcontroller based applications new Firmware is flashed through USB or serial.
+更新PX4软件的方法依赖于具体的硬件平台。对于基于微控制器的系统来说，新的固件是通过USB或者串口烧写的。
 
 
-## Infrastructure
+## 基础架构
 
-### Flashing the Bootloader
+### 烧写引导程序，
 
 ```bash
 arm-none-eabi-gdb
