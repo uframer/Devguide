@@ -2,7 +2,7 @@
 
 可以使用系统控制台访问系统的底层接口、调试输出或者分析系统的引导过程。连接系统控制台的最简单方法是使用[Dronecode probe](http://nicadrone.com/index.php?id_product=65&controller=product)，不过普通的FTDI线也能用。
 
-## 系统控制台 vs. Shell
+## 系统控制台同Shell的区别
 
 PX4有多个shell，但是只有一个控制台：系统控制台是所有引导信息（包括在引导时自动启动的应用程序的信息）输出的地方。
 
@@ -13,7 +13,7 @@ PX4有多个shell，但是只有一个控制台：系统控制台是所有引导
 
 ## Snapdragon Flight：控制台连线
 
-开发者套装会附带一个breakout board，其中有三个引脚用于连接控制台。Connect the bundled FTDI cable to the header and the breakout board to the expansion connector.
+开发者套装会附带一个breakout board，其中有三个引脚用于连接控制台。将附带的FTDI线缆连接到插头，并将breakout board连接到扩展接头。
 
 ## Pixracer/Pixhawk v3：控制台连线
 
@@ -30,17 +30,17 @@ PX4有多个shell，但是只有一个控制台：系统控制台是所有引导
 
 ## Pixhawk v1：控制台连线
 
-The system console can be accessed through the Dronecode probe or an FTDI cable. Both options are explained in the section below.
+系统控制台可以通过Dronecode probe或者FTDI线缆访问，我们会在后面分别介绍这两种方式。
 
 ### 使用Dronecode Probe连接
 
-Connect the 6-pos DF13 1:1 cable on the [Dronecode probe](http://nicadrone.com/index.php?id_product=65&controller=product) to the SERIAL4/5 port of Pixhawk.
+将[Dronecode probe](http://nicadrone.com/index.php?id_product=65&controller=product)的6pin DF13 1:1线缆连接到Pixhawk的SERIAL4/5端口。
 
 ![](images/console/dronecode_probe.jpg)
 
 ### 使用FTDI 3.3V线缆连接
 
-If no Dronecode probe is at hand an FTDI 3.3V (Digi-Key: [768-1015-ND](http://www.digikey.com/product-detail/en/TTL-232R-3V3/768-1015-ND/1836393)) will do as well.
+如果手头没有Dronecode probe，那么一根FTDI 3.3V线（Digi-Key: [768-1015-ND](http://www.digikey.com/product-detail/en/TTL-232R-3V3/768-1015-ND/1836393)）也行。
 
 | Pixhawk 1/2  |         | FTDI    |        |
 | -- | -- | -- | -- |
@@ -51,7 +51,7 @@ If no Dronecode probe is at hand an FTDI 3.3V (Digi-Key: [768-1015-ND](http://ww
 |5         | S5 Rx      | 4       | FTDI TX (orange)   |
 |6         | GND     | 1       | FTDI GND (black)   |
 
-The connector pinout is shown in the figure below.
+连接器的引脚请看下图。
 
 ![](images/console/console_connector.jpg)
 
@@ -65,7 +65,7 @@ After the console connection is wired up, use the default serial port tool of yo
 
 ### Linux/Mac OS：Screen
 
-Install screen on Ubuntu (Mac OS already has it installed):
+在Ubuntu上安装screen软件包（Mac OS已经内置了）：
 
 <div class="host-code"></div>
 
@@ -73,8 +73,8 @@ Install screen on Ubuntu (Mac OS already has it installed):
 sudo apt-get install screen
 ```
 
-  * Serial: Pixhawk v1 / Pixracer use 57600 baud
-  * Serial: Snapdragon Flight uses 115200 baud
+  * 串口：Pixhawk v1/Pixracer使用57600波特率
+  * 串口：Snapdragon Flight使用115200波特率
 
 Connect screen at BAUDRATE baud, 8 data bits, 1 stop bit to the right serial port (use `ls /dev/tty*` and watch what changes when unplugging / replugging the USB device). Common names are `/dev/ttyUSB0` and `/dev/ttyACM0` for Linux and `/dev/tty.usbserial-ABCBD` for Mac OS.
 
@@ -94,9 +94,9 @@ Then select 'serial connection' and set the port parameters to:
   * 8 data bits
   * 1 stop bit
 
-## Getting Started on the Console
+## 控制台入门
 
-Type `ls` to view the local file system, type `free` to see the remaining free RAM. The console will also display the system boot log when power-cycling the board.
+输入`ls`可以查看本地的文件系统，输入`free`可以查看剩余的内存数量。The console will also display the system boot log when power-cycling the board.
 
 ```bash
 nsh> ls
