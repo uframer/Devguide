@@ -68,6 +68,7 @@
     * [Gazebo Octomap](simulation-gazebo-octomap.md)
 * 传感器和执行机构总线
     * [I2C总线](i2c-intro.md)
+    * [SF1XX激光雷达](sf1xx_lidar_setup.md)
     * [UAVCAN总线](uavcan-intro.md)
         * [UAVCAN引导器](uavcan-bootloader-installation.md)
         * [UAVCAN固件更新](uavcan-node-firmware.md)
