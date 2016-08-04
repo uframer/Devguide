@@ -1,6 +1,6 @@
 # Mac开发环境
 
-The first step is to install Xcode from the Mac app store. Once its installed, open a new terminal and install the command line tools:
+第一部是从Mac App Store安装Xcode。安装完Xcode后，打开终端并输入如下命令安装命令行工具：
 
 <div class="host-code"></div>
 
@@ -8,11 +8,11 @@ The first step is to install Xcode from the Mac app store. Once its installed, o
 xcode-select --install
 ```
 
-## Homebrew Installation
+## 安装Homebrew
 
-Usage of the [Homebrew package manager](http://mxcl.github.com/homebrew/) for Mac OS X is recommended. The installation of Homebrew is quick and easy: [installation instructions](http://mxcl.github.com/homebrew/).
+我们推荐在Mac OS X使用使用[Homebrew包管理器](http://mxcl.github.com/homebrew/)。Homebrew的安装相当简单：[安装指南](http://mxcl.github.com/homebrew/)。
 
-After installing Homebrew, copy these commands to your shell:
+在安装Homebrew后，将下面的命令复制到你的shell：
 
 <div class="host-code"></div>
 
@@ -26,7 +26,7 @@ brew install astyle cmake ninja
 brew install ant graphviz sdformat3 protobuf eigen opencv
 ```
 
-Then install the required python packages:
+接下来安装所需的python包：
 
 <div class="host-code"></div>
 
@@ -37,14 +37,14 @@ sudo pip install pyserial empy
 
 ## Snapdragon Flight
 
-Developers working on Snapdragon Flight should use an Ubuntu VM for the time being and follow the Linux instructions. Qualcomm provides reliable tooling for Ubuntu exclusively. The PX4 dev team had the most consistent experience with VMWare, in particular when it comes to USB stability.
+使用Snapdragon Flight的开发者需要暂时使用一个Ubuntu虚拟机并遵循Linux部分的文档操作。Qualcomm只为Ubuntu提供了可靠的工具。PX4开发团队在VMWare上使用的体验最好，尤其是涉及到USB稳定性的时候。
 
-## Simulation
+## 模拟
 
-OS X comes with CLANG pre-installed. No further installation steps are required.
+OS X已经预装了CLANG，无需单独安装。
 
-## Editor / IDE
+## 编辑器/IDE
 
-And finally download and install the Qt Creator app: [Download](http://www.qt.io/download-open-source/#section-6)
+最后，下载并安装Qt Creator：[下载](http://www.qt.io/download-open-source/#section-6)。
 
-Now continue to run the [first build](starting-building.md)!
+接下来继续安装[第一次构建](starting-building.md)的指南操作。
