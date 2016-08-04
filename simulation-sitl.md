@@ -1,6 +1,6 @@
-# Software in the Loop (SITL) Simulation
+# SITL（Software in the Loop）模拟
 
-Software in the Loop Simulation runs the complete system on the host machine and simulates the autopilot. It connects via local network to the simulator. The setup looks like this:
+STIL模拟会在上位机上运行完整的系统以模拟自动驾驶仪的功能。它会通过本地网络拦截到模拟器。STIL的配置结构如下：
 
 {% mermaid %}
 graph LR;
@@ -8,53 +8,53 @@ graph LR;
   MAVLink-->SITL;
 {% endmermaid %}
 
-## Running SITL
+## 运行SITL
 
-After ensuring that the [simulation prerequisites](starting-installing.md) are installed on the system, just launch: The convenience make target will compile the POSIX host build and run the simulation.
+在确保安装了[模拟所需的前提条件](starting-installing.md)之后，只需要执行下面的make命令就可以编译并执行POSIX模拟了。
 
 ```sh
 make posix_sitl_default jmavsim
 ```
 
-This will bring up the PX4 shell:
+这个命令会启动PX4 shell：
 
 ```sh
 [init] shell id: 140735313310464
 [init] task name: px4
 
-______  __   __    ___ 
+______  __   __    ___
 | ___ \ \ \ / /   /   |
 | |_/ /  \ V /   / /| |
 |  __/   /   \  / /_| |
 | |     / /^\ \ \___  |
 \_|     \/   \/     |_/
 
-Ready to fly.
+现在你可以准备起飞了。
 
 
 pxh>
 ```
 
-## Important Files
+## 重要的文件
 
-  * The startup script is in the [posix-configs/SITL/init](https://github.com/PX4/Firmware/tree/master/posix-configs/SITL/init) folder and named `rcS_SIM_AIRFRAME`, the default is `rcS_jmavsim_iris`.
-  * The root file system (the equivalent of `/` as seen by the) is located inside the build directory: `build_posix_sitl_default/src/firmware/posix/rootfs/`
+  * 启动脚本位于[posix-configs/SITL/init](https://github.com/PX4/Firmware/tree/master/posix-configs/SITL/init)目录，名字类似于`rcS_SIM_AIRFRAME`，默认值为`rcS_jmavsim_iris`。
+  * 根文件系统（类似于`/`）位于：`build_posix_sitl_default/src/firmware/posix/rootfs/`
 
-## Taking it to the Sky
+## 起飞
 
 And a window with the 3D view of the [jMAVSim](http://github.com/PX4/jMAVSim.git) simulator:
 
 ![](images/sim/jmavsim.png)
 
-The system will print the home position once it finished intializing (`telem> home: 55.7533950, 37.6254270, -0.00`). You can bring it into the air by typing:
+在初始化完成后，这个系统会输出home position（`telem> home: 55.7533950, 37.6254270, -0.00`）。你可以输入如下命令另其起飞：
 
 ```sh
 pxh> commander takeoff
 ```
 
-> **Info** Joystick or thumb-joystick support is available through QGroundControl (QGC). To use manual input, put the system in a manual flight mode (e.g. POSCTL, position control). Enable the thumb joystick from the QGC preferences menu.
+> **信息** QGC支持摇杆及微型摇杆。 To use manual input, put the system in a manual flight mode (e.g. POSCTL, position control). Enable the thumb joystick from the QGC preferences menu.
 
-## Simulating a Wifi Drone
+## 模拟一个Wifi无人机
 
 There is a special target to simulate a drone connected via Wifi on the local network:
 
@@ -64,12 +64,12 @@ make broadcast jmavsim
 
 The simulator broadcasts his address on the local network as a real drone would do.
 
-## Extending and Customizing
+## 扩展和定制
 
 To extend or customize the simulation interface, edit the files in the `Tools/jMAVSim` folder. The code can be accessed through the[jMAVSim repository](https://github.com/px4/jMAVSim) on Github.
 
-> ** Info ** The build system enforces the correct submodule to be checked out for all dependencies, including the simulator. It will not overwrite changes in files in the directory, however, when these changes are comitted the submodule needs to be registered in the Firmware repo with the new commit hash. To do so, `git add Tools/jMAVSim` and commit the change. This will update the GIT hash of the simulator.
+> **信息** 构建系统 build system enforces the correct submodule to be checked out for all dependencies, including the simulator. It will not overwrite changes in files in the directory, however, when these changes are comitted the submodule needs to be registered in the Firmware repo with the new commit hash. To do so, `git add Tools/jMAVSim` and commit the change. This will update the GIT hash of the simulator.
 
-## Interfacing to ROS
+## 同ROS的接口
 
-The simulation can be [interfaced to ROS](simulation-ros-interface.md) the same way as onboard a real vehicle.
+这个模拟系统可以同真正的设备一样[与ROS相连接](simulation-ros-interface.md)。
