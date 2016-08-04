@@ -1,14 +1,14 @@
 # 构建PX4软件
 
-PX4 can be built on the console or in a graphical development environment / IDE.
+PX4可以在控制台或者图形开发环境/IDE中构建。
 
-## Compiling on the Console
+## 在控制台里编译
 
-Before moving on to a graphical editor or IDE, it is important to validate the system setup. Do so by bringing up the terminal. On OS X, hit ⌘-space and search for 'terminal'. On Ubuntu, click the launch bar and search for 'terminal'. On Windows, find the PX4 folder in the start menu and click on 'PX4 Console'.
+在你使用图形编辑器或者IDE之前，最好先验证一下系统的设置。请在OS X上启动终端程序。如果你用Ubuntu，请点击启动栏并搜索'terminal'。在Windows上，请在开始菜单里找到PX4目录并点击里面的'PX4 Console'。
 
 ![](images/toolchain/terminal.png)
 
-The terminal starts in the home directory. We default to '~/src/Firmware' and clone the upstream repository. Experienced developers might clone [their fork](https://help.github.com/articles/fork-a-repo/) instead.
+终端通常会启动在用户的主目录。我们假设你会将上游代码克隆到`~/src/Firmware`目录。有经验的开发者可以克隆[自己的分支](https://help.github.com/articles/fork-a-repo/)。
 
 ```sh
 mkdir -p ~/src
@@ -18,9 +18,9 @@ cd Firmware
 git submodule update --init --recursive
 cd ..
 ```
-Now its time to build the binaries by compiling the source code. But before going straight to the hardware, a [simulation run](simulation-sitl.md) is recommended as the next step. Users preferring to work in a graphical development environment should continue with the next section.
+现在可以从源代码编译二进制文件了。但是在下载到硬件之前，我们推荐你先用软件[模拟](simulation-sitl.md)一下。喜欢使用图形开发环境的用户可以继续阅读下一节。
 
-### NuttX / Pixhawk based boards
+### 基于NuttX/Pixhawk平台
 
 
 ```sh
@@ -28,7 +28,7 @@ cd Firmware
 make px4fmu-v2_default
 ```
 
-Note the syntax: 'make' is the build tool, 'px4fmu-v2' is the hardware / autopilot version and 'default' is the default configuration. All PX4 build targets follow this logic. A successful run will end with this output:
+请注意这里的语法：'make'是构建工具的名字，'px4fmu-v2'硬件/自动驾驶仪的版本，'default'是指采用默认的配置。所有的PX4构建目标都遵循这样的格氏。如果构建成功，那么会在控制台上看到这样的输出：
 
 ```sh
 [100%] Linking CXX executable firmware_nuttx
@@ -38,13 +38,13 @@ Scanning dependencies of target build_firmware_px4fmu-v2
 [100%] Built target build_firmware_px4fmu-v2
 ```
 
-By appending 'upload' to these commands the compiled binary will be uploaded via USB to the autopilot hardware:
+如果你在上面的make命令后加上'upload'，那么会将编译出的二进制文件通过USB上传到自动驾驶仪上：
 
 ```sh
 make px4fmu-v2_default upload
 ```
 
-A successful run will end with this output:
+如果运行成功，那么会在控制台上看到如下输出：
 
 ```sh
 Erase  : [====================] 100.0%
@@ -54,55 +54,54 @@ Rebooting.
 
 [100%] Built target upload
 ```
-### Raspberry Pi 2/3 boards
-The command below builds the target for Raspbian.
+### Raspberry Pi 2/3开发板
 
-#### Cross-compiler build
+下面的命令会为Raspbian生成二进制文件。
+
+#### 交叉构建
 
 ```sh
 cd Firmware
-make posix_rpi_cross # for cross-compiler build
+make posix_rpi_cross # 这个target表示交叉构建
 ```
 
-The "px4" executable file is in the directory build_posix_rpi_cross/src/firmware/posix.
-Make sure you can connect to your RPi over ssh, see [instructions how to access your RPi](hardware-rpi.md#developer-quick-start).
+构建完成后，会在`build_posix_rpi_cross/src/firmware/posix`目录下生成名为`px4`的可执行文件。请确保你通过ssh连到了RPi，具体操作请参考[如何访问你的RPi](hardware-rpi.md#developer-quick-start)。
 
-Then set the IP (or hostname) of your RPi using:
+请使用如下命令设置RPi使用的IP(或者主机名)：
 
 ```sh
 export AUTOPILOT_HOST=192.168.X.X
 ```
 
-And upload it with:
+使用如下命令上传可执行文件到RPi：
 
 ```sh
 cd Firmware
-make posix_rpi_cross upload # for cross-compiler build
+make posix_rpi_cross upload # 针对交叉构建
 ```
 
-Then, connect over ssh and run it with :
+然后，登录ssh并运行：
 
 ```sh
 ./px4 px4.config
 ```
 
-#### Native build
+#### 原生构建
 
-If you're building *directly* on the Pi, you will want the native build target (posix_rpi_native).
+如果你打算*直接*在RPi上构建，请使用`posix_rpi_native`这个target构建：
 
 ```sh
 cd Firmware
-make posix_rpi_native # for native build
+make posix_rpi_native # 做原生构建
 ```
 
-The "px4" executable file is in the directory build_posix_rpi_native/src/firmware/posix.
-Run it directly with :
+构建完成后，会在`build_posix_rpi_native/src/firmware/posix`目录下生成名为`px4`的可执行文件。可以在RPi上直接通过如下命令运行它：
 
 ```sh
 ./build_posix_rpi_native/src/firmware/posix/px4 ./posix-configs/rpi/px4.config
 ```
 
-A successful build followed by executing px4 will give you this :
+执行px4会产生如下输出：
 
 ```sh
 [init] shell id: 1996021760
@@ -115,7 +114,7 @@ ______  __   __    ___
 | |     / /^\ \ \___  |
 \_|     \/   \/     |_/
 
-Ready to fly.
+准备起飞吧！
 
 
 pxh>
@@ -123,96 +122,99 @@ pxh>
 
 ### Parrot Bebop
 
-Support for the Bebop is really early stage and is not ready for mainstream use yet.
+我们队Bebop处在相当初期的阶段，还不适合使用。
 
-#### Build it
+#### 构建
+
 ```sh
 cd Firmware
 make posix_bebop_default
 ```
 
-Turn on your Bebop and connect your host machine with the Bebop's wifi. Then, press the power button
-four times to enable ADB and start the telnet daemon.
+打开你的Bebop并将你的上位机连接到Bebop的Wi-Fi。然后，按电源键四次以启动ADB和telnet守护进程。
 
 ```sh
 make posix_bebop_default upload
 ```
 
-Note this will also copy px4.config file.
+请注意，这个动作也会复制`px4.config`文件。
 
-#### Run it
-Connect to the Bebop's wifi and press the power button four times.
+#### 运行！
+
+连接到Bebop的Wi-Fi并按下电源键四次。
 
 ```sh
 telnet 192.168.42.1
 ```
-Run px4 with:
+
+运行px4：
+
 ```sh
 px4
 ```
 
-You can alternatively use adb shell to start the px4 program.
+你也可以使用adb shell运行px4程序。
 
-### QuRT / Snapdragon based boards
+### 基于QuRT/Snapdragon的平台
 
-#### Build it
+#### 构建
 
-The commands below build the targets for the Linux and the DSP side. Both executables communicate via [muORB](advanced-uorb.md).
+下面的命令会分别构建Linux和DSP的文件。这两个可执行文件通过[muORB协议](advanced-uorb.md)通信。
 
 ```sh
 cd Firmware
 make eagle_default
 ```
 
-To load the SW on the device, connect via USB cable and make sure the device is booted. Run this in a new terminal window:
+如果要将这些可执行文件加载到硬件上，请用USB线连接Snapdragon，等待设备启动完成。在终端执行如下命令：
 
 ```sh
 adb shell
 ```
 
-Go back to previous terminal and upload:
+回到前面编译固件用的终端并运行如下命令上传固件：
 
 ```sh
 make eagle_default upload
 ```
 
-Note that this will also copy (and overwrite) the two config files [px4.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/px4.config) and [px4.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/px4.config) to the device. Those files are stored under /usr/share/data/adsp/px4.config and /home/linaro/px4.config respectively if you want to edit the startup scripts directly on your vehicle.
+请注意，这个命令还会复制（并覆盖）两个配置文件：[px4.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/px4.config)和[px4.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/px4.config)。这两个文件会被分别存储在`/usr/share/data/adsp/px4.config`和`/home/linaro/px4.config`，如果想，请直接在设备上编辑这两个文件。
 
-The mixer currently needs to be copied manually:
+目前你需要手动复制混控器：
 
 ```sh
 adb push ROMFS/px4fmu_common/mixers/quad_x.main.mix  /usr/share/data/adsp
 ```
 
-#### Run it
+#### 运行
 
-Run the DSP debug monitor:
+运行DSP debug monitor:
 
 ```sh
 ${HEXAGON_SDK_ROOT}/tools/mini-dm/Linux_Debug/mini-dm
 ```
 
-Go back to ADB shell and run px4:
+回到ADB shell然后运行px4：
 
 ```sh
 cd /home/linaro
 ./px4 mainapp.config
 ```
 
-Note that the px4 will stop as soon as you disconnect the USB cable (or if you ssh session is disconnected). To fly, you should make the px4 auto-start after boot.
+请注意，px4会在你断开USB电缆（或者你的ssh会话断开）后立即停止运行。如果你要飞行，你应该使px4在启动后自动运行。
 
-#### Auto-start px4
+#### 自动启动px4
 
-To run the px4 as soon as the Snapdragon has booted, you can add the startup to `rc.local`:
+如果想在Snapdragon启动时运行px4，请将启动px4的命令添加到`rc.local`：
 
-Either edit the file `/etc/rc.local` directly on the Snapdragon:
+第一种方式是直接边界Snapdragon的`/etc/rc.local`文件：
 
 ```sh
 adb shell
 vim /etc/rc.local
 ```
 
-Or copy the file to your computer, edit it locally, and copy it back:
+或者复制这个文件到你的计算机，编辑它，然后再复制回去：
 
 ```sh
 adb pull /etc/rc.local
@@ -220,7 +222,7 @@ gedit rc.local
 adb push rc.local /etc/rc.local
 ```
 
-For the auto-start, add the following line before `exit 0`:
+如果要自动启动，请在`exit 0`前加入下面的内容：
 
 ```sh
 (cd /home/linaro && ./px4 px4.config > px4.log)
@@ -228,34 +230,34 @@ For the auto-start, add the following line before `exit 0`:
 exit 0
 ```
 
-Make sure that the `rc.local` is executable:
+请确保`rc.local`具有执行权限：
 
 ```sh
 adb shell
 chmod +x /etc/rc.local
 ```
 
-Then reboot the Snapdragon:
+然后重启Snapdragon：
 
 ```sh
 adb reboot
 ```
 
-## Compiling in a graphical IDE
+## 在图形化IDE
 
-The PX4 system supports Qt Creator, Eclipse and Sublime Text. Qt Creator is the most user-friendly variant and hence the only officially supported IDE. Unless an expert in Eclipse or Sublime, their use is discouraged. Hardcore users can find an [Eclipse project](https://github.com/PX4/Firmware/blob/master/.project) and a [Sublime project](https://github.com/PX4/Firmware/blob/master/Firmware.sublime-project) in the source tree.
+PX4系统支持Qt Creator、Eclipse和Sublime Text。在这里几个选择里面，Qt Creator是对用户最友好的，因此它也是我们唯一提供官方支持的IDE。如果你不是Eclipse活着Sublime的专家，请不要使用它们。如果你坚持使用它们，可以打开源码树中的[Eclipse项目文件](https://github.com/PX4/Firmware/blob/master/.project)或者[Sublime项目文件](https://github.com/PX4/Firmware/blob/master/Firmware.sublime-project)。
 
 {% youtube %}https://www.youtube.com/watch?v=Bkk8zttWxEI&rel=0&vq=hd720{% endyoutube %}
 
-## Qt Creator Functionality
+## Qt Creator功能
 
-Qt creator offers clickable symbols, auto-completion of the complete codebase and building and flashing firmware.
+Qt creator提供了符号跳转、自动补全以及构建功能。
 
 ![](images/toolchain/qtcreator.png)
 
-### Qt Creator on Linux
+### 在Linux上运行Qt Creator
 
-Before starting Qt Creator, the [project file](https://cmake.org/Wiki/CMake_Generator_Specific_Information#Code::Blocks_Generator) needs to be created:
+在启动Qt Creator之前，需要先生成[项目文件](https://cmake.org/Wiki/CMake_Generator_Specific_Information#Code::Blocks_Generator)：
 
 ```sh
 cd ~/src/Firmware
@@ -264,17 +266,17 @@ cd ../Firmware-build
 cmake ../Firmware -G "CodeBlocks - Unix Makefiles"
 ```
 
-Then load the CMakeLists.txt in the root firmware folder via File -> Open File or Project -> Select the CMakeLists.txt file.
+然后，通过`File`->`Open File or Project`菜单选择打开`Firmware`目录下的`CMakeLists.txt`文件。
 
-After loading, the 'play' button can be configured to run the project by selecting 'custom executable' in the run target configuration and entering 'make' as executable and 'upload' as argument.
+打开后，可以通过选择`custom executable`来配置`play`按钮，然后将`make`设置为可执行文件，将`upload`设置为参数。
 
-### Qt Creator on Windows
+### 在Windows上运行Qt Creator
 
-> ** Windows has not been tested with Qt creator yet. **
+> ** 我们并没有在Windows上验证过Qt creator。 **
 
-### Qt Creator on Mac OS
+### 在Mac OS上运行Qt Creator
 
-Before starting Qt Creator, the [project file](https://cmake.org/Wiki/CMake_Generator_Specific_Information#Code::Blocks_Generator) needs to be created:
+在运行Qt Creator之前，需要先生成[项目文件](https://cmake.org/Wiki/CMake_Generator_Specific_Information#Code::Blocks_Generator)：
 
 ```sh
 cd ~/src/Firmware
@@ -283,6 +285,6 @@ cd build_creator
 cmake .. -G "CodeBlocks - Unix Makefiles"
 ```
 
-That's it! Start Qt Creator, then complete the steps in the video below to set up the project to build.
+搞定！启动Qt Creator，然后安装下面视频的指导构建。
 
 {% youtube %}https://www.youtube.com/watch?v=0pa0gS30zNw&rel=0&vq=hd720{% endyoutube %}
