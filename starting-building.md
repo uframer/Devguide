@@ -178,7 +178,7 @@ adb shell
 make eagle_default upload
 ```
 
-请注意，这个命令还会复制（并覆盖）两个配置文件：[px4.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/px4.config)和[px4.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/px4.config)。这两个文件会被分别存储在`/usr/share/data/adsp/px4.config`和`/home/linaro/px4.config`，如果想，请直接在设备上编辑这两个文件。
+请注意，这个命令还会复制（并覆盖）两个配置文件：[mainapp.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/mainapp.config) and [px4.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/px4.config)。这两个文件会被分别存储在`/usr/share/data/adsp/px4.config`和`/home/linaro/mainapp.config`，如果想，请直接在设备上编辑这两个文件。
 
 目前你需要手动复制混控器：
 
@@ -225,7 +225,7 @@ adb push rc.local /etc/rc.local
 如果要自动启动，请在`exit 0`前加入下面的内容：
 
 ```sh
-(cd /home/linaro && ./px4 px4.config > px4.log)
+(cd /home/linaro && ./px4 mainapp.config > mainapp.log)
 
 exit 0
 ```
