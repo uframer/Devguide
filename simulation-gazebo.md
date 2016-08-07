@@ -1,16 +1,15 @@
-# Gazebo Simulation
+# Gazebo模拟
 
-[Gazebo](http://gazebosim.org) is a 3D simulation environment for autonomous robots. It supports standalone use (without ROS) or SITL + ROS.
+[Gazebo](http://gazebosim.org)是一款自主机器人3D模拟环境。它可以独立运行（不用ROS），也可以同SITL+ROS一起运行。
 
 {% youtube %}https://www.youtube.com/watch?v=qfFF9-0k4KA&vq=hd720{% endyoutube %}
 
-
-{% mermaid %}
+```mermaid
 graph LR;
   Gazebo-->Plugin;
   Plugin-->MAVLink;
   MAVLink-->SITL;
-{% endmermaid %}
+```
 
 ## Installation
 
