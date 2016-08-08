@@ -100,4 +100,4 @@
     * [ULog文件格式](advanced-ulog-file-format.md)
     * [Licenses](advanced-licenses.md)
 * [软件更新](software_update.md)
-    * STM32 Bootloader
+    * [STM32引导程序](stm32_bootloader.md)
