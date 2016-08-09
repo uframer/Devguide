@@ -2,13 +2,13 @@
 
 PX4的架构确保我们不需要为了每种忒别的机架布局而修改核心控制器。
 
-混控的含义是将作用力指令（例如“向右转”）翻译为具体控制电机或者伺服器的执行机构执行。对于一架每个副翼都有一个伺服器的固定翼飞行器来说，这意味着将一个副翼转动到高位，将另一个副翼转动到低位。对于多轴飞行器来说，这个含义也是类似的：Pitching forward requires changing the speed of all motors.
+混控的含义是将作用力指令（例如“向右转”）翻译为具体控制电机或者伺服器的执行机构执行。对于一架每个副翼都有一个伺服器的固定翼飞行器来说，这意味着将一个副翼转动到高位，将另一个副翼转动到低位。对于多轴飞行器来说，这个含义也是类似的：下俯动作需要改变所有电机的速度。
 
-Separating the mixer logic from the actual attitude controller greatly improves reusability.
+将混控器逻辑同实际的高度控制器分离极大地提高了可重用性。
 
 ## 控制流水线
 
-A particular controller sends a particular normalized force or torque demand (scaled from -1..+1) to the mixer, which then sets individual actuators accordingly. The output driver (e.g. UART, UAVCAN or PWM) then scales it to the actuators native units, e.g. a PWM value of 1300.
+一个控制器会发送特定的正规化的力（force）或者扭矩（torque）需求（范围从-1到+1）给混控器，混控器随后会依据需求设置各个执行机构。输出驱动（例如，UART、UAVCAN或者PWM）会将米命令翻译为执行机构能够理解的指令，例如，将PWM的值设置为1300。
 
 ```mermaid
 graph LR;
