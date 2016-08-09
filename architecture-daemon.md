@@ -1,8 +1,8 @@
-# Daemons
+# 守护程序
 
-A daemon is a process running in the background. In NuttX a daemon process is a task, in POSIX (Linux / Mac OS) a daemon is a thread.
+守护程序是跑在后台的进程。在NuttX中守护程序是一个任务，在POSIX（Linux/Mac OS）系统中守护程序是一个线程。
 
-New daemons are created through the `px4_task_spawn()` command.
+你可以通过`px4_task_spawn()`方法创建新的守护程序。
 
 ```C++
 daemon_task = px4_task_spawn_cmd("commander",
@@ -13,12 +13,11 @@ daemon_task = px4_task_spawn_cmd("commander",
 			     (char * const *)&argv[0]);
 ```
 
-The arguments here are:
+参数的含义如下：
 
-  * arg0: the process name, `commander`
-  * arg1: the scheduling type (RR or FIFO)
-  * arg2: the scheduling priority
-  * arg3: the stack size of the new process or thread
-  * arg4: the task / thread main function
-  * arg5: a void pointer to pass to the new task, in this case holding the commandline arguments.
-
+  * arg0: 进程的名字，这里是`commander`
+  * arg1: 调度类型（RR或者FIFO）
+  * arg2: 调度优先级
+  * arg3: 堆栈大小
+  * arg4: 入口函数
+  * arg5: 命令行参数
