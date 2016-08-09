@@ -2,13 +2,13 @@
 
 PX4系统架构采用模块化的设计，可以用一份代码支持多种不同类型的机器人。
 
-{% mermaid %}
+```mermaid
 graph LR;
   Autopilot-->Controller;
   SafetyPilot-->Controller;
   Controller-->Mixer;
   Mixer-->Actuator
-{% endmermaid %}
+```
 
 ## 基本设备
 

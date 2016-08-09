@@ -31,7 +31,7 @@ provide accurate data to our VI algorithm.
 The following diagram illustrates the sequence of events which must happen in
 order to correctly time stamp our images.
 
-{% mermaid %}
+```mermaid
 sequenceDiagram
   Note right of px4 : Time sync with mavros is done automatically
   px4 ->> mavros : Camera Trigger ready
@@ -44,7 +44,7 @@ sequenceDiagram
   camera driver ->> camera driver : Match sequence number
   camera driver ->> camera driver : Stamp image and publish
 end
-{% endmermaid %}
+```
 
 ### Step 1
 First, set the TRIG_MODE to 1 to make the driver wait for the start command and

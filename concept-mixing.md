@@ -10,14 +10,14 @@ Separating the mixer logic from the actual attitude controller greatly improves 
 
 A particular controller sends a particular normalized force or torque demand (scaled from -1..+1) to the mixer, which then sets individual actuators accordingly. The output driver (e.g. UART, UAVCAN or PWM) then scales it to the actuators native units, e.g. a PWM value of 1300.
 
-{% mermaid %}
+```mermaid
 graph LR;
   att_ctrl[Attitude Controller] --> act_group0[Actuator Control Group 0]
   gimbal_ctrl[Gimbal Controller] --> act_group2[Actuator Control Group 2]
   act_group0 --> output_group5[Actuator 5]
   act_group0 --> output_group6[Actuator 6]
   act_group2[Actuator Control Group 2] --> output_group0[Actuator 5]
-{% endmermaid %}
+```
 
 ## 控制群组
 
@@ -110,12 +110,12 @@ These groups are NOT mixer inputs, but serve as meta-channels to feed fixed wing
 
 Since there are multiple control groups (like flight controls, payload, etc.) and multiple output groups (first 8 PWM outpus, UAVCAN, etc.), one control group can send command to multiple output groups.
 
-{% mermaid %}
+```mermaid
 graph TD;
   actuator_group_0-->output_group_5
   actuator_group_0-->output_group_6
   actuator_group_1-->output_group_0
-{% endmermaid %}
+```
 
 ## PX4混控器定义
 

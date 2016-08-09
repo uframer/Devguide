@@ -1,12 +1,12 @@
-# PX4 Flight Stack
+# PX4飞行软件栈
 
-The PX4 flight stack is a collection of guidance, navigation and control algorithms for autonomous drones. It includes controllers for fixed wing, multirotor and VTOL airframes as well as estimators for attitude and position.
+PX4飞行软件栈由一组用于自主飞行器的驾驶、导航和控制算法组成。它包含用于固定翼飞行器、多轴飞行器及VTOL机架的控制器，还包括高度和位置的估计器。
 
-## Estimation and Control Architecture
+## 估计和控制架构
 
-The diagram below shows an example implementation of the typical blocks. Depending on the vehicle some of these can be also combined into a single application (e.g. when a model predictive controller for a specific vehicle is wanted).
+下图给出了模块的典型框图。依据具体的设备不同，多个模块可能会被合并为一个应用（例如，如果你需要为某个特定的模型写一个单独的模型预测控制器）。
 
-{% mermaid %}
+```mermaid
 graph TD;
   pos_ctrl-->att_ctrl;
   att_ctrl-->mixer;
@@ -18,4 +18,4 @@ graph TD;
   position_estimator-->attitude_estimator;
   position_estimator-->pos_ctrl;
   attitude_estimator-->att_ctrl;
-{% endmermaid %}
+```
