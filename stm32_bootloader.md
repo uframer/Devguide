@@ -1,8 +1,8 @@
-# STM32 Bootloader
+# STM32引导程序
 
-The code for the PX4 bootloader is available from the Github [Bootloader](https://github.com/px4/bootloader) repository.
+PX4引导程序的代码保存在[Github](https://github.com/px4/bootloader)上。
 
-## Supported Boards
+## 支持的平台
 
   * FMUv1 (PX4FMU, STM32F4)
   * FMUv2 (Pixhawk 1, STM32F4)
@@ -12,7 +12,7 @@ The code for the PX4 bootloader is available from the Github [Bootloader](https:
   * TAPv1 (TBA, STM32F4)
   * ASCv1 (TBA, STM32F4)
 
-## Building the Bootloader
+## 构建引导程序
 
 ```bash
 git clone https://github.com/PX4/Bootloader.git
@@ -20,21 +20,21 @@ cd Bootloader
 make
 ```
 
-After this step a range of elf files for all supported boards are present in the Bootloader directory.
+构建完成后，会为所有支持的平台生成对应的elf文件。
 
-## Flashing the Bootloader
+## 烧写
 
-> IMPORTANT: The right power sequence is critical for some boards to allow JTAG / SWD access. Follow these steps exactly as described. The instructions below are valid for a Blackmagic / Dronecode probe. Other JTAG probes will need different but similar steps. Developers attempting to flash the bootloader should have the required knowledge. If you do not know how to do this you probably should reconsider if you really need to change anything about the bootloader.
+> **重要**：对于某些平台来说，一定要使用正确的上电顺序才能保证可以访问JTAG/SWD。Follow these steps exactly as described. The instructions below are valid for a Blackmagic / Dronecode probe. Other JTAG probes will need different but similar steps. Developers attempting to flash the bootloader should have the required knowledge. If you do not know how to do this you probably should reconsider if you really need to change anything about the bootloader.
 
-  * Disconnect the JTAG cable
-  * Connect the USB power cable
-  * Connect the JTAG cable
+  * 断开JTAG线
+  * 连接USB电源线
+  * 连接JTAG线
 
 
-#### Using the right serial port
+#### 使用正确的串口
 
-  * On LINUX: ```/dev/serial/by-id/usb-Black_Sphere_XXX-if00```
-  * On MAC OS: Make sure to use the cu.xxx port, not the tty.xxx port: ```tar ext /dev/tty.usbmodemDDEasdf```
+  * LINUX：```/dev/serial/by-id/usb-Black_Sphere_XXX-if00```
+  * MAC OS：请使用名为`cu.xxx`的串口，不要使用`tty.xxx`这些，```tar ext /dev/tty.usbmodemDDEasdf```
 
 ```bash
 arm-none-eabi-gdb
@@ -49,14 +49,14 @@ arm-none-eabi-gdb
   (gdb) kill
 ```
 
-### Troubleshooting
+### 常见问题
 
 If any of the commands above are not found, you are either not using a Blackmagic probe or its software is outdated. Upgrade the on-probe software first.
 
 If this error message occurs:
 ```Error erasing flash with vFlashErase packet```
 
-Disconnect the target (while leaving JTAG connected) and run 
+Disconnect the target (while leaving JTAG connected) and run
 
 ```bash
 mon tpwr disable
@@ -65,4 +65,3 @@ attach 1
 load tapv1_bl.elf
 ```
 This will disable target powering and attempt another flash cycle.
-

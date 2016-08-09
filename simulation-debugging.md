@@ -1,6 +1,6 @@
-# Simulation Debugging
+# 模拟过程调试
 
-As the simulation is running on the host machine, all the desktop development tools are available.
+由于模拟过程跑在上位机上，所以你可以使用一切桌面环境的开发工具。
 
 ## CLANG Address Sanitizer (Mac OS, Linux)
 
@@ -71,7 +71,7 @@ libsystem_kernel.dylib`__read_nocancel:
     0x7fff90f4430c <+12>: movq   %rax, %rdi
     0x7fff90f4430f <+15>: jmp    0x7fff90f3fc53            ; cerror_nocancel
     0x7fff90f44314 <+20>: retq
-(lldb) 
+(lldb)
 ```
 
 The lldb or gdb shells behave like normal sessions, please refer to the LLDB / GDB documentation.

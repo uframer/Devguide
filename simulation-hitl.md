@@ -1,6 +1,6 @@
-# Hardware in the Loop Simulation (HITL)
+# HTIL（Hardware in the Loop Simulation）模拟
 
-Hardware in the loop simulation is a simulation mode where the autopilot is connected to the simulator and all flight code runs on the autopilot. This approach has the benefit of testing the actual flight code on the real processor.
+在HTIL模拟模式下，需要连接真正的自动驾驶仪到模拟器，所有的飞控代码都运行在自动驾驶仪硬件上。这种方法的优点是可以在真正的处理器上运行实际的飞控代码。
 
 ## 配置HITL系统
 
@@ -10,21 +10,21 @@ PX4 supports HITL for multicopters (using jMAVSim) and fixed wing (using X-Plane
 
 ## 切换到摇杆输入
 
-If a joystick is preferred over a radio remote control, set the parameter `COM_RC_IN_MODE` to `1`. It can be found in the Commander parameter group.
+如果你希望使用摇杆而不是遥控器，请将参数`COM_RC_IN_MODE`设置为`1`。你可以在`Commander`参数组里找到它。
 
 ## 启用从X-Plane的远程访问
 
-In X-Plane two key settings have to be made: In Settings -> Data Input and Output, set these checkboxes:
+在X-Plane中有两个关键的设置需要改：在`Settings`->`Data Input and Output`里，勾选如下单选框：
 
 ![](images/gcs/xplane_data_config.png)
 
-In Settings -> Net Connections in the Data tab, set localhost and port 49005 as IP address, as shown in the screenshot below:
+在`Settings`->`Net Connections`的`Data`标签页中，将localhost和49005分别设置为IP地址和端口号，如图：
 
 ![](images/gcs/xplane_net_config.png)
 
 ## 在QGroundControl中启用HITL
 
-Widgets -> HIL Config, then select X-Plane 10 in the drop-down and hit connect. Once the system is connected, battery status, GPS status and aircraft position should all become valid:
+打开`Widgets`->`HIL Config`，然后在下拉列表中选择`X-Plane 10`，再点`connect`。连接成功后，电池状态、GPS状态和飞机的位置信息应该都是可用的：
 
 ![](images/gcs/qgc_sim_run.png)
 
