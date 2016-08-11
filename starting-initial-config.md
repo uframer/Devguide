@@ -1,22 +1,21 @@
-# Initial Configuration
+# 初始配置
 
-Before starting to develop on PX4, the system should be configured initially with a default configuration to ensure the hardware is set up properly and is tested. The video below explains the setup process with [Pixhawk hardware](hardware-pixhawk.md) and [QGroundControl](qgroundcontrol-intro.md). A list of supported reference airfames is [here](airframes-architecture.md).
+在动手开发PX4前，你应该先用默认配置设置好系统，以便验证硬件功能正常。下面的视频用[Pixhawk自动驾驶仪](hardware-pixhawk.md)和[QGroundControl](qgroundcontrol-intro.md)地面站解释了设置的过程。我们在[这里](airframes-architecture.md)列出了支持的机架。
 
-> **Info** [Download the DAILY BUILD of QGroundControl](http://qgroundcontrol.org/downloads) and follow the video instructions below to set up your vehicle. See the [QGroundControl Tutorial](http://dev.px4.io/qgroundcontrol-intro.html) for details on mission planning, flying and parameter setting.
+> **信息** [下载QGroundControl](http://qgroundcontrol.org/downloads)然后按照下面视频的指导操作配置你的自动驾驶仪。请参考[QGroundControl教程](http://dev.px4.io/qgroundcontrol-intro.html)中对任务桂花、飞行和参数设置的细节。
 
-A list of setup options is below the video.
+下面的视频介绍了一些设置选项。
 
-{% youtube %}https://www.youtube.com/watch?v=91VGmdSlbo4&rel=0&vq=hd720{% endyoutube %}
+<iframe width="560" height="315" src="https://www.youtube.com/embed/91VGmdSlbo4" frameborder="0" allowfullscreen></iframe>
 
-## Radio Control Options
+## 无线控制选项
 
-The PX4 flight stack does not mandate a radio control system. It also does not mandate the use of individual switches for selecting flight modes.
+PX4并不强制使用无线控制系统。它还不强制要求为每个飞行模式制定一个独立的遥控开关。
 
-### Flying without Radio Control
+### 脱离无线控制飞行
 
-All radio control setup checks can be disabled by setting the parameter `COM_RC_IN_MODE` to `1`. This will not allow manual flight, but e.g. flying in 
+所有对无线控制设置的检查都可以通过将`COM_RC_IN_MODE`设为`1`禁用。这样就不允许手动飞行了。
 
-### Single Channel Mode Switch
+### 单通道模式切换
 
-Instead of using multiple switches, in this mode the system accepts a single channel as mode switch. This is explained in the [legacy wiki](https://pixhawk.org/peripherals/radio-control/opentx/single_channel_mode_switch).
-
+除了使用多个开关切换通道，还可以使用单一通道来切换飞行模式。具体的细节请参考[旧版wiki](https://pixhawk.org/peripherals/radio-control/opentx/single_channel_mode_switch).
