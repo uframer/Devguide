@@ -12,7 +12,7 @@
 
 To conveniently manage your custom code and pull in updates from the main repository, it is recommended to fork the Firmware repository with the GIT version control system:
 
-  - [Sign up](https://github.com/signup/free) for Github
+  - [注册](https://github.com/signup/free)Github
   - Go to the [Firmware repository website](https://github.com/px4/Firmware/) and click **FORK** on the upper right part.
   - If you are not already there, open the website of your fork and copy the private repository URL in the center.
   - Clone the repository to your hard drive, e.g. on the command line via `git clone https://github.com/<youraccountname>/Firmware.git`. Windows users please [refer to the Github help](https://help.github.com/articles/set-up-git#platform-windows) and e.g. fork / clone with their Github for Windows app.
@@ -28,9 +28,9 @@ git submodule update --recursive
 
 你可以进入`Firmware/src/examples/`目录看看这些示例的样子。
 
-## Step 2: Minimal Application
+## Step 2: 最小的应用程序
 
-Create a new C file named `px4_simple_app.c` in the `px4_simple_app` folder (it will already be present, delete the existing file for the maximum educational effect).
+在`px4_simple_app`目录下新建一个名为`px4_simple_app.c`的文件。这个目录现在已经在了，为了达到更好的学习效果，请将已有的目录删除。
 
 Edit it and start with the default header and a main function.
 
@@ -140,16 +140,16 @@ Rebooting.
 [100%] Built target upload
 ```
 
-### Connect the console
+### 连接到控制台
 
-Now connect to the [system console](advanced-system-console.md) either via serial or USB. Hitting ENTER will bring up the shell prompt:
+现在，通过串口或者USB连接到[系统控制台](advanced-system-console.md)。按下回车键后会显示shell提示符：
 
 ```sh
   nsh>
 ```
 
 
-Type ''help'' and hit ENTER
+输入`help`然后按回车：
 
 ```sh
   nsh> help
@@ -173,7 +173,7 @@ Type ''help'' and hit ENTER
     serdis
 ```
 
-Note that `px4_simple_app` is now part of the available commands. Start it by typing `px4_simple_app` and ENTER:
+注意，现在`px4_simple_app`已经成为shell中一个可用的命令了。Start it by typing `px4_simple_app` and ENTER:
 
 ```sh
   nsh> px4_simple_app
