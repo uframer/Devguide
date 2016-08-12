@@ -1,6 +1,6 @@
 # 混控和执行机构
 
-PX4的架构确保我们不需要为了每种忒别的机架布局而修改核心控制器。
+PX4的架构确保我们不需要为了每种特别的机架布局而修改核心控制器。
 
 混控的含义是将作用力指令（例如“向右转”）翻译为具体控制电机或者伺服器的执行机构执行。对于一架每个副翼都有一个伺服器的固定翼飞行器来说，这意味着将一个副翼转动到高位，将另一个副翼转动到低位。对于多轴飞行器来说，这个含义也是类似的：下俯动作需要改变所有电机的速度。
 
@@ -21,11 +21,11 @@ graph LR;
 
 ## 控制群组
 
-PX4 uses control groups (inputs) and output groups. Conceptionally they are very simple: A control group is e.g. `attitude`, for the core flight controls, or `gimbal` for payload. An output group is one physical bus, e.g. the first 8 PWM outputs for servos. Each of these groups has 8 normalized (-1..+1) command ports, which can be mapped and scaled through the mixer. A mixer defines how each of these 8 signals of the controls are connected to the 8 outputs.
+PX4定义了控制群组（输入）和输出群组的概念。它们的概念非常简单：控制群组的例子包括用于核心飞行控制的`attitude`或者用于云台控制的`gimbal`；输出群组则对应于物理总线，例如前8个个PWM伺服器通道。每个群组都有8个正规化的（范围从-1到+1）命令端口，这些端口可以被按比例映射到混控器上。混控器定义了这8个控制信号如何映射到8个输出。
 
-For a simple plane control 0 (roll) is connected straight to output 0 (elevator). For a multicopter things are a bit different: control 0 (roll) is connected to all four motors and combined with throttle.
+对于一个简单的固定翼飞行器来说，控制信号0（滚转）被直接连接到输出0（升降舵）。对于多轴飞行器来说，情况则有些不同：控制信号0（滚转）被连接到所有四个电机，而且会同油门的控制信号融合。
 
-#### 控制群组 #0 (Flight Control)
+#### 控制群组 #0（Flight Control）
 
  * 0: roll (-1..1)
  * 1: pitch (-1..1)
@@ -36,7 +36,7 @@ For a simple plane control 0 (roll) is connected straight to output 0 (elevator)
  * 6: airbrakes (-1..1)
  * 7: landing gear (-1..1)
 
-#### 控制群组 #1 (Flight Control VTOL/Alternate)
+#### 控制群组 #1（Flight Control VTOL/Alternate）
 
  * 0: roll ALT (-1..1)
  * 1: pitch ALT (-1..1)
@@ -47,7 +47,7 @@ For a simple plane control 0 (roll) is connected straight to output 0 (elevator)
  * 6: reserved / aux2
  * 7: reserved / aux3
 
-#### 控制群组 #2 (Gimbal)
+#### 控制群组 #2（Gimbal）
 
  * 0: gimbal roll
  * 1: gimbal pitch
@@ -58,7 +58,7 @@ For a simple plane control 0 (roll) is connected straight to output 0 (elevator)
  * 6: reserved
  * 7: reserved (parachute, -1..1)
 
-#### 控制群组 #3 (Manual Passthrough)
+#### 控制群组 #3（Manual Passthrough）
 
  * 0: RC roll
  * 1: RC pitch
@@ -69,7 +69,7 @@ For a simple plane control 0 (roll) is connected straight to output 0 (elevator)
  * 6: RC aux2
  * 7: RC aux3
 
-#### 控制群组 #6 (First Payload)
+#### 控制群组 #6（First Payload）
 
  * 0: function 0 (default: parachute)
  * 1: function 1
@@ -82,9 +82,9 @@ For a simple plane control 0 (roll) is connected straight to output 0 (elevator)
 
 ### 虚拟控制群组
 
-These groups are NOT mixer inputs, but serve as meta-channels to feed fixed wing and multicopter controller outputs into the VTOL governor module.
+这些群组**不会**输入到混控器，而会作为元信道，将固定翼飞行器和多轴飞行器控制器的输出传递给VTOL的调速器（governor）模块。
 
-#### 控制群组 #4 (Flight Control MC VIRTUAL)
+#### 控制群组 #4（Flight Control MC VIRTUAL）
 
  * 0: roll ALT (-1..1)
  * 1: pitch ALT (-1..1)
@@ -95,7 +95,7 @@ These groups are NOT mixer inputs, but serve as meta-channels to feed fixed wing
  * 6: reserved / aux2
  * 7: reserved / aux3
 
-#### 控制群组 #5 (Flight Control FW VIRTUAL)
+#### 控制群组 #5（Flight Control FW VIRTUAL）
 
  * 0: roll ALT (-1..1)
  * 1: pitch ALT (-1..1)
@@ -108,7 +108,7 @@ These groups are NOT mixer inputs, but serve as meta-channels to feed fixed wing
 
 ## 映射
 
-Since there are multiple control groups (like flight controls, payload, etc.) and multiple output groups (first 8 PWM outpus, UAVCAN, etc.), one control group can send command to multiple output groups.
+由于控制群组和输出群组都有许多个，所以一个控制群组可以给多个输出群组发送命令。
 
 ```mermaid
 graph TD;
@@ -119,12 +119,11 @@ graph TD;
 
 ## PX4混控器定义
 
-Files in ROMFS/px4fmu_common/mixers implement mixers are used for predefined airframes. They can be used as a basis
-for customisation, or for general testing purposes.
+`ROMFS/px4fmu_common/mixers`目录中的文件实现了用于预定义机架的混控器。你可以以它们为基础编写自己的混控器，或者用它们做通用测试。
 
 ### 语法
 
-Mixer definitions are text files; lines beginning with a single capital letter
+混控器以文本文件形式定义；lines beginning with a single capital letter
 followed by a colon are significant. All other lines are ignored, meaning that
 explanatory text can be freely mixed with the definitions.
 
