@@ -2,7 +2,7 @@
 
 在动手开发PX4前，你应该先用默认配置设置好系统，以便验证硬件功能正常。下面的视频用[Pixhawk自动驾驶仪](hardware-pixhawk.md)和[QGroundControl](qgroundcontrol-intro.md)地面站解释了设置的过程。我们在[这里](airframes-architecture.md)列出了支持的机架。
 
-> **信息** [下载QGroundControl](http://qgroundcontrol.org/downloads)然后按照下面视频的指导操作配置你的自动驾驶仪。请参考[QGroundControl教程](http://dev.px4.io/qgroundcontrol-intro.html)中对任务桂花、飞行和参数设置的细节。
+> **信息** [下载QGroundControl](http://qgroundcontrol.org/downloads)然后按照下面视频的指导操作配置你的自动驾驶仪。请参考[QGroundControl教程](http://dev.px4.io/qgroundcontrol-intro.html)中对任务规划、飞行和参数设置细节的介绍。
 
 下面的视频介绍了一些设置选项。
 
