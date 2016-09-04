@@ -6,14 +6,14 @@
 
 > **警告** Never ever fix permission problems by using 'sudo'. It will create more permission problems in the process and require a system reinstallation to fix them.
 
-The user needs to be part of the group "dialout":
+当前用户需要属于`dialout`组：
 
 
 ```sh
 sudo usermod -a -G dialout $USER
 ```
 
-And then you have to logout and login again, as this is only changed after a new login.
+随后，你需要登出再登入，因为这个改动只会在下一次登入时生效。
 
 ## 安装
 
@@ -156,17 +156,18 @@ $HOME/Qualcomm/Hexagon_SDK/3.0/tools/debug/mini-dm/Linux_Debug/mini-dm
 
 ### Raspberry Pi硬件
 
-Developers working on Raspberry Pi hardware should download the RPi Linux toolchain from below. The installation script will automatically install the cross-compiler toolchain. If you are looking for the *native* Raspberry Pi toolchain to compile directly on the Pi, see [here](http://dev.px4.io/hardware-pi2.html#native-builds-optional)
+Raspberry Pi的开发者需要按照下面的指导下载RPi Linux的工具链。安装脚本会自动安装交叉编译工具链。如果你想在RPi上面做*本地*编译，那么请参考[这份文档](http://dev.px4.io/hardware-pi2.html#native-builds-optional)
 
+> **注意**：现在只支持在Ubuntu上做交叉编译。
 
 ```sh
 git clone https://github.com/pixhawk/rpi_toolchain.git
 cd rpi_toolchain
 ./install_cross.sh
 ```
-You will be required to enter your password for toolchain installation to complete successfully.
+在安装过程中，这个脚本可能会需要你提供根用户的密码。
 
-You can pass a different path to the installer script if you wouldn't like to install the toolchain to the default location of ```/opt/rpi_toolchain```. Run ``` ./install_cross.sh <PATH>```. The installer will automatically configure required environment variables as well.
+你可以个这个命令传递一个不同的路径，这样就会将工具链安装到你指定的目录中，默认的路径是```/opt/rpi_toolchain```。运行``` ./install_cross.sh <PATH>```。安装脚本会在安装完成后自动配置所需的环境变量（你可能需要重新开启一个终端窗口才能生效）。
 
 ### Parrot Bebop
 
