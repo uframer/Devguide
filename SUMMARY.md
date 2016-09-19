@@ -36,6 +36,7 @@
     * [Pixhawk](hardware-pixhawk.md)
     * [Pixfalcon](hardware-pixfalcon.md)
     * [Pixracer](hardware-pixracer.md)
+    * [Crazyflie 2.0](hardware-crazyflie2.md)
 * 中间件和架构
     * [uORB消息机制](advanced-uorb.md)
     * [自定义MAVLink消息](custom-mavlink-message.md)
