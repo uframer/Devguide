@@ -1,6 +1,6 @@
 # Crazyflie 2.0
 
-Crazyflie系列微型四轴由Bitcraze AB开发。你可以在[这里(https://www.bitcraze.io/crazyflie-2/)]看到Crazyflie 2 (CF2)的介绍： 
+Crazyflie系列微型四轴由Bitcraze AB开发。你可以在[这里](https://www.bitcraze.io/crazyflie-2/)看到Crazyflie 2 (CF2)的介绍：
 
 ![](images/hardware/hardware-crazyflie2.png)
 
