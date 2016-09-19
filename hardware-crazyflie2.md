@@ -1,59 +1,58 @@
 # Crazyflie 2.0
 
-The Crazyflie line of micro quads was created by Bitcraze AB. An overview of the Crazyflie 2 (CF2) is here: https://www.bitcraze.io/crazyflie-2/
+Crazyflie系列微型四轴由Bitcraze AB开发。你可以在[这里(https://www.bitcraze.io/crazyflie-2/)]看到Crazyflie 2 (CF2)的介绍： 
 
 ![](images/hardware/hardware-crazyflie2.png)
 
-## Quick Summary
+## 简介
 
 <aside class="tip">
-The main hardware documentation is here: https://wiki.bitcraze.io/projects:crazyflie2:index
+主要的硬件文档在[这里](https://wiki.bitcraze.io/projects:crazyflie2:index)。
 </aside>
 
   * Main System-on-Chip: STM32F405RG
     * CPU: 168 MHz ARM Cortex M4 with single-precision FPU
     * RAM: 192 KB SRAM
-  * nRF51822 radio and power management MCU
-  * MPU9250 Accel / Gyro / Mag
-  * LPS25H barometer
+  * nRF51822射频和电源管理MCU
+  * MPU9250加速剂/陀螺仪/磁罗盘
+  * LPS25H气压计
 
+## 烧写固件
 
-## Flashing
+在设置好PX4的开发环境之后，按照下面的步骤讲PX4软件烧写到CF2上：
 
-After setting up the PX4 development environment, follow these steps to put the PX4 software on the CF2:
+1. 获取PX4的[Bootloader](https://github.com/PX4/Bootloader)
 
-1. Grab source code of the PX4 [Bootloader](https://github.com/PX4/Bootloader)
+2. 使用`make crazyflie_bl`命令构建
 
-2. Compile using `make crazyflie_bl`
+3. 让CF2进入DFU模式：
+	- 确保它处于关机状态
+	- 按住向下键
+	- 插入连接到计算机的USB线
+	- 1秒之后，蓝色LED应该开始闪烁，5秒之后，应该会加速闪烁
+	- 松开按键
 
-3. Put the CF2 into DFU mode:
-	- Ensure it is initially unpowered
-	- Hold down button
-	- Plug into computer's USB port
-	- After a second, the blue LED should start blinking and after 5 seconds should start blinking faster
-	- Release button
+4. 使用dfu-util烧写Bootloader：`sudo dfu-util -d 0483:df11 -a 0 -s 0x08000000 -D crazyflie_bl.bin`，完成后拔出USB线
+	- 如果烧写成功，下次插入USB线的时候黄色LED应该会闪烁
 
-4. Flash bootloader using dfu-util: `sudo dfu-util -d 0483:df11 -a 0 -s 0x08000000 -D crazyflie_bl.bin` and unplug CF2 when done
-	- If successful, then the yellow LED should blink when plugging in again
+5. 获取PX4的[固件](https://github.com/PX4/Bootloader)
 
-5. Grab the [Firmware](https://github.com/PX4/Bootloader)
+6. 使用`make crazyflie_default upload`命令构建并上传
 
-6. Compile with `make crazyflie_default upload`
+7. 编译好后会提示你插入设备，此时插入CF2：黄色LED应该会开始闪烁，这表示CF2进入了bootloader模式。随后红色LED应该会亮起来，表示已经开始烧写过程。
 
-7. When prompted to plug in device, plug in CF2: the yellow LED should start blinking indicating bootloader mode. Then the red LED should turn on indicating that the flashing process has started.
+8. 等待烧写完成
 
-8. Wait for completion
+9. 搞定！请使用QGC来校准CF2
 
-9. Done! Calibrate via QGC
+## 无线
 
-## Wireless
+注意：无线通信的驱动程序还在开发之中，尚不可用。
 
-NOTE: The drivers for wireless communication are still in development and not fully available.
+板载的nRF模块支持通过蓝牙或者专有的2.4GHz Nordic ESB协议通信。
+- 推荐使用[Crazyradio PA](https://www.bitcraze.io/crazyradio-pa/)。
+- 目前只支持用Crazyflie的手机app通过蓝牙连接控制CF2的飞行。
 
-The onboard nRF module allows connecting to the board via Bluetooth or through the proprietary 2.4GHz Nordic ESB protocol.
-- A [Crazyradio PA](https://www.bitcraze.io/crazyradio-pa/) is recommended.
-- To fly the CF2, currently only the Crazyflie phone app is supported via Bluetooth
-
-## Flying
+## 飞行
 
 {% youtube %}https://www.youtube.com/watch?v=oWk0RRIzF-4{% endyoutube %}
