@@ -23,7 +23,8 @@ brew update
 brew install git bash-completion genromfs kconfig-frontends gcc-arm-none-eabi
 brew install astyle cmake ninja
 # simulation tools
-brew install ant graphviz sdformat3 protobuf eigen opencv
+brew install ant graphviz sdformat3 eigen protobuf
+brew install homebrew/science/opencv
 ```
 
 接下来安装所需的python包：
@@ -34,6 +35,10 @@ brew install ant graphviz sdformat3 protobuf eigen opencv
 sudo easy_install pip
 sudo pip install pyserial empy
 ```
+
+### Java for jMAVSim
+
+If you're intending to use jMAVSim, you need to install [Java JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
 
 ## Snapdragon Flight
 

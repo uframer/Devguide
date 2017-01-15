@@ -6,11 +6,17 @@ Pixhawk XRacer控制板家族为小型竞速四轴和固定翼飞行器做了优
 
 ## 简介
 
+<<<<<<< HEAD
 <aside class="tip">
 主要的硬件文档在[pixhawk.org](https://pixhawk.org/modules/pixracer)：
 </aside>
 <p/>
   * 主SoC：[STM32F427VIT6 rev.3](http://www.st.com/web/en/catalog/mmc/FM141/SC1169/SS1577/LN1789)
+=======
+> ** The main hardware documentation is here: https://pixhawk.org/modules/pixracer **
+
+  * Main System-on-Chip: [STM32F427VIT6 rev.3](http://www.st.com/web/en/catalog/mmc/FM141/SC1169/SS1577/LN1789)
+>>>>>>> PX4/master
     * CPU: 180 MHz ARM Cortex M4 with single-precision FPU
     * RAM: 256 KB SRAM (L1)
   * 采用标准的FPV尺寸：36x36mm，标准30.5mm孔距

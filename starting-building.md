@@ -80,10 +80,14 @@ cd Firmware
 make posix_rpi_cross upload # 针对交叉构建
 ```
 
+<<<<<<< HEAD
 然后，登录ssh并运行：
+=======
+Then, connect over ssh and run it with (as root):
+>>>>>>> PX4/master
 
 ```sh
-./px4 px4.config
+sudo ./px4 px4.config
 ```
 
 #### 原生构建
@@ -95,17 +99,24 @@ cd Firmware
 make posix_rpi_native # 做原生构建
 ```
 
+<<<<<<< HEAD
 构建完成后，会在`build_posix_rpi_native/src/firmware/posix`目录下生成名为`px4`的可执行文件。可以在RPi上直接通过如下命令运行它：
+=======
+The "px4" executable file is in the directory build_posix_rpi_native/src/firmware/posix.
+Run it directly with:
+>>>>>>> PX4/master
 
 ```sh
-./build_posix_rpi_native/src/firmware/posix/px4 ./posix-configs/rpi/px4.config
+sudo ./build_posix_rpi_native/src/firmware/posix/px4 ./posix-configs/rpi/px4.config
 ```
 
+<<<<<<< HEAD
 执行px4会产生如下输出：
+=======
+A successful build followed by executing px4 will give you something like this:
+>>>>>>> PX4/master
 
 ```sh
-[init] shell id: 1996021760
-[init] task name: px4
 
 ______  __   __    ___
 | ___ \ \ \ / /   /   |
@@ -114,46 +125,97 @@ ______  __   __    ___
 | |     / /^\ \ \___  |
 \_|     \/   \/     |_/
 
+<<<<<<< HEAD
 准备起飞吧！
+=======
+px4 starting.
+>>>>>>> PX4/master
 
 
 pxh>
 ```
 
+#### Autostart
+To autostart px4, add the following to the file `/etc/rc.local` (adjust it
+accordingly if you use native build), right before the `exit 0` line:
+```
+cd /home/pi && ./px4 -d px4.config > px4.log
+```
+
+
 ### Parrot Bebop
 
+<<<<<<< HEAD
 我们队Bebop处在相当初期的阶段，还不适合使用。
 
 #### 构建
+=======
+Support for the Bebop is really early stage and should be used very carefully.
+>>>>>>> PX4/master
 
 ```sh
 cd Firmware
 make posix_bebop_default
 ```
 
+<<<<<<< HEAD
 打开你的Bebop并将你的上位机连接到Bebop的Wi-Fi。然后，按电源键四次以启动ADB和telnet守护进程。
+=======
+Turn on your Bebop and connect your host machine with the Bebop's wifi. Then, press the power button
+four times to enable ADB and to start the telnet daemon.
+>>>>>>> PX4/master
 
 ```sh
 make posix_bebop_default upload
 ```
 
+<<<<<<< HEAD
 请注意，这个动作也会复制`px4.config`文件。
 
 #### 运行！
 
 连接到Bebop的Wi-Fi并按下电源键四次。
+=======
+This will upload the PX4 mainapp into /usr/bin and create the file /home/root/parameters if not already
+present. In addition, we need the Bebop's mixer file and the px4.config. Currently, both files have
+to be copied manually using the following commands.
+```sh
+adb connect 192.168.42.1:9050
+adb push ROMFS/px4fmu_common/mixers/bebop.main.mix /home/root
+adb push posix-configs/bebop/px4.config /home/root
+adb disconnect
+```
+
+#### Run it
+Connect to the Bebop's wifi and press the power button four times. Next,
+connect with the Bebop via telnet or adb shell and run the commands bellow.
+>>>>>>> PX4/master
 
 ```sh
 telnet 192.168.42.1
 ```
 
+<<<<<<< HEAD
 运行px4：
 
+=======
+Kill the Bebop's proprietary driver with
+>>>>>>> PX4/master
 ```sh
-px4
+kk
+```
+and start the PX4 mainapp with:
+```sh
+px4 /home/root/px4.config
 ```
 
+<<<<<<< HEAD
 你也可以使用adb shell运行px4程序。
+=======
+In order to fly the Bebop, connect a joystick device with your host machine and start QGroundControl. Both,
+the Bebop and the joystick should be recognized. Follow the instructions to calibrate the sensors
+and setup your joystick device.
+>>>>>>> PX4/master
 
 ### 基于QuRT/Snapdragon的平台
 
@@ -191,10 +253,16 @@ adb push ROMFS/px4fmu_common/mixers/quad_x.main.mix  /usr/share/data/adsp
 运行DSP debug monitor:
 
 ```sh
-${HEXAGON_SDK_ROOT}/tools/mini-dm/Linux_Debug/mini-dm
+${HEXAGON_SDK_ROOT}/tools/debug/mini-dm/Linux_Debug/mini-dm
 ```
 
+<<<<<<< HEAD
 回到ADB shell然后运行px4：
+=======
+Note: alternatively, especially on Mac, you can also use [nano-dm](https://github.com/kevinmehall/nano-dm).
+
+Go back to ADB shell and run px4:
+>>>>>>> PX4/master
 
 ```sh
 cd /home/linaro
@@ -203,7 +271,11 @@ cd /home/linaro
 
 请注意，px4会在你断开USB电缆（或者你的ssh会话断开）后立即停止运行。如果你要飞行，你应该使px4在启动后自动运行。
 
+<<<<<<< HEAD
 #### 自动启动px4
+=======
+#### Autostart
+>>>>>>> PX4/master
 
 如果想在Snapdragon启动时运行px4，请将启动px4的命令添加到`rc.local`：
 

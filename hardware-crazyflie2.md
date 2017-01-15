@@ -6,9 +6,13 @@ Crazyflie系列微型四轴由Bitcraze AB开发。你可以在[这里](https://w
 
 ## 简介
 
+<<<<<<< HEAD
 <aside class="tip">
 主要的硬件文档在[这里](https://wiki.bitcraze.io/projects:crazyflie2:index)。
 </aside>
+=======
+> ** The main hardware documentation is here: https://wiki.bitcraze.io/projects:crazyflie2:index **
+>>>>>>> PX4/master
 
   * Main System-on-Chip: STM32F405RG
     * CPU: 168 MHz ARM Cortex M4 with single-precision FPU
@@ -37,7 +41,11 @@ Crazyflie系列微型四轴由Bitcraze AB开发。你可以在[这里](https://w
 
 5. 获取PX4的[固件](https://github.com/PX4/Bootloader)
 
+<<<<<<< HEAD
 6. 使用`make crazyflie_default upload`命令构建并上传
+=======
+5. Grab the [Firmware](https://github.com/PX4/Firmware)
+>>>>>>> PX4/master
 
 7. 编译好后会提示你插入设备，此时插入CF2：黄色LED应该会开始闪烁，这表示CF2进入了bootloader模式。随后红色LED应该会亮起来，表示已经开始烧写过程。
 
@@ -49,10 +57,32 @@ Crazyflie系列微型四轴由Bitcraze AB开发。你可以在[这里](https://w
 
 注意：无线通信的驱动程序还在开发之中，尚不可用。
 
+<<<<<<< HEAD
 板载的nRF模块支持通过蓝牙或者专有的2.4GHz Nordic ESB协议通信。
 - 推荐使用[Crazyradio PA](https://www.bitcraze.io/crazyradio-pa/)。
 - 目前只支持用Crazyflie的手机app通过蓝牙连接控制CF2的飞行。
 
 ## 飞行
+=======
+The onboard nRF module allows connecting to the board via Bluetooth or through the proprietary 2.4GHz Nordic ESB protocol.
+
+- A [Crazyradio PA](https://www.bitcraze.io/crazyradio-pa/) is recommended.
+- To fly the CF2 right away, the Crazyflie phone app is supported via Bluetooth
+
+Using the official Bitcraze **Crazyflie phone app**
+
+- Connect via Bluetooth
+- Change mode in settings to 1 or 2
+- Calibrate via QGC
+
+
+Connecting via **MAVLink**
+
+- Use a Crazyradio PA alongside a compatible GCS
+- See [cfbridge](https://github.com/dennisss/cfbridge) for how to connect any UDP capable GCS to the radio
+
+
+## Flying
+>>>>>>> PX4/master
 
 {% youtube %}https://www.youtube.com/watch?v=oWk0RRIzF-4{% endyoutube %}

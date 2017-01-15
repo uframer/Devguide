@@ -9,7 +9,15 @@ PX4有多个shell，但是只有一个控制台：系统控制台是所有引导
   * 系统控制台（第一个shell）：硬件串口
   * 其他的shell：Pixhawk on USB（也就是Mac系统里的`/dev/tty.usbmodem1`设备）
 
+<<<<<<< HEAD
 > **信息** USB shell：如果只需要运行几个命令，或者测试一个应用程序，那么连接到USB shell是很方便的。**只要你不插microSD开启动系统，就额可以启用USB shell。** 只有在调试启动阶段或者USB需要用作其他用途时（例如连接[地面站](qgroundcontrol-intro.md)），才必须要使用硬件串口控制台。
+=======
+> **Info**
+> USB shell: To just run a few quick commands or test an application connecting to the USB
+> shell is sufficient. The Mavlink shell can be used for this, see below.
+> The hardware serial console is only needed for boot debugging or when USB should be used
+> for MAVLink to connect a [GCS](qgroundcontrol-intro.md).
+>>>>>>> PX4/master
 
 ## Snapdragon Flight：控制台连线
 
@@ -107,8 +115,9 @@ nsh> free
 For NuttX-based systems (Pixhawk, Pixracer, ...), the nsh console can also be
 accessed via mavlink. This works via serial link or WiFi (UDP/TCP). Make sure
 that QGC is not running, then start the shell with e.g.
-`./Tools/mavlink_shell.py /dev/ttyACM0` (use `-h` to get a description of all
-available arguments).
+`./Tools/mavlink_shell.py /dev/ttyACM0` (in the Firmware source). Use `-h` to
+get a description of all available arguments. You may first have to install the
+dependencies with `sudo pip install pymavlink pyserial`.
 
 # Snapdragon DSP Console
 When you are connected to your Snapdragon board via usb you have access to the px4 shell on the posix side of things.
@@ -116,8 +125,10 @@ The interaction with the DSP side (QuRT) is enabled with the `qshell` posix app 
 
 With the Snapdragon connected via USB, open the mini-dm to see the output of the DSP:
 ```
-${HEXAGON_SDK_ROOT}/tools/mini-dm/Linux_Debug/mini-dm
+${HEXAGON_SDK_ROOT}/tools/debug/mini-dm/Linux_Debug/mini-dm
 ```
+
+Note: Alternatively, especially on Mac, you can also use [nano-dm](https://github.com/kevinmehall/nano-dm).
 
 Run the main app on the linaro side:
 ```

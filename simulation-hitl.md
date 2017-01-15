@@ -8,11 +8,27 @@ PX4 supports HITL for multicopters (using jMAVSim) and fixed wing (using X-Plane
 
 ![](images/gcs/qgc_hil_config.png)
 
+<<<<<<< HEAD
 ## 切换到摇杆输入
 
 如果你希望使用摇杆而不是遥控器，请将参数`COM_RC_IN_MODE`设置为`1`。你可以在`Commander`参数组里找到它。
 
 ## 启用从X-Plane的远程访问
+=======
+## Using jMAVSim (Quadrotor)
+
+- Make sure QGroundControl is not running (or accessing the device via serial port)
+- Run jMAVSim in HITL mode (replace the serial port if necessary):
+  ```
+  ./Tools/jmavsim_run.sh -q -d /dev/ttyACM0 -b 921600
+  ```
+- The console will display mavlink text messages from the autopilot.
+- Then run QGroundControl and connect via default UDP configuration.
+
+
+## Using X-Plane
+#### Enable Remote Access in X-Plane
+>>>>>>> PX4/master
 
 在X-Plane中有两个关键的设置需要改：在`Settings`->`Data Input and Output`里，勾选如下单选框：
 
@@ -22,13 +38,25 @@ PX4 supports HITL for multicopters (using jMAVSim) and fixed wing (using X-Plane
 
 ![](images/gcs/xplane_net_config.png)
 
+<<<<<<< HEAD
 ## 在QGroundControl中启用HITL
+=======
+#### Enable HITL in QGroundControl
+>>>>>>> PX4/master
 
 打开`Widgets`->`HIL Config`，然后在下拉列表中选择`X-Plane 10`，再点`connect`。连接成功后，电池状态、GPS状态和飞机的位置信息应该都是可用的：
 
 ![](images/gcs/qgc_sim_run.png)
 
+<<<<<<< HEAD
 ## 在HITL中执行自主任务
+=======
+## Switch to Joystick Input
+
+If a joystick is preferred over a radio remote control, set the parameter `COM_RC_IN_MODE` to `1`. It can be found in the Commander parameter group.
+
+## Fly an Autonomous Mission in HITL
+>>>>>>> PX4/master
 
 Switch to the flight planning view and put a single waypoint in front of the plane. Click on the sync icon to send the waypoint.
 

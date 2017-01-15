@@ -23,18 +23,15 @@ roslaunch mavros px4.launch fcu_url:="udp://:14540@127.0.0.1:14557"
 
 ## Installing Gazebo for ROS
 
-The Gazebo ROS SITL simulation is known to work with Gazebo6 (Gazebo7 did NOT work) which can be installed via:
+The Gazebo ROS SITL simulation is known to work with both Gazebo 6 and Gazebo 7, which can be installed via:
 
 ```sh
-sudo apt-get install ros-indigo-gazebo6-ros
+sudo apt-get install ros-$(ROS_DISTRO)-gazebo7-ros-pkgs    //Recommended
 ```
-
-If other sensor models such as lasers are desired, the Gazebo plugins will also be needed:
-
+or
 ```sh
-sudo apt-get install ros-indigo-gazebo6-plugins
+sudo apt-get install ros-$(ROS_DISTRO)-gazebo6-ros-pkgs
 ```
-
 
 ## Launching Gazebo with ROS wrappers
 
@@ -47,9 +44,15 @@ There are ROS launch scripts available to run the simulation wrapped in ROS:
 
 To run SITL wrapped in ROS the ROS environment needs to be updated, then launch as usual:
 
+(optional): only source the catkin workspace if you compiled MAVROS or other ROS packages from source
+
 ```sh
 cd <Firmware_clone>
-source integrationtests/setup_gazebo_ros.bash $(pwd)
+make posix_sitl_default gazebo
+source ~/catkin_ws/devel/setup.bash    // (optional)
+source Tools/setup_gazebo.bash $(pwd) $(pwd)/build_posix_sitl_default
+export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$(pwd)
+export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$(pwd)/Tools/sitl_gazebo
 roslaunch px4 posix_sitl.launch
 ```
 
@@ -93,7 +96,7 @@ Now in a new terminal make sure you will be able to insert the Iris model throug
 
 ```sh
 cd <Firmware_clone>
-source integrationtests/setup_gazebo_ros.bash $(pwd)
+source Tools/setup_gazebo.bash $(pwd) $(pwd)/build_posix_sitl_default
 ```
 
 Now start Gazebo like you would when working with ROS and insert the Iris quadcopter model. Once the Iris is loaded it will automatically connect to the px4 app.
