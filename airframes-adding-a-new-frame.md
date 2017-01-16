@@ -73,9 +73,9 @@ set PWM_DISARMED 1000
 
 ### 混控文件
 
-**注意**：If you want to reverse a channel, never do this neither on your RC transmitter nor with e.g `RC1_REV`. The channels are only reversed when flying in manual mode, when you switch in an autopilot flight mode, the channels output will still be wrong (it only inverts your RC signal). Thus for a correct channal assignment change either your PWM signals with `PWM_MAIN_REV1` (e.g. for channel one) or change the signs for both output scaling and output range in the corresponding mixer (see below).
+**注意**：如果你想要反转一个通道，不要在遥控器上反转，也不要通过`RC1_REV`反转。这是因为这样的设置只会影响手动模式，如果你切回某个自动驾驶模式，这些通道的输出依然会是错的（因为只有你的RC信号被反转了）。正确的做法是通过设置`PWM_MAIN_REV1`反转PWM信号（这里以通道1为例），或者在正确的混动器里同时修改输出的缩放因子的符号和输出的范围的符号（请参考下面的内容）。
 
-后面给出了一个典型的配置文件。
+后面列出了一个典型的配置文件。
 
 <aside class="note">
 The plugs of the servos / motors go in the order of the mixers in this file.
