@@ -9,15 +9,9 @@ PX4有多个shell，但是只有一个控制台：系统控制台是所有引导
   * 系统控制台（第一个shell）：硬件串口
   * 其他的shell：Pixhawk on USB（也就是Mac系统里的`/dev/tty.usbmodem1`设备）
 
-<<<<<<< HEAD
-> **信息** USB shell：如果只需要运行几个命令，或者测试一个应用程序，那么连接到USB shell是很方便的。**只要你不插microSD开启动系统，就额可以启用USB shell。** 只有在调试启动阶段或者USB需要用作其他用途时（例如连接[地面站](qgroundcontrol-intro.md)），才必须要使用硬件串口控制台。
-=======
-> **Info**
-> USB shell: To just run a few quick commands or test an application connecting to the USB
-> shell is sufficient. The Mavlink shell can be used for this, see below.
-> The hardware serial console is only needed for boot debugging or when USB should be used
-> for MAVLink to connect a [GCS](qgroundcontrol-intro.md).
->>>>>>> PX4/master
+> **信息**
+> USB shell：如果只需要运行几个命令，或者测试一个应用程序，那么连接到USB shell是很方便的。Mavlink shell也可以用于这一目的，请见下面的介绍。
+> 只有在调试启动阶段或者USB需要用作MAVLink时（例如连接[地面站](qgroundcontrol-intro.md)），才必须要使用硬件串口控制台。
 
 ## Snapdragon Flight：控制台连线
 
@@ -69,7 +63,7 @@ The complete wiring is shown below.
 
 ## 打开控制台
 
-After the console connection is wired up, use the default serial port tool of your choice or the defaults described below:
+在连好控制台的物理连线后，你可以选用自己喜欢的串口工具，下面我们列出各个系统常见的工具：
 
 ### Linux/Mac OS：Screen
 
@@ -94,7 +88,7 @@ screen /dev/ttyXXX BAUDRATE 8N1
 
 ### Windows：PuTTY
 
-Download [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) and start it.
+下载[PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)并启动。
 
 Then select 'serial connection' and set the port parameters to:
 
@@ -112,14 +106,11 @@ nsh> free
 ```
 
 ## MAVLink Shell
-For NuttX-based systems (Pixhawk, Pixracer, ...), the nsh console can also be
-accessed via mavlink. This works via serial link or WiFi (UDP/TCP). Make sure
-that QGC is not running, then start the shell with e.g.
-`./Tools/mavlink_shell.py /dev/ttyACM0` (in the Firmware source). Use `-h` to
-get a description of all available arguments. You may first have to install the
-dependencies with `sudo pip install pymavlink pyserial`.
 
-# Snapdragon DSP Console
+对于基于NuttX的系统（Pixhawk、Pixracer等），也可以通过mavlink连接到nsh控制台。这个机制适用于串口连接或者WiFi（UDP/TCP）连接。请首先确保QGC没有运行，然后通过命令`./Tools/mavlink_shell.py /dev/ttyACM0`（在Firmware里可以找到）连接。`-h`选项可以列出所有可用参数的描述。你可以用`sudo pip install pymavlink pyserial`命令安装所有依赖关系。
+
+# Snapdragon DSP控制台
+
 When you are connected to your Snapdragon board via usb you have access to the px4 shell on the posix side of things.
 The interaction with the DSP side (QuRT) is enabled with the `qshell` posix app and its QuRT companion.
 

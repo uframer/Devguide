@@ -71,15 +71,11 @@ set PWM_OUT 4
 set PWM_DISARMED 1000
 ```
 
-<<<<<<< HEAD
 ### 混控文件
-=======
-IMPORTANT REMARK: If you want to reverse a channel, never do this neither on your RC transmitter nor with e.g `RC1_REV`. The channels are only reversed when flying in manual mode, when you switch in an autopilot flight mode, the channels output will still be wrong (it only inverts your RC signal). Thus for a correct channal assignment change either your PWM signals with `PWM_MAIN_REV1` (e.g. for channel one) or change the signs for both output scaling and output range in the corresponding mixer (see below). 
 
-### Mixer file
->>>>>>> PX4/master
+**注意**：If you want to reverse a channel, never do this neither on your RC transmitter nor with e.g `RC1_REV`. The channels are only reversed when flying in manual mode, when you switch in an autopilot flight mode, the channels output will still be wrong (it only inverts your RC signal). Thus for a correct channal assignment change either your PWM signals with `PWM_MAIN_REV1` (e.g. for channel one) or change the signs for both output scaling and output range in the corresponding mixer (see below).
 
-A typical configuration file is below.
+后面给出了一个典型的配置文件。
 
 <aside class="note">
 The plugs of the servos / motors go in the order of the mixers in this file.

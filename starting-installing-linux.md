@@ -136,11 +136,7 @@ source ~/.bashrc
 
 For more sysroot options see [Sysroot Installation](https://github.com/ATLFlight/cross_toolchain/blob/sdk3/README.md#sysroot-installation)
 
-<<<<<<< HEAD
 #### 更新ADSP固件
-=======
-#### Update ADSP firmware
->>>>>>> PX4/master
 
 Before building, flashing and running code, you'll need to update the [ADSP firmware](advanced-snapdragon.html#updating-the-adsp-firmware).
 
@@ -155,40 +151,25 @@ Messages from the DSP can be viewed using mini-dm.
 ${HEXAGON_SDK_ROOT}/tools/debug/mini-dm/Linux_Debug/mini-dm
 ```
 
-<<<<<<< HEAD
+**注意**：你也可以可使用[nano-dm](https://github.com/kevinmehall/nano-dm)（尤其适用于Mac）。
+
 ### Raspberry Pi硬件
 
 Raspberry Pi的开发者需要按照下面的指导下载RPi Linux的工具链。安装脚本会自动安装交叉编译工具链。如果你想在RPi上面做*本地*编译，那么请参考[这份文档](http://dev.px4.io/hardware-pi2.html#native-builds-optional)
-
-> **注意**：现在只支持在Ubuntu上做交叉编译。
-=======
-Note: Alternatively, especially on Mac, you can also use [nano-dm](https://github.com/kevinmehall/nano-dm).
-
-### Raspberry Pi hardware
-
-Developers working on Raspberry Pi hardware should download the RPi Linux toolchain from below. The installation script will automatically install the cross-compiler toolchain. If you are looking for the _native_ Raspberry Pi toolchain to compile directly on the Pi, see [here](http://dev.px4.io/hardware-pi2.html#native-builds-optional)
->>>>>>> PX4/master
 
 ```sh
 git clone https://github.com/pixhawk/rpi_toolchain.git
 cd rpi_toolchain
 ./install_cross.sh
 ```
-<<<<<<< HEAD
 在安装过程中，这个脚本可能会需要你提供根用户的密码。
 
 你可以个这个命令传递一个不同的路径，这样就会将工具链安装到你指定的目录中，默认的路径是```/opt/rpi_toolchain```。运行``` ./install_cross.sh <PATH>```。安装脚本会在安装完成后自动配置所需的环境变量（你可能需要重新开启一个终端窗口才能生效）。
-=======
 
-You will be required to enter your password for toolchain installation to complete successfully.
-
-You can pass a different path to the installer script if you wouldn't like to install the toolchain to the default location of `/opt/rpi_toolchain`. Run `./install_cross.sh <PATH>`. The installer will automatically configure required environment variables as well.
-
-Finally, run the following command to update the evironmental variables:
+最后，运行下面的命令更新环境变量：
 ```
 source ~/.profile
 ```
->>>>>>> PX4/master
 
 ### Parrot Bebop
 
@@ -202,9 +183,4 @@ sudo apt-get install android-tools-adb -y` ``
 
 ## 下一步
 
-<<<<<<< HEAD
 接下来请继续按照[构建PX4软件](starting-building.md)的指导操作。
-=======
-Now continue to run the [first build](starting-building.md)!
-
->>>>>>> PX4/master

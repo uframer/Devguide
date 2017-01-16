@@ -29,7 +29,7 @@ Example radios include
 * [Lairdtech RM024](http://www.lairdtech.com/products/rm024)
 * [Digi International XBee Pro](http://www.digi.com/products/xbee-rf-solutions/modules)
 
-```mermaid
+```{mermaid}
 graph TD;
   gnd[Ground Station] --MAVLink--> rad1[Ground Radio];
   rad1 --RadioProtocol--> rad2[Vehicle Radio];
@@ -49,7 +49,7 @@ Larger high power examples
 * [Gigabyte Brix](http://www.gigabyte.com/products/list.aspx?s=47&ck=104)
 * [Nvidia Jetson TK1](https://developer.nvidia.com/jetson-tk1)
 
-```mermaid
+```{mermaid}
 graph TD;
   comp[Companion Computer] --MAVLink--> uart[UART Adapter];
   uart --MAVLink--> Autopilot;
@@ -59,7 +59,7 @@ graph TD;
 A small computer mounted onto the vehicle connected to the autopilot through a UART to USB adapter while also having a WiFi link to a ground station running ROS. This can be any of the computers from the above section coupled with a WiFi adapter. For example, the Intel NUC D34010WYB has a PCI Express Half-Mini connector which can accomodate an [Intel Wifi Link 5000](http://www.intel.com/products/wireless/adapters/5000/) adapter.
 
 
-```mermaid
+```{mermaid}
 	graph TD
 	subgraph Ground  Station
 	  gnd[ROS Enabled Computer] --- qgc[qGroundControl]

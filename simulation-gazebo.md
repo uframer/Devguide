@@ -4,7 +4,7 @@
 
 {% youtube %}https://www.youtube.com/watch?v=qfFF9-0k4KA&vq=hd720{% endyoutube %}
 
-```mermaid
+```{mermaid}
 graph LR;
   Gazebo-->Plugin;
   Plugin-->MAVLink;

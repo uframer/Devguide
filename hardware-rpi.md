@@ -6,18 +6,9 @@
 
 ### OS映像
 
-<<<<<<< HEAD
-使用[Emlid RT Raspbian映像](http://docs.emlid.com/navio/Downloads/Real-time-Linux-RPi2/)，后续我们会考虑推出集成了PX4的映像。这个计划中的映像会集成下面面提到的设置工作。
-=======
-Use the [Emlid RT Raspbian image for Navio 2](https://docs.emlid.com/navio2/Navio-APM/configuring-raspberry-pi/).
-The default image will have most of the setup procedures shown below already
-done.
+使用[Emlid RT Raspbian image for Navio 2](https://docs.emlid.com/navio2/Navio-APM/configuring-raspberry-pi/)。这个默认的映像会集成下面面提到的绝大部分设置工作。
 
-**Important**: make sure not to upgrade the system (more specifically the kernel).
-By upgrading, a new kernel can get installed which lacks the necessary HW
-support (you can check with `ls /sys/class/pwm`, the directory should not be
-empty).
->>>>>>> PX4/master
+**重要**：请不要升级系统（尤其是不要升级内核）。如果你升级了内核，新的内核通常会缺少必要的硬件支持（你可以通过`ls /sys/class/pwm`命令验证，正常情况下这个目录不应该是空的）。
 
 ### 设置访问方法
 
@@ -33,17 +24,11 @@ Raspbian映像内置了SSH支持。用户名是`pi`，密码是`raspberry`。你
 ssh pi@<IP-ADDRESS>
 ```
 
-<<<<<<< HEAD
+### 扩展文件系统
+
+在安装系统后，请连接上去并[扩展文件系统](https://www.raspberrypi.org/documentation/configuration/raspi-config.md)，保证有足够的空间供系统使用。
+
 ### 修改主机名
-=======
-### Expand the Filesystem
-
-After installing the OS and connecting to it, make sure to
-[expand the Filesystem](https://www.raspberrypi.org/documentation/configuration/raspi-config.md),
-so there is enough space on the SD Card.
-
-### Changing hostnames
->>>>>>> PX4/master
 
 为了避免同网络上的其他RPi冲突，请将你的主机名修改为唯一的值。我们在这里使用`px4autopilot`。通过SSH连接到RPi然后输入下面的命令。
 
@@ -176,34 +161,17 @@ rm hello.txt
 
 ### 本地构建（可选）
 
-<<<<<<< HEAD
-你也可以直接在RPi上构建PX4。这种构建方式被称为*本地*构建。另一种构建方式是在开发机上交叉编译，然后将得到的二进制文件推送到RPi。这种构建方式被称作*交叉*构建，也是我们推荐的方式。如果你听从了我们的建议，那么就可以跳过这一节不看。
+你也可以直接在RPi上构建PX4。这种构建方式被称为*本地*构建。另一种构建方式是在开发机上交叉编译，然后将得到的二进制文件推送到RPi。这种构建方式被称作*交叉*构建，这种方式比较简单也比较快，是我们推荐的方式。如果你选择使用交叉构建方式，那么可以跳过这一节不看。
 
 下面的脚本会自动在RPi上设置本地构建系统，请在RPi上执行这些命令：
-=======
-You can run PX4 builds directly on the Pi if you desire. This is the *native*
-build. The other option is to run builds on a development computer which
-cross-compiles for the Pi, and pushes the PX4 executable binary directly to the
-Pi. This is the *cross-compiler* build, and the recommended one for developers
-due to speed of deployment and ease of use.
-
-For cross-compiling setups, you can skip this step.
-
-The steps below will setup the build system on the Pi to that required by PX4.
-Run these commands on the Pi itself!
->>>>>>> PX4/master
 
 ```sh
 sudo apt-get update
 sudo apt-get install cmake python-empy
 ```
-<<<<<<< HEAD
-=======
 
-Then clone the Firmware directly onto the Pi.
+然后请在RPi上克隆Firmware的源码。
 
-### Building the code
->>>>>>> PX4/master
 
 ### 构建代码
 
