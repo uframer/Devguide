@@ -39,9 +39,9 @@ Pixhawk系列自动驾驶仪同伙伴计算机（Raspberry Pi、Odroid、Tegra K
 |5         | RTS (out)|2       | FTDI CTS (brown) (in) |
 |6         | GND     | 1       | FTDI GND (black)   |
 
-## Software setup on Linux
+## Linux上的软件设置
 
-On Linux the default name of a USB FTDI would be like `\dev\ttyUSB0`. If you have a second FTDI linked on the USB or an Arduino, it will registered as `\dev\ttyUSB1`. To avoid the confusion between the first plugged and the second plugged, we recommend you to create a symlink from `ttyUSBx` to a friendly name, depending on the Vendor and Product ID of the USB device. 
+On Linux the default name of a USB FTDI would be like `\dev\ttyUSB0`. If you have a second FTDI linked on the USB or an Arduino, it will registered as `\dev\ttyUSB1`. To avoid the confusion between the first plugged and the second plugged, we recommend you to create a symlink from `ttyUSBx` to a friendly name, depending on the Vendor and Product ID of the USB device.
 
 Using `lsusb` we can get the vendor and product IDs.
 

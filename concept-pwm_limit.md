@@ -4,7 +4,7 @@
 
 ## 简介
 
-**Inputs**
+**输入**
 
 * armed: asserted to enable dangerous behaviors such as spinning propellers
 * pre-armed: asserted to enable benign behaviors such as moving control surfaces

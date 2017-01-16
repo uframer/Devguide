@@ -1,9 +1,9 @@
-# Optical Flow and LIDAR
+# 光流和激光雷达
 ----------------------------------------------------
 
-This page shows you how to set up the PX4Flow and a LIDAR distance measurement device for position estimation. Using a LIDAR device is not necessary if you use the LPE estimator described below since the PX4FLOW has a sonar, but LIDAR does improve performance.
+本文介绍了如何设置PX4Flow和LIDAR并用它们做位置估计。Using a LIDAR device is not necessary if you use the LPE estimator described below since the PX4FLOW has a sonar, but LIDAR does improve performance.
 
-## Selecting an Estimator
+## 选择一个估计器
 --------------------------------------------------------
 
 Two estimators support optical flow based navigation, LPE and INAV. There are benefits to both, but LPE is currently recommended for new users as it has the most testing and is the most robust. INAV uses slightly less CPU.
@@ -11,41 +11,41 @@ Two estimators support optical flow based navigation, LPE and INAV. There are be
 Use the `SYS_MC_EST_GROUP` parameter to select the estimator and then reboot.
 
 
-## Hardware
+## 硬件
 --------------------------------------------------------
 
 ![](images/hardware/px4flow_offset.png)
 
-*Figure 1: Mounting Coordinate Frame (relevant to parameters below)*
+*图 1: Mounting Coordinate Frame (relevant to parameters below)*
 
 ![](images/hardware/px4flow.png)
 
-*Figure 2: PX4Flow optical flow sensor (camera and sonar)*
+*图 2: PX4Flow optical flow sensor (camera and sonar)*
 
 The PX4Flow has to point towards the ground and can be connected using the I2C port on the pixhawk. For best performance make sure the PX4Flow is attached at a good position and is not exposed to vibration. (preferably on the down side of the quad-rotor).
 
-**Note: The default orientation is that the PX4Flow sonar side (+Y on flow) be pointed toward +X on the vehicle (forward). If it is not, you will need to set SENS_FLOW_ROT accordingly.**
+**注意：The default orientation is that the PX4Flow sonar side (+Y on flow) be pointed toward +X on the vehicle (forward). If it is not, you will need to set SENS_FLOW_ROT accordingly.**
 
 ![](images/hardware/lidarlite.png)
 
-*Figure 3: Lidar Lite*
+*图 3: Lidar Lite*
 
 Several LIDAR options exist including the Lidar-Lite (not currently manufacutured) and the sf10a: [sf10a](http://www.lightware.co.za/shop/en/drone-altimeters/33-sf10a.html). For the connection of the LIDAR-Lite please refer to [this](https://pixhawk.org/peripherals/rangefinder?s[]=lidar) page. The sf10a can be connected using a serial cable.
 
 ![](images/hardware/flow_lidar_attached.jpg)
 
-*Figure: PX4Flow/ Lidar-Lite mounting DJI F450*
+*图: PX4Flow/ Lidar-Lite mounting DJI F450*
 
 ![](images/flow/flow_mounting_iris.png)
 
-*Figure: This Iris+ has a PX4Flow attached without a LIDAR, this works with the LPE estimator.*
+*图: This Iris+ has a PX4Flow attached without a LIDAR, this works with the LPE estimator.*
 
 ![](images/flow/flow_mounting_iris_2.png)
 
-*Figure: A weather-proof case was constructed for this flow unit. Foam is also used to surround the sonar to reduce prop noise read by the sonar and help protect the camera lens from crashes.*
+*图: A weather-proof case was constructed for this flow unit. Foam is also used to surround the sonar to reduce prop noise read by the sonar and help protect the camera lens from crashes.*
 
 
-### Focusing Camera
+### 摄像头对焦
 
 In order to ensure good optical flow quality, it is important to focus the camera on the PX4Flow to the desired height of flight. To focus the camera, put an object with text on (e. g. a book) and plug in the PX4Flow into usb and run QGroundControl. Under the settings menu, select the PX4Flow and you should see a camera image. Focus the lens by unscrewing the set screw and loosening and tightening the lens to find where it is in focus.
 
@@ -53,14 +53,14 @@ In order to ensure good optical flow quality, it is important to focus the camer
 
 ![](images/flow/flow_focus_book.png)
 
-*Figure: Use a text book to focus the flow camera at the height you want to fly, typically 1-3 meters. Above 3 meters the camera should be focused at infinity and work for all higher altitudes.*
+*图: Use a text book to focus the flow camera at the height you want to fly, typically 1-3 meters. Above 3 meters the camera should be focused at infinity and work for all higher altitudes.*
 
 
 ![](images/flow/flow_focusing.png)
 
-*Figure: The px4flow interface in QGroundControl that can be used for focusing the camera*
+*图: The px4flow interface in QGroundControl that can be used for focusing the camera*
 
-### Sensor Parameters
+### 传感器参数
 
 All the parameters can be changed in QGroundControl
 * SENS_EN_LL40LS
@@ -68,20 +68,20 @@ All the parameters can be changed in QGroundControl
 * SENS_EN_SF0X
 	Set to 1 to enable lightware distance measurements (e.g. sf02 and sf10a)
 
-## Local Position Estimator (LPE)
+## 局部位置估计器（LPE）
 --------------------------------------------------------
 
 LPE is an Extended Kalman Filter based estimator for position and velocity states. It uses inertial navigation and is similar to the INAV estimator below but it dynamically calculates the Kalman gain based on the state covariance. It also is capable of detecting faults, which is beneficial for sensors like sonar which can return invalid reads over soft surfaces.
 
-### Flight Video Indoor
-{% youtube %}https://www.youtube.com/watch?v=CccoyyX-xtE{% endyoutube %} 
+### 室内飞行视频
+{% youtube %}https://www.youtube.com/watch?v=CccoyyX-xtE{% endyoutube %}
 
-### Flight Video Outdoor
-{% youtube %}https://www.youtube.com/watch?v=Ttfq0-2K434{% endyoutube %} 
+### 室外飞行视频
+{% youtube %}https://www.youtube.com/watch?v=Ttfq0-2K434{% endyoutube %}
 
 For outdoor autonmous missions with LPE estimator, see tutorial on (Optical Flow Outdoors)[./optical-flow-outdoors.md]
 
-### Parameters
+### 参数
 
 The local position estimator will automatically fuse LIDAR and optical flow data when the sensors are plugged in.
 
@@ -96,20 +96,20 @@ The local position estimator will automatically fuse LIDAR and optical flow data
 
 **NOTE: LPE_GPS_ON must be set to 0 to enable flight without GPS **
 
-## Inertial Navigation Estimator (INAV)
+## 惯性导航估计器（INAV）
 --------------------------------------------------------
 
 INAV has a fixed gain matrix for correction and can be viewed as a steady state Kalman filter. It has the lowest computational cost of all position estimators.
 
 
-### Flight Video Indoor
-{% youtube %}https://www.youtube.com/watch?v=MtmWYCEEmS8{% endyoutube %} 
+### 室内飞行视频
+{% youtube %}https://www.youtube.com/watch?v=MtmWYCEEmS8{% endyoutube %}
 
-### Flight Video Outdoor
-{% youtube %}https://www.youtube.com/watch?v=4MEEeTQiWrQ{% endyoutube %} 
+### 室外飞行视频
+{% youtube %}https://www.youtube.com/watch?v=4MEEeTQiWrQ{% endyoutube %}
 
 
-### Parameters
+### 参数
 * INAV_LIDAR_EST
 	Set to 1 to enable altitude estimation based on distance measurements
 * INAV_FLOW_DIST_X and INAV_FLOW_DIST_Y
@@ -120,7 +120,7 @@ INAV has a fixed gain matrix for correction and can be viewed as a steady state 
 	Set a calibration offset for the lidar-lite in meters. The value will be added to the measured distance.
 
 
-### Advanced Parameters
+### 高级参数
 
 For advanced usage/development the following parameters can be changed as well. Do NOT change them if you do not know what you are doing!
 

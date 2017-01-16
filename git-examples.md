@@ -1,5 +1,5 @@
-# GIT Examples
-## Contributing code to PX4 
+# GIT示例
+## 如何为PX4贡献代码
 
 Adding a feature to PX4 follows a defined workflow. In order to share your contributions on PX4, you can follow this example.
 
@@ -63,7 +63,7 @@ There you should see the message that a new branch has been pushed to your forke
 * Now it's time to create a pull request (PR). On the right hand side of the "new branch message" (see one step before), you should see a green button saying "Compare & Create Pull Request". Then it should list your changes and you can (must) add a meaningful title (in case of a one commit PR, it's usually the commit message) and message (<span style="color:orange">explain what you did for what reason</span>. Check [other pull requests](https://github.com/PX4/Firmware/pulls) for comparison)
 * You're done! Responsible members of PX4 will now have a look at your contribution and decide if they want to integrate it. Check if they have questions on your changes every once in a while.
 
-## Update Submodule
+## 更新子模块
 There are several ways to update a submodule. Either you clone the repository or you go in the submodule directory and follow the same procedure as in [Contributing code to PX4](#Contributing-code-to-PX4).
 
 ## Do a PR for a submodule update
@@ -92,7 +92,7 @@ git commit -m "Update submodule to include ..."
 git push upstream pr-some-fix
 ```
 
-## Checkout pull requests
+## 签出pull request
 You can test someone's pull request (changes are not yet merged) even if the branch to merge only exists on the fork from that person. Do the following
 ```sh
 git fetch upstream  pull/<PR ID>/head:<branch name>
@@ -106,7 +106,7 @@ Then switch to that branch
 git checkout <branch name>
 ```
 
-## Common pitfalls
+## 常见问题
 
 ### Force push to forked repository
 After having done the first PR, people from the PX4 community will review your changes. In most cases this means that you have to fix your local branch according to the review. After changing the files locally, the feature branch needs to be rebased again with the most recent upstream/master. However, after the rebase, it is no longer possible to push the feature branch to your forked repository directly, but instead you need to use a force push:

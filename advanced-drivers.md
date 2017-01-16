@@ -1,4 +1,4 @@
-# Driver Development
+# 驱动程序开发
 
 The PX4 codebase uses a lightweight, unified driver abstraction layer: [DriverFramework](https://github.com/px4/DriverFramework). New drivers for POSIX and [QuRT](https://en.wikipedia.org/wiki/Qualcomm_Hexagon) are written against this framework.
 
@@ -6,14 +6,14 @@ The PX4 codebase uses a lightweight, unified driver abstraction layer: [DriverFr
 Legacy drivers for NuttX are based on the [Device](https://github.com/PX4/Firmware/tree/master/src/drivers/device) framework and will be ported to DriverFramework.
 </aside>
 
-## Core Architecture
+## 核心架构
 
-PX4 is a [reactive system](concept-architecture.md) and uses pub/sub to transport messages. File handles are not required or used for the core operation of the system. Two main APIs are used:
+PX4是一个[反应式系统](concept-architecture.md) and uses pub/sub to transport messages. File handles are not required or used for the core operation of the system. Two main APIs are used:
 
   * The publish / subscribe system which has a file, network or shared memory backend depending on the system PX4 runs on
   * The global device registry, which allows to enumerate devices and get/set their configuration. This can be as simple as a linked list or map to the file system.
 
-## Bringing up a new Platform
+## 移植到一个新平台
 
 ### NuttX
 
@@ -23,7 +23,7 @@ PX4 is a [reactive system](concept-architecture.md) and uses pub/sub to transpor
   * Drivers are located in [src/drivers](https://github.com/PX4/Firmware/tree/master/src/drivers)
   * Reference config: Running 'make px4fmu-v4_default' builds the FMUv4 config, which is the current NuttX reference configuration
 
-### QuRT / Hexagon
+### QuRT/Hexagon
 
   * The start script is located in [posix-configs/](https://github.com/PX4/Firmware/tree/master/posix-configs)
   * The OS configuration is part of the default Linux image (TODO: Provide location of LINUX IMAGE and flash instructions)
@@ -31,13 +31,13 @@ PX4 is a [reactive system](concept-architecture.md) and uses pub/sub to transpor
   * Drivers are located in [DriverFramework](https://github.com/px4/DriverFramework)
   * Reference config: Running 'make qurt_eagle_release' builds the Snapdragon Flight reference config
 
-## Device IDs
+## 设备ID
 
 PX4 uses device IDs to identify individual sensors consistently across the system. These IDs are stored in the configuration parameters and used to match sensor calibration values, as well as to determine which sensor is logged to which logfile entry.
 
 The order of sensors (e.g. if there is a `/dev/mag0` and an alternate `/dev/mag1`) is not determining priority - the priority is instead stored as part of the published uORB topic.
 
-### Decoding example
+### 解码例子
 
 For the example of three magnetometers on a system, use the flight log (.px4log) to dump the parameters. The three parameters encode the sensor IDs and `MAG_PRIME` identifies which magnetometer is selected as the primary sensor. Each MAGx_ID is a 24bit number and should be padded left with zeros for manual decoding.
 
@@ -79,7 +79,7 @@ And this is the internal MPU9250 magnetometer connected via SPI, bus 1, slave se
 MPU9250   dev 4   bus 1 SPI
 ```
 
-### Device ID Encoding
+### Device ID编码
 
 The device ID is a 24bit number according to this format. Note that the first fields are the least significant bits in the decoding example above.
 
