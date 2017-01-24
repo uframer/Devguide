@@ -1,18 +1,17 @@
-# PX4 Continuous Integration
+# PX4持续集成
 
-PX4 builds and testing are spread out over multiple continuous integration services. 
+PX4的构建和测试工作分散在多个持续集成服务之上。
 
 ## [Travis-ci](https://travis-ci.org/PX4/Firmware)
 
-Travis-ci is responsible for the official stable/beta/development binaries that are flashable through [QGroundControl](http://qgroundcontrol.com/). It currently uses GCC 4.9.3 included in the docker image [px4io/px4-dev-base](https://hub.docker.com/r/px4io/px4-dev-base/) and compiles px4fmu-{v1, v2, v4}, mindpx-v2, tap-v1 with makefile target qgc_firmware.
+Travis-ci负责构建并测试官方的stable/beta/development二进制程序，它们可以通过[QGroundControl](http://qgroundcontrol.com/)烧写。目前它使用GCC 4.9.3并运行在docker image [px4io/px4-dev-base](https://hub.docker.com/r/px4io/px4-dev-base/)环境里，负责编译px4fmu-{v1, v2, v4}、mindpx-v2、tap-v1，makefile的目标用的是`qgc_firmware`。
 
-Travis-ci also has a MacOS posix sitl build which includes testing.
+Travis-ci还负责构建并测试MacOS posix sitl目标。
 
 ## [Semaphore](https://semaphoreci.com/px4/firmware)
 
-Semaphore is primarily used to compile changes for the Qualcomm Snapdragon platform, but also serves as a backup to Travis-ci using the the same [px4io/px4-dev-base](https://hub.docker.com/r/px4io/px4-dev-base/) docker image. In addition to the set of firmware compiled by Travis-ci, Semaphore also builds for the stm32discovery, crazyflie, runs unit testing, and verifies code style.
+Semaphore主要用于编译Qualcomm Snapdragon平台的修改，此外它还作为Travis-ci的备份存在，使用的是同Tranvis-ci相同的[px4io/px4-dev-base](https://hub.docker.com/r/px4io/px4-dev-base/) docker image。除了编译Travis-ci会编译的固件外，Semaphore还会构建stm32discovery和crazyflie，而且会运行单元测试并验证编码风格。
 
 ## [CircleCI](https://circleci.com/gh/PX4/Firmware)
 
-CircleCI tests the proposed next version of GCC to be used for stable firmware releases using the docker image [px4io/px4-dev-nuttx-gcc_next](https://hub.docker.com/r/px4io/px4-dev-nuttx-gcc_next/). It uses the makefile target quick_check which compiles px4fmu-v4_default, posix_sitl_default, runs testing, and verifies code style.
-
+CircleCI会使用下一个可能会用于stable固件的GCC版本来构建，它使用[px4io/px4-dev-nuttx-gcc_next](https://hub.docker.com/r/px4io/px4-dev-nuttx-gcc_next/)这个docker image。使用的makefile目标是`quick_check`，它会编译px4fmu-v4_default、posix_sitl_default，运行测试并验证编码风格。
