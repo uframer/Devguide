@@ -1,33 +1,37 @@
-# Switching State Estimators
-This page shows you which state estimators are available and how you can switch between them.
+# 如何切换状态估计器
 
-## Available estimators
+本节介绍了有哪些状态估计器可用以及如何切换估计器。
 
-**1. Q attitude estimator**
+## 可用的估计器
 
-The attitude Q estimator is a very simple, quaternion based complementary filter for attitude.
+**1. Q姿态估计器**
 
-**2. INAV position estimator**
+Q估计器是一个非常简单的姿态估计器，它采用基于四元数的互补滤波器。
 
-The INAV position estimator is a complementary filter for 3D position and velocity states.
+**2. INAV位置估计器**
 
+INAV位置估计器是一个用于计算三维空间位置和速度状态的互补滤波器。
 
-**3. LPE position estimator**
+**3. LPE位置估计器**
 
-The LPE position estimator is an extended kalman filter for 3D position and velocity states.
+LPE位置估计器是一个扩展卡尔曼滤波器，用于计算三维空间位置和速度状态。
 
-**4. EKF2 attitude, position and wind states estimator**
+**4. EKF2姿态、位置及风速状态估计器**
 
-EKF2 is an extended kalman filter estimating attitude, 3D position / velocity and wind states.
+EKF2是一个扩展卡尔曼滤波器，用于计算姿态、三维空间位置、速度和风速状态。
 
-**4. EKF attitude, position and wind states estimator (depricated)**
-This is an extened kalman filter similar to EKF2. However, it will soon be replaced completely by EKF2.
-This filter was only used for fixed wings.
+**4. EKF姿态、位置和风速状态估计器（已废弃）**
 
-## How to enable different estimators
-For multirotors and VTOL use the parameter **SYS_MC_EST_GROUP** to chose between the following configurations.
+这是一个类似于EKF2的扩展卡尔曼滤波器。不过，它很很快就会完全被EKF2替代。
+
+这个滤波器现在只用于固定翼飞行器。
+
+## 如何启用不同的估计器
+
+对于多轴飞行器和VTOL飞行器来说，请使用参数**SYS_MC_EST_GROUP**从下面的列表中选择合适的配置。
+
 <aside class="tip">
-At the moment only the depriciated EKF estimator is used for planes (non VTOL). It will soon be replaced by EKF2.
+目前只有固定翼飞行器（不包括VTOL飞行器）还可能用到已经被废弃的EKF估计器。EKF估计器很快就会被EKF2估计器取代。
 </aside>
 
 
@@ -36,5 +40,3 @@ At the moment only the depriciated EKF estimator is used for planes (non VTOL). 
 | 0 | enabled | enabled | | |
 | 1 | enabled |  | enabled | |
 | 2 |  |  | | enabled |
-
-

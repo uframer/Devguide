@@ -1,10 +1,10 @@
-# PX4 Docker Containers
+# PX4 Docker容器
 
-Docker containers are available that contain the complete PX4 development toolchain including Gazebo and ROS simulation:
+我们提供了带有完整的PX4开发环境工具链（包括Gazebo和ROS模拟）的Docker容器：
 
-  * **px4io/px4-dev**: toolchain including simulation
-  * **px4io/px4-dev-ros**: toolchain including simulation and ROS (incl. MAVROS)
-  
+  * **px4io/px4-dev**: 包含模拟功能的工具链
+  * **px4io/px4-dev-ros**: 包含模拟功能和ROS的工具链（包括MAVROS）
+
 Pull one of the tagged images if you're after a container that just works, for instance `px4io/px4-dev-ros:v1.0`, the `latest` container is usually changing a lot.
 
 Dockerfiles and README can be found here: https://github.com/PX4/containers/tree/master/docker/px4-dev
@@ -69,7 +69,7 @@ sudo docker start container_name
 sudo docker exec -it container_name bash
 ```
 
-If you need multiple shells connected to the container, just open a new shell and execute that last command again. 
+If you need multiple shells connected to the container, just open a new shell and execute that last command again.
 
 ## Virtual machine support
 

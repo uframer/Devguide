@@ -6,7 +6,7 @@ All files starting with a number and underscore (e.g. `10000_airplane`) are cann
 
 The remaining files are part of the general startup logic, and the first executed file is the [rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/rcS) script, which calls all other scripts.
 
-## Debugging the System Boot
+## 调试系统引导过程
 
 A failure of a driver of software component can lead to an aborted boot.
 
@@ -16,7 +16,7 @@ An incomplete boot often materializes as missing parameters in the ground contro
 
 The right approach to debug the boot sequence is to connect the [system console](advanced-system-console.md) and power-cycle the board. The resulting boot log has detailed information about the boot sequence and should contain hints why the boot aborted.
 
-### Common boot failure causes
+### 常见引导失败原因
 
   * A required sensor failed to start
   * For custom applications: The system was out of RAM. Run the `free` command to see the amount of free RAM.
