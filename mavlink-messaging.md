@@ -1,11 +1,9 @@
-<<<<<<< HEAD:custom-mavlink-message.md
-# 创建自定义MAVLink消息
+# MAVLink消息机制
 
-=======
-# MAVLink Messaging
-An overview of all messages can be found [here](http://mavlink.org/messages/common).
-## Create Custom MAVLink Messages
->>>>>>> PX4/master:mavlink-messaging.md
+你可以在[这里](http://mavlink.org/messages/common)看到所有的消息。
+
+## 创建自定义MAVLink消息
+
 This tutorial assumes you have a [custom uORB](advanced-uorb.md) `ca_trajectory`
 message in `msg/ca_trajectory.msg` and a custom mavlink
 `ca_trajectory` message in
@@ -13,12 +11,8 @@ message in `msg/ca_trajectory.msg` and a custom mavlink
 [here](http://qgroundcontrol.org/mavlink/create_new_mavlink_message) how to
 create a custom mavlink message and header).
 
-<<<<<<< HEAD:custom-mavlink-message.md
-# 如何发送MAVLink消息
+## 如何发送MAVLink消息
 
-=======
-## Sending Custom MAVLink Messages
->>>>>>> PX4/master:mavlink-messaging.md
 This section explains how to use a custom uORB message and send it as a mavlink
 message.
 
@@ -110,12 +104,8 @@ mavlink stream -r 50 -s CA_TRAJECTORY -u 14556
 ```
 
 
-<<<<<<< HEAD:custom-mavlink-message.md
-# 如何接收自定义的MAVLink消息
+## 如何接收自定义的MAVLink消息
 
-=======
-## Receiving Custom MAVLink Messages
->>>>>>> PX4/master:mavlink-messaging.md
 This section explains how to receive a message over mavlink and publish it to
 uORB.
 
@@ -182,8 +172,7 @@ MavlinkReceiver::handle_message(mavlink_message_t *msg)
 		...
  	}
 ```
-<<<<<<< HEAD:custom-mavlink-message.md
-=======
+
 ## General
 ### Set streaming rate
 Sometimes it is useful to increase the streaming rate of individual topics (e.g. for inspection in QGC). This can be achieved by the following line
@@ -194,4 +183,3 @@ You can get the port number with ```mavlink status``` which will output (amongst
 ```sh
 mavlink stream -u 14556 -s OPTICAL_FLOW_RAD -r 300
 ```
->>>>>>> PX4/master:mavlink-messaging.md

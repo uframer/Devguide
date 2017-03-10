@@ -6,7 +6,7 @@ PX4有两个主要的层次组成：[PX4飞行软件栈](concept-flight-stack.md
 
   * 所有的功能都被划分为可替换的组件
   * 通过异步消息传递通信
-  * 系统可以处理各种各样的负载
+  * 系统可以支撑各种各样的负载
 
 除了这些运行时的考虑，模块化还大大提高了[重用性](https://en.wikipedia.org/wiki/Reusability)。
 
@@ -27,7 +27,7 @@ PX4有两个主要的层次组成：[PX4飞行软件栈](concept-flight-stack.md
 
 同地面站的交流由所谓的“业务逻辑”应用来处理，包括`commander`（通用命令和控制处理，例如，arming）、`navigator`（将任务转换为低层的导航指令）和`mavlink`（接收MAVLink包并将它们转换为uORB数据结构）应用。这种架构上的隔离避免了在系统内部引入对MAVLink的依赖。MAVLink应用还会接收很多传感器数据和状态估计信息，并将它们发送给地面站。
 
-```{mermaid}
+```{mermaid id:"j03cmmzo"}
 graph TD;
   mavlink---commander;
   mavlink---navigator;

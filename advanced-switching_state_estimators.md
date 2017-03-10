@@ -30,11 +30,6 @@ EKF2是一个扩展卡尔曼滤波器，用于计算姿态、三维空间位置�
 
 对于多轴飞行器和VTOL飞行器来说，请使用参数**SYS_MC_EST_GROUP**从下面的列表中选择合适的配置。
 
-<aside class="tip">
-目前只有固定翼飞行器（不包括VTOL飞行器）还可能用到已经被废弃的EKF估计器。EKF估计器很快就会被EKF2估计器取代。
-</aside>
-
-
 | SYS_MC_EST_GROUP | Q Estimator| INAV | LPE | EKF2 |
 | --- | --- | --- | --- | --- |
 | 0 | enabled | enabled | | |

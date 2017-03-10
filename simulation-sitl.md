@@ -2,7 +2,7 @@
 
 STIL模拟会在上位机上运行完整的系统以模拟自动驾驶仪的功能。它会通过本地网络拦截到模拟器。STIL的配置结构如下：
 
-```{mermaid}
+```{mermaid id:"j03cnsnq"}
 graph LR;
   Simulator-->MAVLink;
   MAVLink-->SITL;

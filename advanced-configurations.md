@@ -76,7 +76,7 @@ param_get(param_find("PARAM_NAME"), &param);
 
 PX4 uses an extensive parameter meta data system to drive the user-facing presentation of parameters. Correct meta data is critical for good user experience in the ground station.
 
-A typical parameter meta data section will look like this:
+A typical parameter metadata section will look like this:
 
 ```C++
 /**
@@ -104,9 +104,9 @@ Where each line has this use:
  * <longer description, can be multi-line>
  *
  * @unit <the unit, e.g. m for meters>
- * @min <the minimum sane value. Can be overriden by the user>
- * @max <the maximum sane value. Can be overriden by the user>
- * @decimal <the minimum sane value. Can be overriden by the user>
+ * @min <the minimum sane value. Can be overridden by the user>
+ * @max <the maximum sane value. Can be overridden by the user>
+ * @decimal <the minimum sane value. Can be overridden by the user>
  * @increment <the "ticks" in which this value will increment in the UI>
  * @reboot_required true <add this if changing the param requires a system restart>
  * @group <a title for parameters which form a group>

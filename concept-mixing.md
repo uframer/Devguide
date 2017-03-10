@@ -10,7 +10,7 @@ PX4的架构确保我们不需要为了每种特别的机架布局而修改核�
 
 一个控制器会发送特定的正规化的力（force）或者扭矩（torque）需求（范围从-1到+1）给混控器，混控器随后会依据需求设置各个执行机构。输出驱动（例如，UART、UAVCAN或者PWM）会将米命令翻译为执行机构能够理解的指令，例如，将PWM的值设置为1300。
 
-```{mermaid}
+```{mermaid id:"j03cnd1s"}
 graph LR;
   att_ctrl[Attitude Controller] --> act_group0[Actuator Control Group 0]
   gimbal_ctrl[Gimbal Controller] --> act_group2[Actuator Control Group 2]
@@ -110,7 +110,7 @@ PX4定义了控制群组（输入）和输出群组的概念。它们的概念�
 
 由于控制群组和输出群组都有许多个，所以一个控制群组可以给多个输出群组发送命令。
 
-```{mermaid}
+```{mermaid id:"j03cnd1s"}
 graph TD;
   actuator_group_0-->output_group_5
   actuator_group_0-->output_group_6
@@ -202,8 +202,8 @@ The supported geometries include:
 
  * 4x - quadrotor in X configuration
  * 4+ - quadrotor in + configuration
- * 6x - hexcopter in X configuration
- * 6+ - hexcopter in + configuration
+ * 6x - hexacopter in X configuration
+ * 6+ - hexacopter in + configuration
  * 8x - octocopter in X configuration
  * 8+ - octocopter in + configuration
 
