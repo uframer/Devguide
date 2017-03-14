@@ -172,7 +172,7 @@ MavlinkReceiver::handle_message(mavlink_message_t *msg)
 
 ## 通用设置
 
-### 设置流的速率
+### 设置视频流的速率
 
 Sometimes it is useful to increase the streaming rate of individual topics (e.g. for inspection in QGC). This can be achieved by the following line
 ```sh

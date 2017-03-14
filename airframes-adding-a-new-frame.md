@@ -6,11 +6,11 @@ Developers not wanting to create their own configuration can instead customize e
 
 ## 机架配置
 
-An airframe configuration consists of three main blocks:
+机架配置信息由三个主要部分组成：
 
-  * The apps it should start, e.g. multicopter or fixed wing controllers
-  * The physical configuration of the system (e.g. a plane, wing or multicopter). This is called mixer.
-  * Tuning gains
+  * 需要启动的应用程序，例如，是多轴控制器还是固定翼控制器
+  * 系统（例如，飞机、飞翼或者多轴）的物理配置信息。它也被称作混控器。
+  * 调节增益
 
 These three aspects are mostly independent, which means that many configurations share the same physical layout of the airframe and start the same applications and most differ in their tuning gains.
 
@@ -18,7 +18,7 @@ All configurations are stored in the [ROMFS/px4fmu_common/init.d](https://github
 
 ### 配置文件
 
-A typical configuration file is below.
+下面给出一个典型的配置文件的例子。
 
 ```bash
 #!nsh

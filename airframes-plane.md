@@ -1,4 +1,4 @@
-# Plane Airframes
+# 固定翼机架
 
 PX4 supports every imaginable plane geometry through its flexible [mixing system](concept-mixing.md), including normal planes, flying wings, inverted V-tail planes vertical takeoff and landing planes.
 

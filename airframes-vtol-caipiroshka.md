@@ -4,7 +4,7 @@ The Caipiroshka VTOL is a slightly modified TBS Caipirinha.
 
 {% youtube %}https://www.youtube.com/watch?v=acG0aTuf3f8&vq=hd720{% endyoutube %}
 
-## Parts List
+## 部件列表
 
   * TBS Caipirinha Wing ([Eflight store](http://www.eflight.ch/shop/USER_ARTIKEL_HANDLING_AUFRUF.php?von_suchresultat=true&Ziel_ID=19638&Kategorie_ID=110923))
   * Left and right 3D-printed motor mount ([design files](parts/motor_mounts.zip))
@@ -21,17 +21,20 @@ The Caipiroshka VTOL is a slightly modified TBS Caipirinha.
   * [Pixracer autopilot board + power module](hardware-pixracer.md)
   * [Digital airspeed sensor](http://www.hobbyking.com/hobbyking/store/__62752__HKPilot_32_Digital_Air_Speed_Sensor_And_Pitot_Tube_Set.html)
 
-## Assembly
+## 组装
+
 The picture below shows an example of how a fully assembled Caipiroshka could look like.
 
 ![Caipiroshka](images/airframes/vtol/caipiroshka/caipiroshka.jpg)
 
 In the following some general tips on how to build the vehicle will be given.
 
-### Autopilot
+### 自动驾驶仪
+
 Mount the autopilot in the middle close to the CG of the airframe.
 
-### Motor mounts
+### 电机安装
+
 Print the motor mount (2 times) of which the link to the STL file was specified in the part list.
 Attach one motor mount on each wing side such that the motor axis will be roughly going through the center of the elevons (see picture).
 In the upper picture the horizontal distance between the two motor mounts is 56cm. Once you have marked the correct position on the wing you can
@@ -39,7 +42,8 @@ cover the area which will be in contact with the mount with standard transparent
 mount onto the wing. The reason for having tape in between the wing surface and the hot glue is that you can very easily remove the motor mount
 by ripping of the tape from the wing without any damage. This is useful when trying to replace a damaged motor mount.
 
-### Motor controllers
+### 电机控制器
+
 The motor controllers can be directly mounted on a flat surface of the motor mounts using glue or a cable binder.
 You will have to route the power cables to the battery bay. You can use an old soldering iron to melt channels into the foam.
 Connect the power cables of both motor controllers in the battery bay and solder a plug to the end. This will enable you to connect both the motor controllers to the power module.
@@ -80,4 +84,3 @@ The descriptions in the table below are referring to the user facing the front o
 | MAIN4 | 400 Hz | Empty |
 | MAIN5 | 50 Hz | Left aileron servo |
 | MAIN6 | 50 Hz | Right aileron servo |
-
