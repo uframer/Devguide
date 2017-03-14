@@ -1,35 +1,35 @@
-# Airframe Motor Map
+# 机架电机编号图
 
-The motor maps below indicate which `MAIN` output connects to which motor. It also indicates the turn direction of the propeller.
+下面的电机编号图标明了应该用哪个`MAIN`输出连接哪一个电机，此外，还标出了每个电机的旋转方向。
 
 <aside class="tip">
-The turn direction of a 3-phase motor can be reversed by flipping any two of the three connected wires.
+三相电机的转动方向可以通过交换三根电线中的任意两根反转。
 </aside>
 
-## Quadrotor X Layout
+## 四轴`X`布局
 
 ![Quadrotor X Layout](images/motor_map/quadrotor_x_assignment.png)
 
-## Quadrotor Plus Layout
+## 四轴`+`布局
 
 ![Quadrotor Plus Layout](images/motor_map/quadrotor_plus_assignment.png)
 
-## Hexarotor X Layout
+## 六轴`X`布局
 
 ![Hexarotor X Layout](images/motor_map/hexarotor_x_assignment.png)
 
-## Hexarotor Plus Layout
+## 六轴`+`布局
 
 ![Hexarotor Plus Layout](images/motor_map/hexarotor_plus_assignment.png)
 
-## Octorotor X Layout
+## 八轴`X`布局
 
 ![Octorotor X Layout](images/motor_map/octorotor_x_assignment.png)
 
-## Octorotor Plus Layout
+## 八轴`+`布局
 
 ![Octorotor Plus Layout](images/motor_map/octorotor_plus_assignment.png)
 
 <aside class="todo">
-Tricopters and coaxial hexacopters are supported as well, but we have no graphics yet.
+PX4还支持Y3布局和共轴Y6布局，我们以后会补上图。
 </aside>

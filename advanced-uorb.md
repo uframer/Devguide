@@ -1,6 +1,6 @@
-# uORB Messaging
+# uORB消息机制
 
-## Introduction
+## 介绍
 
 The uORB is an asynchronous publish() / subscribe() messaging API used for
 inter-thread/inter-process communication.
@@ -10,7 +10,7 @@ Look at the [tutorial](tutorial-hello-sky.md) to learn how to use it in C++.
 uORB is automatically started early on bootup as many applications depend on it.
 It is started with `uorb start`. Unit tests can be started with `uorb test`.
 
-## Adding a new topic
+## 添加一个新的主题
 
 To add a new topic, you need to create a new `.msg` file in the `msg/`
 directory and add the file name to the `msg/CMakeLists.txt` list. From this,
@@ -34,11 +34,11 @@ definition can be used for multiple independent topic instances:
 Then in the code, use them as topic id: `ORB_ID(offboard_mission)`.
 
 
-## Publishing
+## 发布
 
 Publishing a topic can be done from anywhere in the system, including interrupt context (functions called by the `hrt_call` API). However, advertising a topic is only possible outside of interrupt context. A topic has to be advertised in the same process as its later published.
 
-## Listing Topics and Listening in
+## 列出并监听主题
 
 <aside class="note">
 The 'listener' command is only available on Pixracer (FMUv4) and Linux / OS X.

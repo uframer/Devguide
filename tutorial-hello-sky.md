@@ -10,13 +10,13 @@
 
 ## 第1步：准备文件
 
-To conveniently manage your custom code and pull in updates from the main repository, it is recommended to fork the Firmware repository with the GIT version control system:
+为了方便你管理新添加的代码，避免影响后续从主代码库pull变更，我们建议你用fork一个Firmware代码库的分支出来：
 
   - [注册](https://github.com/signup/free)Github
-  - Go to the [Firmware repository website](https://github.com/px4/Firmware/) and click **FORK** on the upper right part.
-  - If you are not already there, open the website of your fork and copy the private repository URL in the center.
-  - Clone the repository to your hard drive, e.g. on the command line via `git clone https://github.com/<youraccountname>/Firmware.git`. Windows users please [refer to the Github help](https://help.github.com/articles/set-up-git#platform-windows) and e.g. fork / clone with their Github for Windows app.
-  - Update the git submodules: Run in your shell (on Windows in the PX4 console).
+  - 去[Firmware的代码仓库网页](https://github.com/px4/Firmware/)并点击右上角的 **FORK** 。
+  - 打开新fork出的项目的网页，复制出这个新分支的URL。
+  - 克隆这个新分支到本地，例如，使用`git clone https://github.com/<youraccountname>/Firmware.git`命令。Windows用户请参考[Github网站的帮助信息](https://help.github.com/articles/set-up-git#platform-windows)并使用Github for Windows客户端做fork/clone。（🐷：Mac也可以用桌面客户端做）
+  - 更新git子模块：在你的shell（Windows用户请用PX4控制台）输入如下命令：
 
 <div class="host-code"></div>
 
@@ -32,13 +32,13 @@ git submodule update --recursive
 
 在`px4_simple_app`目录下新建一个名为`px4_simple_app.c`的文件。这个目录现在已经在了，为了达到更好的学习效果，请将已有的目录删除。
 
-Edit it and start with the default header and a main function.
+编辑这个文件，像下面那样添加默认的头文件和`main`函数。
 
 <aside class="tip">
-Note the code style in this file - all contributions to PX4 should adhere to it.
+请注意这个文件中的代码风格 —— 如果你要为PX4贡献代码，请一定遵循这种风格。
 </aside>
 
-```C
+```c
 /****************************************************************************
  *
  *   Copyright (c) 2012-2016 PX4 Development Team. All rights reserved.

@@ -1,26 +1,26 @@
 # Summary
 
-* [介绍](README.md)
+* [介绍](README.md)✅
 * 上手
-    * [初始配置](starting-initial-config.md)
-    * [安装工具链](starting-installing.md)
-        * [Mac OS](starting-installing-mac.md)
-        * [Linux](starting-installing-linux.md)
-            * [Arch及CentOS发行版指南](starting-installing-linux-boutique.md)
-        * [Windows](starting-installing-windows.md)
-    * [构建代码](starting-building.md)
+    * [初始配置](starting-initial-config.md)✅
+    * [安装工具链](starting-installing.md)✅
+        * [Mac OS](starting-installing-mac.md)✅
+        * [Linux](starting-installing-linux.md)⏳
+            * [Arch及CentOS发行版指南](starting-installing-linux-boutique.md)⏳
+        * [Windows](starting-installing-windows.md)⏳
+    * [构建代码](starting-building.md)✅
     * [贡献&征集开发者](starting-contributing.md)
         * [GIT示例](git-examples.md)
 * 概念
-    * [飞行模式\/操作](concept-flight-modes.md)
-    * [架构概览](concept-architecture.md)
-    * [飞行软件栈](concept-flight-stack.md)
-    * [中间件](concept-middleware.md)
-    * [混控和执行机构](concept-mixing.md)
-    * [PWM limit状态机](concept-pwm_limit.md)
-* [教程](tutorials.md)
-    * [地面站](qgroundcontrol-intro.md)
-    * [如何编写一个应用程序](tutorial-hello-sky.md)
+    * [飞行模式/操作](concept-flight-modes.md)✅
+    * [架构概览](concept-architecture.md)✅
+    * [飞行软件栈](concept-flight-stack.md)✅
+    * [中间件](concept-middleware.md)✅
+    * [混控和执行机构](concept-mixing.md)⏳
+    * [PWM limit状态机](concept-pwm_limit.md)⏳
+* [教程](tutorials.md)✅
+    * [地面站](qgroundcontrol-intro.md)⏳
+    * [如何编写一个应用程序](tutorial-hello-sky.md)⏳
     * [QGC的视频流功能](advanced-videostreaming-qgc.md)
     * [远程视频流](wifibroadcast.md)
   * [光流和激光雷达](flow_lidar_setup.md)
@@ -44,7 +44,7 @@
     * [Snapdragon Flight](hardware-snapdragon.md)
         * [光流](optical_flow.md)
         * [Snapdragon高级话题](advanced-snapdragon.md)
-            * [如何访问I\/O数据](advanced-accessing-io-data.md)
+            * [如何访问I/O数据](advanced-accessing-io-data.md)
             * [摄像头和光流](advanced-snapdragon_camera.md)
 * 中间件和架构
     * [uORB消息机制](advanced-uorb.md)
@@ -55,7 +55,7 @@
     * [统一的代码库](airframes-architecture.md)
     * [如何添加一个新的机架](airframes-adding-a-new-frame.md)
     * [多轴飞行器](airframes-multicopter.md)
-        * [Motor Map](airframes-motor-map.md)
+        * [电机编号图](airframes-motor-map.md)✅
         * [QAV 250 Racer](airframes-multicopter-qav250.md)
         * [Matrice 100](airframes-multicopter-matrice100.md)
         * [QAV-R](qav-r.md)

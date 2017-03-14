@@ -3,7 +3,7 @@
 
 Adding a feature to PX4 follows a defined workflow. In order to share your contributions on PX4, you can follow this example.
 
-* [Sign up](https://github.com/join) for github if you haven't already
+* [注册](https://github.com/join)github（如果已有账号就不用注册了）
 * Fork the Firmware (see [here](https://help.github.com/articles/fork-a-repo/#fork-an-example-repository))
 * Clone your forked repository to your local computer<br>
 ```sh

@@ -13,20 +13,18 @@ create a custom mavlink message and header).
 
 ## 如何发送MAVLink消息
 
-This section explains how to use a custom uORB message and send it as a mavlink
-message.
+本节介绍如何使用自定义uORB消息以及如何把它作为mavlink发送出去。
 
-Add the headers of the mavlink and uorb messages to
-[mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp)
+先在[mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp)里添加uorb和mavlink消息的头文件：
 
-```C
+```cpp
 #include <uORB/topics/ca_trajectory.h>
 #include <v1.0/custom_messages/mavlink_msg_ca_trajectory.h>
 ```
 
-Create a new class in [mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp#L2193)
+然后在[mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp#L2193)里创建一个新的类：
 
-```C
+```cpp
 class MavlinkStreamCaTrajectory : public MavlinkStream
 {
 public:
@@ -84,10 +82,9 @@ protected:
 };
 ```
 
-Finally append the stream class to the `streams_list` at the bottom of
-[mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp)
+最后把上面的类添加到[mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp)中`streams_list`的末尾：
 
-```C
+```cpp
 StreamListItem *streams_list[] = {
 ...
 new StreamListItem(&MavlinkStreamCaTrajectory::new_instance, &MavlinkStreamCaTrajectory::get_name_static),
@@ -112,7 +109,7 @@ uORB.
 Add a function that handles the incoming mavlink message in
 [mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L77)
 
-```C
+```cpp
 #include <uORB/topics/ca_trajectory.h>
 #include <v1.0/custom_messages/mavlink_msg_ca_trajectory.h>
 ```
@@ -121,19 +118,19 @@ Add a function that handles the incoming mavlink message in the
 `MavlinkReceiver` class in
 [mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L140)
 
-```C
+```cpp
 void handle_message_ca_trajectory_msg(mavlink_message_t *msg);
 ```
 Add an uORB publisher in the `MavlinkReceiver` class in
 [mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L195)
 
-```C
+```cpp
 orb_advert_t _ca_traj_msg_pub;
 ```
 
 Implement the `handle_message_ca_trajectory_msg` function in [mavlink_receiver.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.cpp)
 
-```C
+```cpp
 void
 MavlinkReceiver::handle_message_ca_trajectory_msg(mavlink_message_t *msg)
 {
@@ -161,7 +158,7 @@ MavlinkReceiver::handle_message_ca_trajectory_msg(mavlink_message_t *msg)
 
 and finally make sure it is called in [MavlinkReceiver::handle_message()](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.cpp#L228)
 
-```C
+```cpp
 MavlinkReceiver::handle_message(mavlink_message_t *msg)
  {
  	switch (msg->msgid) {
@@ -173,8 +170,10 @@ MavlinkReceiver::handle_message(mavlink_message_t *msg)
  	}
 ```
 
-## General
-### Set streaming rate
+## 通用设置
+
+### 设置流的速率
+
 Sometimes it is useful to increase the streaming rate of individual topics (e.g. for inspection in QGC). This can be achieved by the following line
 ```sh
 mavlink stream -u <port number> -s <mavlink topic name> -r <rate>

@@ -13,7 +13,7 @@ To do this, load up the parameters in qGroundcontrol and look for the RC_MAP_OFF
 Although this step isn't mandatory since you can activate offboard mode using a MAVLink message. We consider this method much safer.
 
 ### 2. Enable the companion computer interface
-Look for the [SYS_COMPANION](https://pixhawk.org/firmware/parameters#system) parameter and set it to either 921600 (Recommended) or 57600. This parameter will activate a MAVLink stream on the Telem2 port with data streams specific to onboard mode with the appropriate baud rate (921600 8N1 or 57600 8N1). 
+Look for the [SYS_COMPANION](https://pixhawk.org/firmware/parameters#system) parameter and set it to either 921600 (Recommended) or 57600. This parameter will activate a MAVLink stream on the Telem2 port with data streams specific to onboard mode with the appropriate baud rate (921600 8N1 or 57600 8N1).
 
 For more information on these data streams, look for "MAVLINK_MODE_ONBOARD" in the [source code](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_main.cpp).
 
@@ -21,15 +21,17 @@ For more information on these data streams, look for "MAVLINK_MODE_ONBOARD" in t
 
 Usually, there are three ways of setting up offboard communication.
 
-### 1. Serial radios
-1. One connected to a UART port of the autopilot
-2. One connected to a ground station computer
+### 1. 无线串口
 
-Example radios include
+1. 一端接入自动驾驶仪的UART
+2. 一端接入地面站计算机
+
+这种无线串口的例子包括：
+
 * [Lairdtech RM024](http://www.lairdtech.com/products/rm024)
 * [Digi International XBee Pro](http://www.digi.com/products/xbee-rf-solutions/modules)
 
-```{mermaid}
+```{mermaid id:"j03grhjs"}
 graph TD;
   gnd[Ground Station] --MAVLink--> rad1[Ground Radio];
   rad1 --RadioProtocol--> rad2[Vehicle Radio];
@@ -49,7 +51,7 @@ Larger high power examples
 * [Gigabyte Brix](http://www.gigabyte.com/products/list.aspx?s=47&ck=104)
 * [Nvidia Jetson TK1](https://developer.nvidia.com/jetson-tk1)
 
-```{mermaid}
+```{mermaid id:"j03grhju"}
 graph TD;
   comp[Companion Computer] --MAVLink--> uart[UART Adapter];
   uart --MAVLink--> Autopilot;
@@ -59,7 +61,7 @@ graph TD;
 A small computer mounted onto the vehicle connected to the autopilot through a UART to USB adapter while also having a WiFi link to a ground station running ROS. This can be any of the computers from the above section coupled with a WiFi adapter. For example, the Intel NUC D34010WYB has a PCI Express Half-Mini connector which can accomodate an [Intel Wifi Link 5000](http://www.intel.com/products/wireless/adapters/5000/) adapter.
 
 
-```{mermaid}
+```{mermaid id:"j03grhju"}
 	graph TD
 	subgraph Ground  Station
 	  gnd[ROS Enabled Computer] --- qgc[qGroundControl]

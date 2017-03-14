@@ -10,7 +10,7 @@ PX4的架构确保我们不需要为了每种特别的机架布局而修改核�
 
 一个控制器会发送特定的正规化的力（force）或者扭矩（torque）需求（范围从-1到+1）给混控器，混控器随后会依据需求设置各个执行机构。输出驱动（例如，UART、UAVCAN或者PWM）会将米命令翻译为执行机构能够理解的指令，例如，将PWM的值设置为1300。
 
-```{mermaid id:"j03cnd1s"}
+```mermaid
 graph LR;
   att_ctrl[Attitude Controller] --> act_group0[Actuator Control Group 0]
   gimbal_ctrl[Gimbal Controller] --> act_group2[Actuator Control Group 2]
@@ -162,22 +162,22 @@ A simple mixer definition begins with:
 	M: <control count>
 	O: <-ve scale> <+ve scale> <offset> <lower limit> <upper limit>
 
-If &lt;control count&gt; is zero, the sum is effectively zero and the mixer will
-output a fixed value that is &lt;offset&gt; constrained by &lt;lower limit&gt;
-and &lt;upper limit&gt;.
+If `<control count>` is zero, the sum is effectively zero and the mixer will
+output a fixed value that is `<offset>` constrained by `<lower limit>`
+and `<upper limit>`.
 
 The second line defines the output scaler with scaler parameters as discussed
 above. Whilst the calculations are performed as floating-point operations, the
 values stored in the definition file are scaled by a factor of 10000; i.e. an
 offset of -0.5 is encoded as -5000.
 
-The definition continues with &lt;control count&gt; entries describing the control
+The definition continues with `<control count>` entries describing the control
 inputs and their scaling, in the form:
 
 	S: <group> <index> <-ve scale> <+ve scale> <offset> <lower limit> <upper limit>
 
-The &lt;group&gt; value identifies the control group from which the scaler will read,
-and the &lt;index&gt; value an offset within that group.  These values are specific to
+The `<group>` value identifies the control group from which the scaler will read,
+and the `<index>` value an offset within that group.  These values are specific to
 the device reading the mixer definition.
 
 When used to mix vehicle controls, mixer group zero is the vehicle attitude
@@ -198,7 +198,7 @@ The mixer definition is a single line of the form:
 
 	R: <geometry> <roll scale> <pitch scale> <yaw scale> <deadband>
 
-The supported geometries include:
+支持的机架形式包括：
 
  * 4x - quadrotor in X configuration
  * 4+ - quadrotor in + configuration

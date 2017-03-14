@@ -5,25 +5,25 @@ QGroundControl is an app to configure and fly a PX4 based autopilot. It is cross
   * Mobile: Android and iOS (currently focused on tablet)
   * Desktop: Windows, Linux, Mac OS
 
-## Planning Missions
+## 任务计划
 
 To plan a new mission, switch to the planning tab, click on the + icon in the top left and click on the map to create waypoints. A context menu will open on the side to adjust the waypoints. Click on the highlight transmission icon to send them to the vehicle.
 
 ![](images/gcs/planning-mission.png)
 
-## Flying Missions
+## 任务执行
 
 Switch to the flying tab. The mission should be visible on the map. Click on the current flight mode to change it to MISSION and click on DISARMED to arm the vehicle. If the vehicle is already in flight it will fly to the first leg of the mission and then follow it.
 
 ![](images/gcs/flying-mission.png)
 
-## Setting parameters
+## 设置参数
 
 Switch to the setup tab. Scroll the menu on the left all the way to the bottom and click on the parameter icon. Parameters can be changed by double-clicking on them, which opens a context menu to edit, along with a more detailed description.
 
 ![](images/gcs/setting-parameter.png)
 
-## Installation
+## 安装
 
 QGroundControl can be downloaded from its [website](http://qgroundcontrol.com/downloads).
 
@@ -31,7 +31,7 @@ QGroundControl can be downloaded from its [website](http://qgroundcontrol.com/do
 Developers are advised to use the latest daily build instead of the stable release.
 </aside>
 
-## Building from source
+## 从源码构建
 
 Firmware developers are encouraged to build from source in order to have a matching recent version to their flight code.
 
