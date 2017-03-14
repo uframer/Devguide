@@ -28,7 +28,7 @@
     * [室外光流](optical-flow-outdoors.md)
     * [ecl EKF](tuning_the_ecl_ekf.md)
     * [飞行前检查](pre_flight_checks.md)
-  * [数传](telemetry.md)
+  * [数传](telemetry.md)✅
 * 模拟
     * [基本模拟](simulation-sitl.md)
     * [Gazebo模拟](simulation-gazebo.md)

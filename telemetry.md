@@ -1,12 +1,15 @@
-# Telemetry
-Telemetry can be used to communicate with QGroundControl and is very useful especially for tuning for example as parameters can be changed without plugging in a cable each time.
+# 数传
+可以用数传同QGroundControl通信，调试时用数传可以免去频繁插拔数据线的麻烦。
 
-## 3DR WIFI Telemetry
-With the 3DR WIFI Telemetry you just need one transmitter (provided you have a WIFI card/stick in your computer/tablet). Just connect the module to the ```TELEM``` port and it should act as a WIFI station.
+## 3DR WIFI数传
+
+如果使用3DR的WIFI数传，你就只需要一个收发器（我们假设你的电脑/平板是支持WIFI的）。你只需要将WIFI数传模块连接到```TELEM```端口，然后将它作为一个WIFI接入点使用就行，ESSID和密码如下：
+
 ```sh
 essid: APM_PIX
 password: 12345678
 ```
-Once connected to the WIFI, it should automatically connect to QGroundControl.
+连接成功后，QGroundControl应该会自动识别并连接到你的设备。
+
 ![](images/hardware/3dr_wifi_1.JPG)
 ![](images/hardware/3dr_wifi_2.png)
