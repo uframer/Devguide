@@ -60,13 +60,13 @@
         * [Matrice 100](airframes-multicopter-matrice100.md)
         * [QAV-R](qav-r.md)✅
     * [固定翼飞行器](airframes-plane.md)✅
-        * [Wing Wing Z-84](airframes-plane-wing-z-84.md)
+        * [Wing Wing Z-84](airframes-plane-wing-z-84.md)✅
     * [VTOL飞行器](airframes-vtol.md)
         * [VTOL飞行器测试](airframes-vtol-testing.md)
         * [TBS Caipiroshka](airframes-vtol-caipiroshka.md)
     * [船、潜艇、飞艇、小车](airframes-experimental.md)
 * 伙伴计算机
-    * [Pixhawk伙伴计算机](pixhawk-companion-computer.md)
+    * [Pixhawk伙伴计算机](pixhawk-companion-computer.md)✅
 * [DroneKit机器人](robotics-using-dronekit.md)
     * [DroneKit用法](dronekit-example.md)
 * [ROS机器人](robotics-using-ros.md)

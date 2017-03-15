@@ -30,20 +30,20 @@ Pixhawk系列自动驾驶仪同伙伴计算机（Raspberry Pi、Odroid、Tegra K
 
 最安全的选择是使用FTDI Chip USB转串口适配器并按照如下方式连线。这种方法能用，而且最容易。
 
-| TELEM2 |         | FTDI    |        |
---- | --- | ---
-|1         | +5V (red)|         | DO NOT CONNECT!   |
-|2         | Tx  (out)| 5       | FTDI RX (yellow) (in)   |
-|3         | Rx  (in) | 4       | FTDI TX (orange) (out)  |
-|4         | CTS (in) |6       | FTDI RTS (green) (out) |
-|5         | RTS (out)|2       | FTDI CTS (brown) (in) |
-|6         | GND     | 1       | FTDI GND (black)   |
+| TELEM2 |           | FTDI |                        |
+| ------ | --------- | ---- | ---------------------- |
+|1       | +5V (red) |      | 不要连接！              |
+|2       | Tx  (out) | 5    | FTDI RX (yellow) (in)  |
+|3       | Rx  (in)  | 4    | FTDI TX (orange) (out) |
+|4       | CTS (in)  | 6    | FTDI RTS (green) (out) |
+|5       | RTS (out) | 2    | FTDI CTS (brown) (in)  |
+|6       | GND       | 1    | FTDI GND (black)       |
 
 ## Linux上的软件设置
 
-On Linux the default name of a USB FTDI would be like `\dev\ttyUSB0`. If you have a second FTDI linked on the USB or an Arduino, it will registered as `\dev\ttyUSB1`. To avoid the confusion between the first plugged and the second plugged, we recommend you to create a symlink from `ttyUSBx` to a friendly name, depending on the Vendor and Product ID of the USB device.
+在Linux上，USB FTDI转接器的默认设备名应该是`\dev\ttyUSB0`。如果你通过USB连接了第二个FTDI，或者连接了一个Arduino，那么它可能会是`\dev\ttyUSB1`。为了避免混淆，我们建议你创建一个指向它的符号链接，可以通过USB的vendor ID和device ID判断出哪个设备才是你的转接器。
 
-Using `lsusb` we can get the vendor and product IDs.
+使用`lsusb`命令可以拿到vendor ID和product ID：
 
 ```sh
 $ lsusb
@@ -62,22 +62,22 @@ Bus 001 Device 002: ID 0bda:8176 Realtek Semiconductor Corp. RTL8188CUS 802.11n 
 Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
 ```
 
-The Arduino is `Bus 003 Device 004: ID 2341:0042 Arduino SA Mega 2560 R3 (CDC ACM)`
+Arduino是`Bus 003 Device 004: ID 2341:0042 Arduino SA Mega 2560 R3 (CDC ACM)`
 
-The Pixhawk is `Bus 003 Device 005: ID 26ac:0011`
+Pixhawk是`Bus 003 Device 005: ID 26ac:0011`
 
-> If you do not find your device, unplug it, execute `lsusb`, plug it, execute `lsusb` again and see the added device.
+> 如果你在输出中找不到你自己的设备，可以先拔下设备，执行`lsusb`，插入设备，然后再执行`lsusb`，对比一下哪个设备是新出现的，它就是你的设备。
 
-Therefore, we can create a new UDEV rule in a file called `/etc/udev/rules.d/99-pixhawk.rules` with the following content, changing the idVendor and idProduct to yours.
+因此，我们可以创建一个名为`/etc/udev/rules.d/99-pixhawk.rules`的新UDEV规则，内容类似下面这样，注意把idVendor和idProduct替换成你自己的值。
 
 ```sh
 SUBSYSTEM=="tty", ATTRS{idVendor}=="2341", ATTRS{idProduct}=="0042", SYMLINK+="ttyArduino"
 SUBSYSTEM=="tty", ATTRS{idVendor}=="26ac", ATTRS{idProduct}=="0011", SYMLINK+="ttyPixhawk"
 ```
 
-Finally, after a **reboot** you can be sure to know which device is what and put `/dev/ttyPixhawk` instead of `/dev/ttyUSB0` in your scripts.
+**重启** 之后，你就可以在脚本中使用`/dev/ttyPixhawk`而不是`/dev/ttyUSB0`这样的名字了。
 
-> Be sure to add yourself in the `tty` and `dialout` groups via `usermod` to avoid to have to execute scripts as root.
+> 请确保通过`usermod`命令将你自己添加到`tty`和`dialout`组里，不要用root执行脚本。
 
 ```sh
 usermod -a -G tty ros-user
