@@ -64,7 +64,7 @@
     * [VTOL飞行器](airframes-vtol.md)
         * [VTOL飞行器测试](airframes-vtol-testing.md)
         * [TBS Caipiroshka](airframes-vtol-caipiroshka.md)
-    * [船、潜艇、飞艇、小车](airframes-experimental.md)
+    * [船、潜艇、飞艇、小车](airframes-experimental.md)✅
 * 伙伴计算机
     * [Pixhawk伙伴计算机](pixhawk-companion-computer.md)✅
 * [DroneKit机器人](robotics-using-dronekit.md)
