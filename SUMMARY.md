@@ -59,7 +59,7 @@
         * [QAV 250 Racer](airframes-multicopter-qav250.md)✅
         * [Matrice 100](airframes-multicopter-matrice100.md)
         * [QAV-R](qav-r.md)✅
-    * [固定翼飞行器](airframes-plane.md)
+    * [固定翼飞行器](airframes-plane.md)✅
         * [Wing Wing Z-84](airframes-plane-wing-z-84.md)
     * [VTOL飞行器](airframes-vtol.md)
         * [VTOL飞行器测试](airframes-vtol-testing.md)
