@@ -1,22 +1,14 @@
 # Arch及CentOS发行版指南
 
-## USB Device Configuration
+## USB设备配置
 
-Linux users need to explicitly allow access to the USB bus for JTAG programming adapters.
+Linux用户需要手动为JTAG适配器添加USB访问权限。
 
 <aside class="note">
-For Archlinux: replace the group plugdev with uucp in the following commands
+对于Arch Linux：请将下面命令中的`plugdev`替换为`uucp`。
 </aside>
 
-Run a simple ls in sudo mode to ensure the commands below succeed:
-
-<div class="host-code"></div>
-
-```sh
-sudo ls
-```
-
-Then with sudo rights temporarily granted, run this command:
+请通过`sudo`运行下面的命令：
 
 <div class="host-code"></div>
 
@@ -33,7 +25,7 @@ sudo mv $HOME/rule.tmp /etc/udev/rules.d/10-px4.rules
 sudo /etc/init.d/udev restart
 ```
 
-User needs to be added to the group plugdev:
+你需要把当前用户添加到`plugdev`组里：
 
 <div class="host-code"></div>
 
@@ -41,14 +33,13 @@ User needs to be added to the group plugdev:
 sudo usermod -a -G plugdev $USER
 ```
 
-## Installation Instructions for Uncommon Linux Systems
+## 不常见Linux系统的安装指南
 
 ### CentOs
 
-The build requires Python 2.7.5. Therefore as of this writing Centos 7 should be used.
-(For earlier Centos releases a side-by-side install of python v2.7.5 may be done. But it is not recommended because it can break yum.)
+构建过程需要使用Python 2.7.5。目前我们以Centos 7做例子。（对于之前版本的Centos，可能并行安装一个v2.7.5版本的Python，但是这样做可能会破坏yum的功能，所以我们不推荐你这么做。）
 
-The EPEL repositories are required for openocd libftdi-devel libftdi-python
+你需要添加EPEL这个仓库以便安装`openocd`、`libftdi-devel`、`libftdi-python`：
 
 <div class="host-code"></div>
 
@@ -63,25 +54,26 @@ easy_install pexpect
 yum install openocd libftdi-devel libftdi-python python-argparse flex bison-devel ncurses-devel ncurses-libs autoconf texinfo libtool zlib-devel cmake
 ```
 
-Note:You may want to also install  python-pip and screen
+注意：你可能也需要安装python-pip和screen。
 
-#### Additional 32 bit libraries
+#### 额外的32位库
 
-Once the arm toolchain is installed test it with:
+请使用如下命令检测是否正确安装ARM工具链：
 
 <div class="host-code"></div>
 
 ```sh
 arm-none-eabi-gcc --version
 ```
-If you receive the following message
+
+如果看到类似下面这样的消息：
 
 <div class="host-code"></div>
 
 ```sh
 bash: gcc-arm-none-eabi-4_7-2014q2/bin/arm-none-eabi-gcc: /lib/ld-linux.so.2: bad ELF interpreter: No such file or directory
 ```
-Then you will also need to install other 32-bit libraries glibc.i686 ncurses-libs.i686
+那么你需要再安装32位的glibc.i686和ncurses-libs.i686库：
 
 <div class="host-code"></div>
 
@@ -89,7 +81,7 @@ Then you will also need to install other 32-bit libraries glibc.i686 ncurses-lib
 sudo yum install glibc.i686 ncurses-libs.i686
 ```
 <aside class="note">
-Pulling in ncurses-libs.i686 will pull in most of the other required 32 bit libraries. Centos 7 will install most all the PX4 related devices without the need for any added udev rules. The devices will be accessible to the predefined group ' dialout'. Therefore any references to adding udev rules can be ignored. The only requirement is that your user account is a member of the group 'dial out'
+安装ncurses-libs.i686会连带着安装绝大多少我们需要的32位库。Centos 7已经自带了对大多数PX4相关设备的支持，因此一般不需要再添加udev规则。这些设备可以通过预定义的`dialout`组访问，所以你需要把当前用户添加到`dialout`组中。
 </aside>
 
 ### Arch Linux
@@ -100,9 +92,9 @@ Pulling in ncurses-libs.i686 will pull in most of the other required 32 bit libr
 sudo pacman -S base-devel lib32-glibc git-core python-pyserial zip python-empy
 ```
 
-Install [yaourt](https://wiki.archlinux.org/index.php/Yaourt#Installation), the package manager for the [Arch User Repository (AUR)](https://wiki.archlinux.org/index.php/Arch_User_Repository).
+安装[yaourt](https://wiki.archlinux.org/index.php/Yaourt#Installation)，它是[Arch User Repository (AUR)](https://wiki.archlinux.org/index.php/Arch_User_Repository)的包管理器。
 
-Then use it to download, compile and install the following:
+然后再用yaourt下载、编译并安装`genromfs`：
 
 <div class="host-code"></div>
 
@@ -110,9 +102,9 @@ Then use it to download, compile and install the following:
 yaourt -S genromfs
 ```
 
-#### Permissions
+#### 权限
 
-The user needs to be added to the group "uucp":
+当前用户需要加入到`uucp`组中：
 
 <div class="host-code"></div>
 
@@ -120,16 +112,15 @@ The user needs to be added to the group "uucp":
 sudo usermod -a -G uucp $USER
 ```
 
-After that, logging out and logging back in is needed.
-
+然后，你需要重新登录以便使修改生效。
 
 <aside class="note">
-Log out and log in for changes to take effect! Also remove the device and plug it back in!**
+**一定要重新登录，否则不会生效！而且也要重新插拔设备！**
 </aside>
 
-### Toolchain Installation
+### 安装工具链
 
-Execute the script below to either install GCC 4.9 or 5.4:
+执行下面的命令安装GCC 4.9或者5.4：
 
 **GCC 4.9**:
 
@@ -157,7 +148,7 @@ if grep -Fxq "$exportline" ~/.profile; then echo nothing to do ; else echo $expo
 popd
 ```
 
-**If using Debian Linux, run this command:**
+**如果使用的是Debian Linux，请运行如下命令：**
 
 <div class="host-code"></div>
 
@@ -166,18 +157,18 @@ sudo dpkg --add-architecture i386
 sudo apt-get update
 ```
 
-**and Install the 32 bit support libraries** (this might fail and can be skipped if running a 32 bit OS):
+**然后安装32位支持库** （如果你的系统就是32位的，那么下面的命令可能会出错，可以忽略这个错误）：
 
 <div class="host-code"></div>
 
 ```sh
 sudo apt-get install libc6:i386 libgcc1:i386 libstdc++5:i386 libstdc++6:i386
-sudo apt-get install gcc-4.6-base:i386 
+sudo apt-get install gcc-4.6-base:i386
 ```
 
-## Ninja Build System
+## Ninja构建系统
 
-Ninja is fast than Make and the PX4 CMake generators support it. Unfortunately Ubuntu carries only a very outdated version at this point. To install a recent version of [Ninja](https://github.com/martine/ninja), download the binary and add it to your path:
+Ninja比Make更快，PX4的CMake支持生成Ninja脚本。不幸的是，Ubuntu自带的Ninja版本非常旧。你可以按照下面的操作安装[Ninja](https://github.com/martine/ninja)：
 
 <div class="host-code"></div>
 
@@ -192,11 +183,11 @@ if grep -Fxq "$exportline" ~/.profile; then echo nothing to do ; else echo $expo
 . ~/.profile
 ```
 
-## Troubleshooting
+## 常见问题
 
-### Version Test
+### 版本测试
 
-Enter:
+输入如下命令：
 
 <div class="host-code"></div>
 
@@ -204,7 +195,7 @@ Enter:
 arm-none-eabi-gcc --version
 ```
 
-The output should be something similar to:
+这个命令的输出应该类似下面这个样子：
 
 <div class="host-code"></div>
 
@@ -215,7 +206,7 @@ This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 ```
 
-If you get:
+如果输出类似下面这样：
 
 <div class="host-code"></div>
 
@@ -223,4 +214,5 @@ If you get:
 arm-none-eabi-gcc --version
 arm-none-eabi-gcc: No such file or directory
 ```
-make sure you have the 32bit libs installed properly as described in the installation steps.
+
+请检查你是否在前面的步骤中正确安装了32位库。

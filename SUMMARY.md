@@ -5,9 +5,9 @@
     * [初始配置](starting-initial-config.md)✅
     * [安装工具链](starting-installing.md)✅
         * [Mac OS](starting-installing-mac.md)✅
-        * [Linux](starting-installing-linux.md)⏳
-            * [Arch及CentOS发行版指南](starting-installing-linux-boutique.md)⏳
-        * [Windows](starting-installing-windows.md)⏳
+        * [Linux](starting-installing-linux.md)✅
+            * [Arch及CentOS发行版指南](starting-installing-linux-boutique.md)✅
+        * [Windows](starting-installing-windows.md)✅
     * [构建代码](starting-building.md)✅
     * [贡献&征集开发者](starting-contributing.md)
         * [GIT示例](git-examples.md)
@@ -83,7 +83,7 @@
         * [UAVCAN引导器](uavcan-bootloader-installation.md)
         * [UAVCAN固件更新](uavcan-node-firmware.md)
         * [UAVCAN配置](uavcan-node-enumeration.md)
-    * [PWM \/ GPIO](pwm-gpio-intro.md)
+    * [PWM/GPIO](pwm-gpio-intro.md)
     * [UART](uart-intro.md)
         * [uLanding雷达](uart-ulanding-radar.md)
 * 调试和高级主题
@@ -94,7 +94,7 @@
     * [自动驾驶仪调试](advanced-gdb-debugging.md)
     * [模拟调试](simulation-debugging.md)
     * [发送调试数值](advanced-debug-values.md)
-    * [室内 \/ 假GPS](advanced-fake-gps.md)
+    * [室内（伪）GPS](advanced-fake-gps.md)
     * [摄像头触发器](advanced-camera-trigger.md)
     * [日志](advanced-logging.md)
     * [飞行日志分析](flight_log_analysis.md)

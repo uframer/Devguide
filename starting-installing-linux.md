@@ -4,7 +4,7 @@
 
 ## 权限设置
 
-> **警告** Never ever fix permission problems by using 'sudo'. It will create more permission problems in the process and require a system reinstallation to fix them.
+> **警告** 一定不要在遇到权限问题时粗暴的通过'sudo'解决。如果滥用sudo可能会造成更大的权限问题，而且很难手动修复，甚至有可能需要你重新安装系统。
 
 当前用户需要属于`dialout`组：
 
@@ -16,16 +16,14 @@ sudo usermod -a -G dialout $USER
 
 ## 安装
 
-Update the package list and install the following dependencies for all PX4 build targets. PX4 supports four main families:
+更新包列表并安装编译PX4所需的包。PX4支持如下的目标系统：
 
-* NuttX based hardware: [Pixhawk](hardware-pixhawk.md), [Pixfalcon](hardware-pixfalcon.md),
-  [Pixracer](hardware-pixracer.md), [Crazyflie](hardware-crazyflie2.md),
-  [Intel Aero](hardware-intel-aero.md)
-* Snapdragon Flight hardware: [Snapdragon](hardware-snapdragon.md)
-* Linux-based hardware: [Raspberry Pi 2/3](hardware-rpi.md), Parrot Bebop
-* Host simulation: [jMAVSim SITL](simulation-sitl.md) and [Gazebo SITL](simulation-gazebo.md)
+* 基于NuttX的硬件：[Pixhawk](hardware-pixhawk.md)、[Pixfalcon](hardware-pixfalcon.md)、[Pixracer](hardware-pixracer.md)、[Crazyflie](hardware-crazyflie2.md)、[Intel Aero](hardware-intel-aero.md)
+* Snapdragon Flight硬件：[Snapdragon](hardware-snapdragon.md)
+* 基于Linux的硬件：[Raspberry Pi 2/3](hardware-rpi.md)、Parrot Bebop
+* 上位机模拟：[jMAVSim SITL](simulation-sitl.md)和[Gazebo SITL](simulation-gazebo.md)
 
-> **信息** Install the [Ninja Build System](http://dev.px4.io/starting-installing-linux-boutique.html#ninja-build-system) for faster build times than with Make. It will be automatically selected if installed.
+> **信息** 安装[Ninja构建系统](http://dev.px4.io/starting-installing-linux-boutique.html#ninja-build-system)可以提供比Make更快的构建速度。只要你安装了，PX4就会自动使用它。
 
 ```sh
 sudo add-apt-repository ppa:george-edison55/cmake-3.x -y
@@ -38,13 +36,13 @@ sudo apt-get install ant protobuf-compiler libeigen3-dev libopencv-dev openjdk-8
 
 ### 采用NuttX系统的硬件
 
-Ubuntu comes with a serial modem manager which interferes heavily with any robotics related use of a serial port \(or USB serial\). It can deinstalled without side effects:
+Ubuntu自带了一个串口调制解调器管理器，会严重干扰所有使用串口（或者USB串口）的机器人设备。我们需要卸载它消除干扰：
 
 ```sh
 sudo apt-get remove modemmanager
 ```
 
-Update the package list and install the following dependencies. Packages with specified versions should be installed with this particular package version.
+更新软件包列表并安装下面所需的软件包。有些软件包需要安装指定的版本。
 
 ```sh
 sudo apt-get install python-serial openocd \
@@ -53,14 +51,14 @@ sudo apt-get install python-serial openocd \
     python-empy  -y
 ```
 
-Make sure to remove leftovers before adding the arm-none-eabi toolchain.
+请确保在安装arm-none-eabi工具链之前移除已有的版本。
 
 ```sh
 sudo apt-get remove gcc-arm-none-eabi gdb-arm-none-eabi binutils-arm-none-eabi gcc-arm-embedded
 sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa
 ```
 
-Then follow the [toolchain installation instructions](http://dev.px4.io/starting-installing-linux-boutique.html#toolchain-installation) to install the arm-none-eabi toolchain version 4.9 or 5.4 manually.
+请按照[工具链安装指南](http://dev.px4.io/starting-installing-linux-boutique.html#toolchain-installation)来手动安装4.9或者5.4版本的arm-none-eabi工具链。
 
 ### Snapdragon Flight
 
@@ -74,17 +72,19 @@ sudo apt-get install android-tools-adb android-tools-fastboot fakechroot fakeroo
 git clone https://github.com/ATLFlight/cross_toolchain.git
 ```
 
-Get the Hexagon SDK 3.0 from QDN: [https://developer.qualcomm.com/download/hexagon/hexagon-sdk-v3-linux.bin](https://developer.qualcomm.com/download/hexagon/hexagon-sdk-v3-linux.bin)
+从QDN下载Hexagon SDK 3.0：
 
-This will require a QDN login. You will have to register if you do not already have an account.
+[https://developer.qualcomm.com/download/hexagon/hexagon-sdk-v3-linux.bin](https://developer.qualcomm.com/download/hexagon/hexagon-sdk-v3-linux.bin)
 
-Now move the following files in the download folder of the cross toolchain as follows:
+你需要登录QDN才能下载，如果没有账号，可以先注册一个。
+
+下载完成或，将下面的文件移动到`cross_toolchain/downloads`目录里面：
 
 ```sh
 mv ~/Downloads/hexagon-sdk-v3-linux.bin cross_toolchain/downloads
 ```
 
-Install the toolchain and SDK like this:
+安装工具链和SDK：
 
 ```sh
 cd cross_toolchain
@@ -92,9 +92,9 @@ cd cross_toolchain
 cd ..
 ```
 
-Follow the instructions to set up the development environment. If you accept all the install defaults you can at any time re-run the following to get the env setup. It will only install missing components.
+按照命令的提示设置好开发环境。如果你所有选项都用了默认值，以后也可以重新执行它获取环境变量设置，此时，只会安装缺少的组件。
 
-After this the tools and SDK will have been installed to "$HOME/Qualcomm/...". Append the following to your ~/.bashrc:
+运行完成后，工具和SDK会安装到`$HOME/Qualcomm/...`目录中。请将下面的内容添加到`~/.bashrc`文件的末尾：
 
 ```sh
 export HEXAGON_SDK_ROOT="${HOME}/Qualcomm/Hexagon_SDK/3.0"
@@ -102,7 +102,7 @@ export HEXAGON_TOOLS_ROOT="${HOME}/Qualcomm/HEXAGON_Tools/7.2.12/Tools"
 export PATH="${HEXAGON_SDK_ROOT}/gcc-linaro-4.9-2014.11-x86_64_arm-linux-gnueabihf_linux/bin:$PATH"
 ```
 
-Load the new configuration:
+重新加载配置：
 
 ```sh
 source ~/.bashrc
@@ -110,11 +110,11 @@ source ~/.bashrc
 
 #### Sysroot安装
 
-A sysroot is required to provide the libraries and header files needed to cross compile applications for the Snapdragon Flight applications processor.
+为Snapdragon Flight做交叉编译需要用到sysroot，它可以提供必需的库和头文件。
 
-The qrlSDK sysroot provies the required header files and libraries for the camera, GPU, etc.
+qrlSDK sysroot位摄像头、GPU等提供了必需的头文件和库。
 
-Download the file [Flight\_3.1.1\_qrlSDK.zip](http://support.intrinsyc.com/attachments/download/690/Flight_3.1.1_qrlSDK.zip) and save it in `cross_toolchain/download/`.
+下载[Flight\_3.1.1\_qrlSDK.zip](http://support.intrinsyc.com/attachments/download/690/Flight_3.1.1_qrlSDK.zip)并将其保存到`cross_toolchain/download/`中。
 
 ```sh
 cd cross_toolchain
@@ -122,30 +122,29 @@ unset HEXAGON_ARM_SYSROOT
 ./qrlinux_sysroot.sh
 ```
 
-Append the following to your ~/.bashrc:
+请将下面的内容添加到`~/.bashrc`文件的末尾：
 
 ```sh
 export HEXAGON_ARM_SYSROOT=${HOME}/Qualcomm/qrlinux_v3.1.1_sysroot
 ```
 
-Load the new configuration:
+重新加载配置：
 
 ```sh
 source ~/.bashrc
 ```
 
-For more sysroot options see [Sysroot Installation](https://github.com/ATLFlight/cross_toolchain/blob/sdk3/README.md#sysroot-installation)
+请参考[Sysroot Installation](https://github.com/ATLFlight/cross_toolchain/blob/sdk3/README.md#sysroot-installation)了解更多选项。
 
 #### 更新ADSP固件
 
-Before building, flashing and running code, you'll need to update the [ADSP firmware](advanced-snapdragon.html#updating-the-adsp-firmware).
+在构建、烧写及运行之前，你需要先更新[ADSP固件](advanced-snapdragon.html#updating-the-adsp-firmware).
 
 #### 参考资料
 
-There is a an external set of documentation for Snapdragon Flight toolchain and SW setup and verification:
-[ATLFlightDocs](https://github.com/ATLFlight/ATLFlightDocs/blob/master/README.md)
+[ATLFlightDocs](https://github.com/ATLFlight/ATLFlightDocs/blob/master/README.md)里有很多Snapdragon Flight工具链及设置、验证的文档，它们不属于PX4开发指南。
 
-Messages from the DSP can be viewed using mini-dm.
+可以用mini-dm来查看DSP发来的消息：
 
 ```sh
 ${HEXAGON_SDK_ROOT}/tools/debug/mini-dm/Linux_Debug/mini-dm
@@ -155,7 +154,7 @@ ${HEXAGON_SDK_ROOT}/tools/debug/mini-dm/Linux_Debug/mini-dm
 
 ### Raspberry Pi硬件
 
-Raspberry Pi的开发者需要按照下面的指导下载RPi Linux的工具链。安装脚本会自动安装交叉编译工具链。如果你想在RPi上面做*本地*编译，那么请参考[这份文档](http://dev.px4.io/hardware-pi2.html#native-builds-optional)
+Raspberry Pi的开发者需要按照下面的指导下载RPi Linux的工具链。安装脚本会自动安装交叉编译工具链。如果你想在RPi上面做 *本地* 编译，那么请参考[这份文档](http://dev.px4.io/hardware-pi2.html#native-builds-optional)
 
 ```sh
 git clone https://github.com/pixhawk/rpi_toolchain.git
@@ -164,22 +163,23 @@ cd rpi_toolchain
 ```
 在安装过程中，这个脚本可能会需要你提供根用户的密码。
 
-你可以个这个命令传递一个不同的路径，这样就会将工具链安装到你指定的目录中，默认的路径是```/opt/rpi_toolchain```。运行``` ./install_cross.sh <PATH>```。安装脚本会在安装完成后自动配置所需的环境变量（你可能需要重新开启一个终端窗口才能生效）。
+你可以个这个命令传递一个不同的路径，这样就会将工具链安装到你指定的目录中，默认的路径是`/opt/rpi_toolchain`。运行` ./install_cross.sh <PATH>`。安装脚本会在安装完成后自动配置所需的环境变量（你可能需要重新开启一个终端窗口才能生效）。
 
 最后，运行下面的命令更新环境变量：
-```
+
+```sh
 source ~/.profile
 ```
 
 ### Parrot Bebop
 
-Developers working with the Parrot Bebop should install the RPi Linux Toolchain. Follow the
-description under [Raspberry Pi hardware](raspberry-pi-hardware).
+使用Parrot Bebop的开发者应该安装RPi Linux工具链。请按照[Raspberry Pi硬件](raspberry-pi-hardware)部分的指南操作。
 
 Next, install ADB.
 
-``sh
-sudo apt-get install android-tools-adb -y` ``
+```sh
+sudo apt-get install android-tools-adb -y
+```
 
 ## 下一步
 
