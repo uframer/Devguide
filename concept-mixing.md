@@ -149,15 +149,16 @@ Z:
 
 #### 简单混控器 ####
 
-一个简单混控器将0个活多个控制输出组合起来，生成单独一个输出给执行机构。Inputs are scaled, and the mixing function sums the result before
-applying an output scaler.
+一个简单混控器将0个多个控制输出组合起来，生成单独一个输出给执行机构。输入会被等比缩放，混合函数会把结果加起来，然后应用到输出缩放器上。
 
 一个简单混控器的定义以下面的格式开始：
 
-	M: <control count>
-	O: <-ve scale> <+ve scale> <offset> <lower limit> <upper limit>
+```
+M: <control count>
+O: <-ve scale> <+ve scale> <offset> <lower limit> <upper limit>
+```
 
-If `<control count>` is zero, the sum is effectively zero and the mixer will
+如果`<control count>`是0，the sum is effectively zero and the mixer will
 output a fixed value that is `<offset>` constrained by `<lower limit>`
 and `<upper limit>`.
 
