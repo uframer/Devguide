@@ -168,6 +168,50 @@ px4 /home/root/px4.config
 
 如果想让Bebop飞起来，将摇杆连入上位机，然后启动QGroundControl。确保Bebop和摇杆被上位机正确地识别，按照QGC的指令校准传感器并设置摇杆。
 
+#### 自动启动
+
+如果想让PX4在Bebop启动启动，请修改启动脚本`/etc/init.d/rcS_mode_default`。先注释掉下面的行：
+
+```
+DragonStarter.sh -out2null &
+```
+
+替换为：
+
+```
+px4 -d /home/root/px4.config > /home/root/px4.log
+```
+
+按下电源键4次启动adb server，然后通过使用前面提到的命令连接adb server：
+
+```sh
+adb connect 192.168.42.1:9050
+```
+
+重新将系统分区挂载为可写模式：
+
+```sh
+adb shell mount -o remount,rw /
+```
+
+如果你不想手动修改文件，可以用这里提供的文件：
+
+https://gist.github.com/mhkabir/b0433f0651f006e3c7ac4e1cbd83f1e8
+
+保存原来的文件，然后将这个文件push到Bebop上：
+
+```sh
+adb shell cp /etc/init.d/rcS_mode_default /etc/init.d/rcS_mode_default_backup
+adb push rcS_mode_default /etc/init.d/
+```
+
+Sync并重启：
+
+```sh
+adb shell sync
+adb shell reboot
+```
+
 ### 基于QuRT/Snapdragon的平台
 
 #### 构建

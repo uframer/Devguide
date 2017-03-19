@@ -13,7 +13,7 @@ PX4 supports HITL for multicopters (using jMAVSim) and fixed wing (using X-Plane
 - 确保QGroundControl没有在运行，并且没有通过串口访问设备）
 - 用HITL模式运行jMAVSim（如有必要，请将下面的串口替换为你的设置）：
   ```
-  ./Tools/jmavsim_run.sh -q -d /dev/ttyACM0 -b 921600
+  ./Tools/jmavsim_run.sh -q -d /dev/ttyACM0 -b 921600 -r 250
   ```
 - 控制台会开始显示从自动驾驶仪传来的mavlink文本消息。
 - 然后通过默认的UDP配置连接QGroundControl。

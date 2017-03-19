@@ -14,8 +14,6 @@ xcode-select --install
 
 在安装Homebrew后，将下面的命令复制到你的shell：
 
-<div class="host-code"></div>
-
 ```sh
 brew tap PX4/homebrew-px4
 brew tap PX4/simulation
@@ -28,8 +26,6 @@ brew install homebrew/science/opencv
 ```
 
 接下来安装所需的python包：
-
-<div class="host-code"></div>
 
 ```sh
 sudo easy_install pip

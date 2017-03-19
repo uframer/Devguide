@@ -1,4 +1,4 @@
-# Summary
+# 目录
 
 * [介绍](README.md)✅
 * 上手
@@ -28,7 +28,9 @@
     * [室外光流](optical-flow-outdoors.md)
     * [ecl EKF](tuning_the_ecl_ekf.md)
     * [飞行前检查](pre_flight_checks.md)
-  * [数传](telemetry.md)✅
+    * [数传](telemetry.md)✅
+    * [传感器的热补偿](sensor-thermal-calibration.md)
+    * [地面检测器](land-detector.md)
 * 模拟
     * [基本模拟](simulation-sitl.md)
     * [Gazebo模拟](simulation-gazebo.md)
@@ -83,6 +85,7 @@
         * [UAVCAN引导器](uavcan-bootloader-installation.md)
         * [UAVCAN固件更新](uavcan-node-firmware.md)
         * [UAVCAN配置](uavcan-node-enumeration.md)
+        * [UAVCAN杂记](uavcan-various-notes.md)
     * [PWM/GPIO](pwm-gpio-intro.md)
     * [UART](uart-intro.md)
         * [uLanding雷达](uart-ulanding-radar.md)
