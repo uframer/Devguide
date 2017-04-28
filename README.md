@@ -4,9 +4,13 @@
 
 这份指南描述了PX4系统架构的内部原理。开发者通过它可以：
 
-* 了解[系统的概况](starting-initial-config.md)
-* 修改[PX4飞行栈](concept-flight-stack.md)和[PX4中间件](concept-middleware.md)
-* 在[Snapdragon Flight](hardware-snapdragon.md)、[Pixhawk](hardware-pixhawk.md)和[Pixfalcon](hardware-pixfalcon.md)上部署PX4
+* 了解[系统的概况](en/setup/config_initial.md)
+* 访问并修改[PX4飞行栈](en/concept/flight_stack.md)和[PX4中间件](en/concept/middleware.md)
+* 在Intel [Aero](en/flight_controller/intel_aero.md)、Qualcomm [Snapdragon Flight](en/flight_controller/snapdragon_flight.md)、[Pixhawk](en/flight_controller/pixhawk.md)、[Pixfalcon](en/flight_controller/pixfalcon.md)等自动驾驶仪上部署PX4。
+
+## 如何贡献力量
+
+This guide is maintained using GitBook. A local copy can be installed by following the [official instructions](https://toolchain.gitbook.com/setup.html). Before calling `gitbook serve` make sure to have all the plugins installed.
 
 ## License
 
